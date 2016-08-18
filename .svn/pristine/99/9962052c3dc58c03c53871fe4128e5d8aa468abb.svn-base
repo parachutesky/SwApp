@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/setting_item_selector"
+    android:orientation="vertical"
+    android:paddingTop="3dp" >
+
+    <TextView
+        android:id="@+id/tv_sw_allproject_title"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:ellipsize="end"
+        android:maxLines="2"
+        android:padding="5dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="5dp"
+        android:layout_marginLeft="5dp"
+        android:text="标题"
+        android:textSize="@dimen/tv_18sp36" />
+
+    <TextView
+        android:id="@+id/tv_sw_allproject_qisu"
+        style="@style/myproject_text_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:ellipsize="end"
+        android:paddingLeft="10dip"
+        android:singleLine="true"
+        android:text="期数 : "
+        android:textSize="@dimen/tv_15sp30" />
+
+    <TextView
+        android:id="@+id/tv_sw_allproject_type"
+        style="@style/myproject_text_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:ellipsize="end"
+        android:paddingLeft="10dip"
+        android:singleLine="true"
+        android:text="类型 : "
+        android:textSize="@dimen/tv_15sp30" />
+
+    <TextView
+        android:id="@+id/tv_sw_allproject_nub"
+        style="@style/myproject_text_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:ellipsize="end"
+        android:paddingLeft="10dip"
+        android:singleLine="true"
+        android:text="人数 : "
+        android:textSize="@dimen/tv_15sp30" />
+
+    <TextView
+        android:id="@+id/tv_sw_allproject_time"
+        style="@style/myproject_text_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:ellipsize="end"
+        android:paddingLeft="10dip"
+        android:singleLine="true"
+        android:text="时间 : "
+        android:textSize="@dimen/tv_15sp30" />
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1px"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="5dp"
+        android:background="@color/people_description" />
+
+</LinearLayout>

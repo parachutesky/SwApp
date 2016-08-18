@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:fitsSystemWindows="true"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    <RelativeLayout
+        android:id="@+id/rel_notify_title"
+        android:layout_width="match_parent"
+        android:layout_height="48.0dip"
+        android:background="@color/black_dark" >
+
+        <ImageView
+            android:id="@+id/iv_back"
+            android:layout_width="48.0dip"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:src="@drawable/nav_button_back_push" />
+
+        <TextView
+            android:id="@+id/title_bar_name"
+            style="@style/txt_titleStyle1"
+            android:layout_centerInParent="true"
+            android:text="请选择审阅人"
+            android:textColor="#FFFFFF" />
+
+        <TextView
+            android:id="@+id/tv_edit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:clickable="true"
+            android:paddingBottom="10dp"
+            android:paddingLeft="30dp"
+            android:paddingRight="30dp"
+            android:paddingTop="15dp"
+            android:text="确定"
+            android:textColor="#ffffff"
+            android:textSize="16sp" />
+    </RelativeLayout>
+    
+
+    <include
+        android:id="@+id/layout_search"
+        layout="@layout/layout_head_search" />
+
+    <FrameLayout
+        android:id="@+id/hh"
+        android:layout_marginTop="10dip"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_gravity="center"
+            android:background="#ffffff"
+            android:orientation="vertical" >
+
+            <ListView
+                android:id="@+id/lvContact"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:divider="#00000000"
+                android:dividerHeight="0dp"
+                android:scrollbars="none" />
+
+        </LinearLayout>
+
+        <com.jnwat.swmobilegy.mainpager.SelectSideBar
+            android:id="@+id/sideBar"
+            android:layout_width="30dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right|center_vertical"
+            android:layout_marginTop="5dp" />
+        <!-- android:background="@drawable/mm_text_bg_trans" -->
+    </FrameLayout>
+
+    <RelativeLayout
+        android:id="@+id/search"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" >
+    </RelativeLayout>
+</LinearLayout>

@@ -1,0 +1,270 @@
+package com.xycoding.www;
+
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.Serializable;
+
+
+import com.jnwat.swmobilegy.R;
+import com.jnwat.personDetail.PersonalInfoActivity;
+
+
+
+import android.app.Activity;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
+import android.graphics.PointF;
+import android.graphics.Rect;
+import android.net.Uri;
+import android.os.Bundle;
+import android.os.Environment;
+import android.provider.MediaStore;
+import android.view.KeyEvent;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.View.OnTouchListener;
+import android.view.ViewGroup.LayoutParams;
+import android.view.ViewTreeObserver;
+import android.view.ViewTreeObserver.OnGlobalLayoutListener;
+import android.widget.ImageView;
+import android.widget.ImageView.ScaleType;
+
+public class ClipPictureActivity extends Activity implements OnTouchListener,
+		OnClickListener {
+	private ImageView srcPic;
+	private View sure;
+	
+
+	private Matrix matrix = new Matrix();
+	private Matrix savedMatrix = new Matrix();
+
+	/** ������־���� */
+	private static final int NONE = 0;
+	/** ������־���϶� */
+	private static final int DRAG = 1;
+	/** ������־������ */
+	private static final int ZOOM = 2;
+	/** ��ʼ��������־ */
+	private int mode = NONE;
+
+	/** ��¼��ʼ��� */
+	private PointF start = new PointF();
+	/** ��¼����ʱ��ָ�м����� */
+	private PointF mid = new PointF();
+	private float oldDist = 1f;
+    
+	
+	private final String FILENAME_TEMP = "head_temp.jpg";//临时
+    private String EXTERNAL ;
+    
+    private String headPath_temp;//临时
+	
+	private Bitmap bitmap;
+	private final int TAKEPHOTO = 1;
+	private final int PICTURES  = 2;
+	private final String HERE = "choosePicture";
+	private String ways;
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.main);
+
+		srcPic = (ImageView) this.findViewById(R.id.src_pic);
+	//	srcPic.setOnTouchListener(this);
+
+		Intent intent =this.getIntent();
+        ways = intent.getStringExtra("way");
+        if(ways!=null&&ways.equals("001")){
+        	EXTERNAL = this.getFilesDir().getAbsolutePath();
+        	headPath_temp = EXTERNAL+"/"+FILENAME_TEMP;
+        	Intent mIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+			   //下面这句指定调用相机拍照后的照片存储的路径
+        	 mIntent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(new File(Environment.getExternalStorageDirectory(),"head_temp.jpg")));
+			 startActivityForResult(mIntent, TAKEPHOTO);
+        	/*Intent mIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        	
+    		startActivityForResult(mIntent,TAKEPHOTO);*/
+        }else if(ways!=null&&ways.equals("002")){
+        	              /* Intent mIntent = new Intent();  
+        	               mIntent.setType("image/*");  
+        	               mIntent.setAction(mIntent.ACTION_GET_CONTENT);  
+        	               startActivityForResult(mIntent, 2);  */
+
+        	Intent mIntent=new Intent(Intent.ACTION_GET_CONTENT);//ACTION_OPEN_DOCUMENT
+        	mIntent.addCategory(Intent.CATEGORY_OPENABLE);
+        	mIntent.setType("image/jpeg");
+        	if(android.os.Build.VERSION.SDK_INT>=android.os.Build.VERSION_CODES.KITKAT){
+        	startActivityForResult(mIntent, PICTURES);
+        	}else{
+        	startActivityForResult(mIntent, PICTURES);
+        	}
+  
+        }
+		sure = (View) this.findViewById(R.id.sure);
+		sure.setOnClickListener(this);
+		/*Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+		startActivityForResult(intent,TAKEPHOTO);*/
+		
+	}
+	 
+
+	
+
+	public boolean onTouch(View v, MotionEvent event) {
+		ImageView view = (ImageView) v;
+		switch (event.getAction() & MotionEvent.ACTION_MASK) {
+		case MotionEvent.ACTION_DOWN:
+			savedMatrix.set(matrix);
+			// ���ÿ�ʼ��λ��
+			start.set(event.getX(), event.getY());
+			mode = DRAG;
+			break;
+		case MotionEvent.ACTION_POINTER_DOWN:
+			oldDist = spacing(event);
+			if (oldDist > 10f) {
+				savedMatrix.set(matrix);
+				midPoint(mid, event);
+				mode = ZOOM;
+			}
+			break;
+		case MotionEvent.ACTION_UP:
+		case MotionEvent.ACTION_POINTER_UP:
+			mode = NONE;
+			break;
+		case MotionEvent.ACTION_MOVE:
+			if (mode == DRAG) {
+				matrix.set(savedMatrix);
+				matrix.postTranslate(event.getX() - start.x, event.getY()
+						- start.y);
+			} else if (mode == ZOOM) {
+				float newDist = spacing(event);
+				if (newDist > 10f) {
+					matrix.set(savedMatrix);
+					float scale = newDist / oldDist;
+					matrix.postScale(scale, scale, mid.x, mid.y);
+				}
+			}
+			break;
+		}
+		view.setImageMatrix(matrix);
+		return true;
+	}
+
+	/**
+	 * ��㴥��ʱ���������ȷ��µ���ָ����
+	 * 
+	 * @param event
+	 * @return
+	 */
+	private float spacing(MotionEvent event) {
+		float x = event.getX(0) - event.getX(1);
+		float y = event.getY(0) - event.getY(1);
+		return (float) Math.sqrt(x * x + y * y);
+	}
+
+	/**
+	 * ��㴥��ʱ���������ȷ��µ���ָ�������
+	 * 
+	 * @param point
+	 * @param event
+	 */
+	private void midPoint(PointF point, MotionEvent event) {
+		float x = event.getX(0) + event.getX(1);
+		float y = event.getY(0) + event.getY(1);
+		point.set(x / 2, y / 2);
+	}
+
+	public void onClick(View v) {
+		
+		Intent intent = new Intent();
+		intent.putExtra("from", HERE);
+		intent.setClass(this, PersonalInfoActivity.class);
+		startActivity(intent);
+		 finish();
+		
+	}
+
+	
+	
+	/**
+	 * 裁剪图片方法实现
+	 * 该方法主要是调用图片裁剪工具，
+	 * 注：图片裁剪工具是系统自带的，直接调用即可
+	 * 方法中的putExtra是调用该工具前，为其传递参数
+	 * 
+	 */
+	public void startPhotoZoom(Uri uri) 
+	{
+		Intent intent = new Intent("com.android.camera.action.CROP");
+		intent.setDataAndType(uri, "image/*");
+		//下面这个crop=true是设置在开启的Intent中设置显示的VIEW可裁剪
+		intent.putExtra("crop", "true");
+		// aspectX aspectY 是宽高的比例
+		intent.putExtra("aspectX", 1);
+		intent.putExtra("aspectY", 1);
+		// outputX outputY 是裁剪图片宽高
+		intent.putExtra("outputX", 150);
+		intent.putExtra("outputY", 150);
+		intent.putExtra("return-data", true);
+		startActivityForResult(intent, 3);
+	}
+	
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		// TODO Auto-generated method stub
+		super.onActivityResult(requestCode, resultCode, data);
+		if(resultCode==Activity.RESULT_OK){
+		    if(requestCode==TAKEPHOTO){
+		    	File temp = new File(Environment.getExternalStorageDirectory()+ "/head_temp.jpg");
+		    	
+				if (temp.exists()){
+				   startPhotoZoom(Uri.fromFile(new File(Environment.getExternalStorageDirectory(),"head_temp.jpg"))); //调用图片裁剪工具，裁剪相机拍的照片
+				}
+		     }else if(requestCode==PICTURES){
+		    	 startPhotoZoom(data.getData()); //调用图片裁剪工具裁剪选取的图片    
+		    	 
+		     }else if(requestCode==3){
+		    	 String external = this.getFilesDir().getAbsolutePath();
+		         String path = external+"/"+FILENAME_TEMP;
+		    		if(data != null){
+		    			Bundle bundle = data.getExtras();
+		    			if(bundle!=null){
+		    				Bitmap photo = bundle.getParcelable("data");
+		    				srcPic.setImageBitmap(photo);
+		    				ByteArrayOutputStream baos = new ByteArrayOutputStream();
+		    				photo.compress(Bitmap.CompressFormat.PNG, 100, baos);//png类型
+		    			    try {
+								FileOutputStream fos = new FileOutputStream(path);
+								fos.write(baos.toByteArray());
+								fos.flush();
+								fos.close();
+							} catch (FileNotFoundException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							} catch (IOException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+		    				
+		    			}
+		    		}
+		     }
+		    
+		}else{
+			Intent intent = new Intent();
+			intent.setClass(this,PersonalInfoActivity.class);
+			startActivity(intent);
+			finish();
+		}
+	}
+
+
+	
+	
+}

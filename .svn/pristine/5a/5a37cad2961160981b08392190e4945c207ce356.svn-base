@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical" >
+
+    <include layout="@layout/back_title" />
+    
+    <FrameLayout 
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        >
+        
+        
+    <com.github.mikephil.charting.charts.BarChart
+        android:id="@+id/chart_training"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <Button
+        android:id="@+id/button_getchart"
+        android:layout_gravity="center_horizontal"
+        android:background="#00000000"
+        android:padding="10dp"
+        android:layout_margin="10dip"
+        android:textSize="@dimen/tv_17sp34"
+        android:onClick="showDialog"
+        android:layout_width="wrap_content"
+        android:textColor="@color/title_blue"
+        android:layout_height="wrap_content"
+        android:text="" />
+        
+    </FrameLayout>
+
+</LinearLayout>

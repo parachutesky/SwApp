@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white" >
+
+    <TextView
+        android:id="@+id/title_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="15dp"
+        android:text="这是标题"
+        android:textColor="@color/black"
+        android:textSize="@dimen/tv_19sp38" />
+
+    <TextView
+        android:id="@+id/showtime_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/title_tv"
+        android:layout_below="@id/title_tv"
+        android:layout_marginTop="10dp"
+        android:text="10分钟前"
+        android:textSize="@dimen/tv_15sp30" />
+
+    <ImageView
+        android:id="@+id/line"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_alignLeft="@id/title_tv"
+        android:layout_below="@id/showtime_tv"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/bg_qhs" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_alignLeft="@id/title_tv"
+        android:layout_below="@id/line"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="5dp" >
+
+        <ImageView
+            android:id="@+id/custom_icon"
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            android:layout_centerVertical="true"
+            android:background="@drawable/list_icon_user_default" />
+
+        <TextView
+            android:id="@+id/name_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="15dp"
+            android:layout_toRightOf="@id/custom_icon"
+            android:text="张三"
+            android:textSize="@dimen/tv_15sp30" />
+
+        <ImageView
+            android:id="@+id/message_icon"
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="20dp"
+            android:background="@drawable/feedback_icon_comment" />
+
+        <TextView
+            android:id="@+id/info_num_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:text="10"
+            android:textSize="@dimen/tv_13sp26" />
+    </RelativeLayout>
+
+</RelativeLayout>

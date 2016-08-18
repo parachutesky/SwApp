@@ -1,0 +1,40 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="48.0dip"
+    android:id="@+id/layout_title"
+    android:background="@color/title_blue" >
+    <ImageView
+        android:id="@+id/process_back_img"
+        android:layout_width="40dp"
+        android:layout_height="30dp"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="10dip"
+        android:src="@drawable/nav_button_back_push"/>
+    <EditText android:id="@+id/process_search_edt"
+              android:layout_centerInParent="true"
+              android:layout_width="wrap_content"
+              android:layout_height="40dp"
+              android:paddingLeft="5dip"
+              android:textColor="#ffffff"
+              android:textSize="15sp"
+              android:textColorHint="#ffffff"
+              android:hint="搜索..."
+              android:drawableLeft="@drawable/nav_icon_search"
+              android:background="@drawable/nav_button_search_bg"
+             
+              />
+
+     <!-- <ImageView
+         android:id="@+id/process_message_img"
+        android:layout_width="40dp"
+        android:layout_height="30dp"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="5dp"
+        android:contentDescription="@string/app_name"
+        android:src="@drawable/nav_button_message_new" /> -->
+    
+   
+</RelativeLayout>

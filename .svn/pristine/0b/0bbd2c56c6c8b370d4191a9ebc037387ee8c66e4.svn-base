@@ -1,0 +1,179 @@
+package com.jnwat.oamobilegy.mail;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.regex.Pattern;
+
+import android.app.Activity;
+import android.content.Intent;
+import android.net.Uri;
+import android.os.Bundle;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import com.jnwat.bean.Contacts;
+import com.jnwat.oamobilegy.R;
+import com.jnwat.tools.ModifySysTitle;
+import com.jnwat.tools.ToastViewTools;
+import com.jnwat.view.mailDetailPopupWindow;
+
+
+/**
+ * 通讯录的详情页面 包含了 打电话 发短信功能
+ * 
+ * @author Administrator
+ * 
+ */
+public class MailDetalActivity extends Activity {
+	private TextView nameTxt, sexTxt,departTxt,offPhoneTxt,mobPhoneTxt,emailTxt;// userTxt 用户名 telNum 手机号
+	private ImageView  iv_off_tel , iv_tel_tel , iv_tel_send ; // 依次为  办公电话打电话的im   手机号的打电话的im   手机号发短信的im
+	private ImageView rebackImg; // 返回的 图片
+	private Button sendBtn, telBtn; // sendBtn 发短信的button telBtn 打电话的 btn
+	private Contacts user;
+    mailDetailPopupWindow  pop;
+    private List<String> tel = new ArrayList<String>();
+    private String telNUm ;
+    private String offNum ;
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		// TODO Auto-generated method stub
+		super.onCreate(savedInstanceState);
+		this.setContentView(R.layout.user_detail_activity);
+		initData();
+		initView();
+		ModifySysTitle.ModifySysTitleStyle(R.color.black_dark, MailDetalActivity.this);//将状态栏设置颜色
+		initListen();
+	}
+
+	// 得到 控件 并把 展示值 赋值给 控件
+	public void initView() {
+		nameTxt = (TextView) this.findViewById(R.id.name_txt);
+		sexTxt = (TextView) this.findViewById(R.id.sex_txt);
+		departTxt = (TextView) this.findViewById(R.id.department_txt);
+		offPhoneTxt = (TextView) this.findViewById(R.id.offphone_txt);
+		mobPhoneTxt = (TextView) this.findViewById(R.id.mobphone_txt);
+		emailTxt   = (TextView) this.findViewById(R.id.email_txt);
+		rebackImg = (ImageView) this.findViewById(R.id.reback_imb);
+		iv_off_tel = (ImageView) findViewById(R.id.iv_off_tel);
+		iv_tel_tel = (ImageView) findViewById(R.id.iv_tel_tel);
+		iv_tel_send = (ImageView) findViewById(R.id.iv_tel_send);
+		nameTxt.setText(user.getName());
+		sexTxt.setText(user.getSex());
+		departTxt.setText(user.getDepartment());
+		offPhoneTxt.setText(user.getOffPhone());
+		mobPhoneTxt.setText(user.getMobPhone());
+		emailTxt.setText(user.getEmail());
+	//	local();  // 本地数据
+		
+	}
+
+	// 获取 上 个页面 传递的值
+	public void initData() {
+		Intent intent = this.getIntent();
+		Bundle bundle = intent.getExtras();
+		user = new Contacts();
+		String name = bundle.getString("name");
+		String sex = bundle.getString("sex");
+		String department = bundle.getString("department");
+		String offphone   = bundle.getString("offphone");
+		String mobphone   = bundle.getString("mobphone");
+		String email = bundle.getString("email");
+		telNUm  = mobphone; //  赋值给 手机号的全局变量
+		offNum  = offphone; //  赋值给 办公电话的全局变量
+		user.setName(name);
+		user.setSex(sex);
+		user.setDepartment(department);
+		user.setOffPhone(offphone);
+		user.setMobPhone(mobphone);
+		user.setEmail(email);
+		
+	}
+	// 假数据
+	public  void local(){
+		offPhoneTxt.setText("0531-86516186-8008");
+		mobPhoneTxt.setText("15066658823");
+		
+	}
+
+	// 监听
+	public void initListen() {
+		rebackImg.setOnClickListener(new rebackImgLis());
+		iv_off_tel.setOnClickListener(new OnClickListener(){
+
+			@Override
+			public void onClick(View arg0) {
+				// TODO Auto-generated method stub
+				tel(offNum);
+			}
+			
+		});
+		iv_tel_tel.setOnClickListener(new OnClickListener(){
+
+			@Override
+			public void onClick(View arg0) {
+				// TODO Auto-generated method stub
+				tel(telNUm);
+			}
+			
+		});
+		iv_tel_send.setOnClickListener(new OnClickListener(){
+
+			@Override
+			public void onClick(View arg0) {
+				// TODO Auto-generated method stub
+				sendMessage(telNUm);
+			}
+			
+		} );
+		
+	}
+
+	class rebackImgLis implements OnClickListener {
+
+		@Override
+		public void onClick(View arg0) {
+			// TODO Auto-generated method stub
+			finish();
+		}
+
+	}
+  // 打电话
+	public void  tel(String telNUm){
+		
+		String regx  = "[0-9]+";
+		if(null!=telNUm&&Pattern.matches(regx, telNUm)){
+			Intent intent = new Intent();
+			intent.setAction("android.intent.action.CALL"); 
+			intent.setData(Uri.parse("tel:"+telNUm));
+			startActivity(intent);
+			
+		}else{
+			ToastViewTools.initToast(this,"号码不存在或有误");
+		}
+		
+		
+	}
+// 发短信
+	public void  sendMessage(String telNUm){
+		
+		String regx  = "[0-9]+";
+		if(null!=telNUm){
+			telNUm.replaceAll("-","");
+		}
+		if(null!=telNUm&&Pattern.matches(regx, telNUm)){
+			Intent intent = new Intent();
+			intent.setAction("android.intent.action.CALL"); 
+			intent.setAction(Intent.ACTION_SENDTO);
+			intent.setData(Uri.parse("smsto:" + telNUm));
+			startActivity(intent);
+			
+		}else{
+			ToastViewTools.initToast(this,"号码不存在或有误");
+		}
+		
+	}
+ 
+}

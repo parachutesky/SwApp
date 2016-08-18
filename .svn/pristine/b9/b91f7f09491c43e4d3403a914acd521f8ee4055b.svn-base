@@ -1,0 +1,105 @@
+package com.jnwat.swmobilegy.dapter;
+
+import java.util.HashMap;
+import java.util.List;
+
+import android.annotation.SuppressLint;
+import android.content.Context;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.BaseAdapter;
+import android.widget.TextView;
+
+import com.jnwat.swmobilegy.R;
+import com.lidroid.xutils.util.LogUtils;
+
+/**
+ * @author chang-zhiyuan 所有项目
+ */
+public class AdapterAllProject extends BaseAdapter {
+	private LayoutInflater layoutInflater;
+	private List<HashMap<String, String>> data;
+
+	public AdapterAllProject(Context mcontext,
+			List<HashMap<String, String>> mdata) {
+		data = mdata;
+		this.layoutInflater = LayoutInflater.from(mcontext);
+		LogUtils.d("初始化课程表适配器");
+	}
+
+	@Override
+	public int getCount() {
+		return data.size();
+	}
+
+	@Override
+	public Object getItem(int position) {
+		return data.get(position);
+	}
+
+	@Override
+	public long getItemId(int position) {
+		return position;
+	}
+
+	@SuppressLint("ResourceAsColor")
+	@Override
+	public View getView(int position, View convertView, ViewGroup parent) {
+
+		ViewHolder mviewHolder = null;
+		Log.e("getView=====>>>>>>>>>","开始时间===>>>>>>"+data.get(position).get("Startdate"));
+		if (convertView == null) {
+
+			convertView = layoutInflater.inflate(R.layout.sw_item_allproject,
+					parent, false);
+			mviewHolder = new ViewHolder();
+			mviewHolder.tv_sw_allproject_title = (TextView) convertView
+					.findViewById(R.id.tv_sw_allproject_title);
+			mviewHolder.tv_sw_allproject_qisu = (TextView) convertView
+					.findViewById(R.id.tv_sw_allproject_qisu);
+			mviewHolder.tv_sw_allproject_type = (TextView) convertView
+					.findViewById(R.id.tv_sw_allproject_type);
+			mviewHolder.tv_sw_allproject_nub = (TextView) convertView
+					.findViewById(R.id.tv_sw_allproject_nub);
+			mviewHolder.tv_sw_allproject_time = (TextView) convertView
+					.findViewById(R.id.tv_sw_allproject_time);
+			convertView.setTag(mviewHolder);
+		} else {
+
+			mviewHolder = (ViewHolder) convertView.getTag();
+		}
+		mviewHolder.tv_sw_allproject_qisu.setText("期数 : "
+				+ data.get(position).get("Code"));
+		mviewHolder.tv_sw_allproject_type.setText("类型 : "
+				+ data.get(position).get("Traintype"));
+		mviewHolder.tv_sw_allproject_time.setText("时间 : "
+				+ data.get(position).get("Startdate") + "至"
+				+ data.get(position).get("Enddate"));
+		mviewHolder.tv_sw_allproject_nub.setText("人数 : "
+				+ data.get(position).get("Pronum"));
+	
+		
+		if(data.get(position).get("hasDBC").equals("1")){
+			mviewHolder.tv_sw_allproject_title.setTextColor(android.graphics.Color.RED);
+			mviewHolder.tv_sw_allproject_title.setText("(搭)"+data.get(position).get(
+					"Projectname"));
+		}else{
+			mviewHolder.tv_sw_allproject_title.setTextColor(android.graphics.Color.BLACK);
+			mviewHolder.tv_sw_allproject_title.setText(data.get(position).get(
+					"Projectname"));
+		}
+		
+		return convertView;
+	}
+
+	class ViewHolder {
+		public TextView tv_sw_allproject_title;
+		public TextView tv_sw_allproject_qisu;
+		public TextView tv_sw_allproject_type;
+		public TextView tv_sw_allproject_time;
+		public TextView tv_sw_allproject_nub;
+
+	}
+}

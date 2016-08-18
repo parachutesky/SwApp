@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+     android:background="@color/bg"
+    android:orientation="vertical" >
+    
+     <include layout="@layout/back_title" />
+     
+    
+      <com.handmark.pulltorefresh.library.PullToRefreshListView
+          android:id="@+id/lv_salary"
+          android:layout_height="fill_parent"
+          android:layout_width="fill_parent"
+          android:layout_marginTop="10dp"
+           android:divider="@android:color/transparent"
+           android:dividerHeight="12dp"
+          android:listSelector="@drawable/setting_item_selector" 
+      /> 
+
+    
+</LinearLayout>

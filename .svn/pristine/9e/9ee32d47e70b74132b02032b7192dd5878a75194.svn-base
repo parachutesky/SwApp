@@ -1,0 +1,41 @@
+package com.jnwat.swmobilegy.mainpager;
+
+
+import com.jnwat.swmobilegy.R;
+import com.jnwat.swmobilegy.BaseActivity;
+import com.jnwat.tools.ModifySysTitle;
+
+/**
+ * @author chang-zhiyuan
+ * 请假管理
+ */
+public class LeaveManagerActivity extends BaseActivity {
+
+	@Override
+	protected void initView() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	protected void setListener() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	protected void initData() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	protected void setView() {
+		// TODO Auto-generated method stub
+		setContentView(R.layout.activity_leavemanager);
+		ModifySysTitle.ModifySysTitleStyle(R.color.black_dark,
+				LeaveManagerActivity.this);
+		setBackListener("请假管理", false);
+	}
+
+}

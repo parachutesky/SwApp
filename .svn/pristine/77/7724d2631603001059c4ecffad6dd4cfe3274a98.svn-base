@@ -1,0 +1,121 @@
+package com.jnwat.analysis;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import android.os.Handler;
+
+import com.jnwat.bean.BIntentObj;
+import com.jnwat.bean.BUserTasks;
+import com.jnwat.bean.BUserlogin;
+import com.jnwat.config.ShowRemind;
+import com.lidroid.xutils.util.LogUtils;
+
+/**
+ * @author chang-zhiyuan 解析任务列表
+ */
+public class AUserTasks {
+	public void aAUserTasks() {
+		
+	}
+
+	/**
+	 * 解析登录返回的数据 谁的青春不慌张，谁独自上路
+	 * 
+	 * @return
+	 */
+	public int  aAUserTasks(String result,Handler mHandler,List<BUserTasks> lisArray) {
+		LogUtils.d(result);
+		ArrayList<BUserTasks> mList = new ArrayList<BUserTasks>();
+		int iden = 0; //当 为 0 说明  获取服务 异常   当为 1说明   正常获取到数据   当为 2 说明  正常情况下无数据
+		JSONObject jsonobject;
+		try {
+			jsonobject = new JSONObject(result);
+
+			String Message = jsonobject.get("Message").toString().trim();// 错误提示信息
+			
+			ShowRemind.ErrorMessage = Message;
+			int Status = jsonobject.getInt("Status");
+            BIntentObj.IsGetProcess = true; //断定 已经正常  从接口 获取数据   用户下也可能是没有数据的
+			if (0 != Status && Status == 200) {// 如果拿到的值是正确的继续解析
+				JSONArray mjsonobject = jsonobject.getJSONArray("ReplyObject");
+				int mlenth = mjsonobject.length();
+				if(mlenth>0){
+					iden = 1;
+				}else if(mlenth==0){
+					iden = 2;
+				}
+				lisArray.clear();
+				if (mlenth > 0) {
+					
+					for (int i = 0; i < mjsonobject.length(); i++) {
+
+						JSONObject maJSONObject = (JSONObject) mjsonobject
+								.get(i);
+
+						BUserTasks mBUserTasks = new BUserTasks();
+						mBUserTasks.setCurrNodeID(maJSONObject
+								.getString("CurrNodeID").trim());
+						mBUserTasks.setCurrNodeName(maJSONObject
+								.getString("CurrNodeName").trim());
+						mBUserTasks.setFlowID(maJSONObject.getString("FlowID")
+								.toString().trim());
+						mBUserTasks.setFlowName(maJSONObject
+								.getString("FlowName").trim());
+						mBUserTasks.setTaskId(maJSONObject.getString("TaskId")
+								.toString().trim());
+						mBUserTasks.setTaskName(maJSONObject
+								.getString("TaskName").trim());
+						mBUserTasks.setTaskDesc(maJSONObject
+								.getString("TaskDesc").trim());
+						mBUserTasks.setStartDate(maJSONObject
+								.getString("StartDate").trim());
+						mBUserTasks.setHaveDetail(maJSONObject
+								.getBoolean("HaveDetail"));
+						mBUserTasks
+								.setAttCount(maJSONObject.getInt("AttCount"));
+						mBUserTasks.setTaskDesc(maJSONObject
+								.getString("TaskDesc").toString().trim());
+						mBUserTasks.setFID(maJSONObject.getString("FID")
+								.toString().trim());
+						mBUserTasks.setSender(maJSONObject.getString("Sender")
+								.trim());
+						mBUserTasks.setSender_Photo(maJSONObject.getString("Sender_Photo")
+								.trim());
+						mBUserTasks.setState(maJSONObject.getString("Status").trim());
+						lisArray.add(mBUserTasks);
+					}
+				
+				
+				
+				} else {
+					
+					LogUtils.d("没有新数据");
+					//mHandler.sendEmptyMessage(Status);
+					// 没有新数据
+				}
+
+			} else {// 解析错误编码，提示用户
+		
+				LogUtils.d("解析BUserlogin错误代码:" + Status);
+			
+			}
+			mHandler.sendEmptyMessageDelayed(Status, 350);
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			mHandler.sendEmptyMessageDelayed(0, 350);
+			LogUtils.d("解析异常");
+			e.printStackTrace();
+		}
+		return iden;
+
+		
+		
+
+	}
+
+}

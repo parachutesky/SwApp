@@ -1,0 +1,78 @@
+package com.jnwat.bean;
+
+public class BTeacherMessgaeBean {
+
+	/**
+	 * 手机号
+	 */
+	private String mobilephone;
+	/**
+	 * 办公电话
+	 */
+	private String officephone;
+	/**
+	 * QQ号
+	 */
+	private String qq;
+	/**
+	 * 微信号
+	 */
+	private String wechat;
+	/**
+	 * 毕业院校
+	 */
+	private String school;
+	/**
+	 * 教师ID
+	 */
+	private String userid;
+
+	public String getUserid() {
+		return userid;
+	}
+
+	public void setUserid(String userid) {
+		this.userid = userid;
+	}
+
+	public String getMobilephone() {
+		return mobilephone;
+	}
+
+	public void setMobilephone(String mobilephone) {
+		this.mobilephone = mobilephone;
+	}
+
+	public String getOfficephone() {
+		return officephone;
+	}
+
+	public void setOfficephone(String officephone) {
+		this.officephone = officephone;
+	}
+
+	public String getQq() {
+		return qq;
+	}
+
+	public void setQq(String qq) {
+		this.qq = qq;
+	}
+
+	public String getWechat() {
+		return wechat;
+	}
+
+	public void setWechat(String wechat) {
+		this.wechat = wechat;
+	}
+
+	public String getSchool() {
+		return school;
+	}
+
+	public void setSchool(String school) {
+		this.school = school;
+	}
+
+}

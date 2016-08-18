@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" 
+                  android:persistent="true"
+                  android:key="layout">
+  <SwitchPreference  android:key="st_message_set"  
+            android:defaultValue="1"
+            android:selectable="false"
+            android:title="消息推送"  >
+      
+  </SwitchPreference>
+
+       <SwitchPreference  android:key="st_voice_set"  
+            android:defaultValue="1" 
+            android:selectable="false"
+            android:title="声音提示"  >
+  </SwitchPreference>
+  <SwitchPreference  android:key="st_Vibration
+            _set"  
+           android:selectable="false"
+           android:defaultValue="1" 
+           android:title="震动提示"  >
+</SwitchPreference>
+  
+  
+</PreferenceScreen>

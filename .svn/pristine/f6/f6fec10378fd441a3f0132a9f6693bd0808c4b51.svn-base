@@ -1,0 +1,40 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="48.0dip"
+    android:id="@+id/layout_title"
+    android:background="@color/title_blue" >
+  
+    <ImageView
+        android:id="@+id/iv_back"
+        android:layout_width="55dp"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="5.0dip"
+        android:layout_marginRight="5.0dip"
+        android:padding="6dp"
+        android:paddingRight="10dp"
+        android:visibility="invisible"
+        android:layout_marginTop="5.0dip"
+        android:gravity="center"
+        android:src="@drawable/nav_button_back_push" />
+    
+    <TextView
+        android:id="@+id/set_txt_title"
+        style="@style/txt_titleStyle1"
+        android:text="工作流程"
+        android:textColor="@color/white"
+        android:layout_centerInParent="true"/>
+
+        <ImageView
+            android:id="@+id/iv_message"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:visibility="invisible"
+            android:layout_marginRight="15dp"
+            android:src="@drawable/nav_button_message" />
+    
+   
+</RelativeLayout>

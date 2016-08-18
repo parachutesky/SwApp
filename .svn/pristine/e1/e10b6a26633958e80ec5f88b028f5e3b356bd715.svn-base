@@ -1,0 +1,52 @@
+{
+    "Status": 200,
+    "Message": "",
+    "ReplyObject": {
+        "content": [
+            {
+                "Name_CH": "����",
+                "value": "���"
+            },
+            {
+                "Name_CH": "����",
+                "value": "11"
+            },
+            {
+                "Name_CH": "XinWenLeiXing",
+                "value": "����"
+            }
+        ],
+        "Attachment": [
+            {
+                "MYPK": "ND6702_ShuoMing_190",
+                "FK_MAPDATA": "ND6702",
+                "FK_FRMATTACHMENT": "ND6702_ShuoMing",
+                "REFPKVAL": "190",
+                "SORT": "",
+                "FILEFULLNAME": "E:\\��Ŀ\\�ֻ��ܿ���\\����\\ccflow6�������\\DataUser\\UploadFile\\ND6701_ShuoMing_190.docx",
+                "FILENAME": "OA�ƶ���ܽӿ��ĵ�.docx",
+                "FILEEXTS": "docx",
+                "FILESIZE": 25.8682,
+                "RDT": "2015-10-14 08:52",
+                "REC": "wangzy",
+                "RECNAME": "��־��",
+                "MYNOTE": "",
+                "NODEID": "6701",
+                "ISROWLOCK": 0,
+                "IDX": 0,
+                "UPLOADGUID": ""
+            }
+        ],
+        "detail": {},
+        "examination": {
+            "Track": [
+               
+            ],
+            "WF_CCList": [],
+            "WF_SelectAccper": [],
+            "WF_Node": [],
+            "WF_Direction": []
+        },
+        "dynamic": ""
+    }
+}

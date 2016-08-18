@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+<include layout="@layout/layout_title_process"
+           android:id="@+id/include"
+        />
+
+ <ScrollView   android:layout_width="fill_parent"
+               android:layout_height="fill_parent"
+               android:fillViewport="true"
+               android:layout_marginLeft="10dp"
+               android:layout_marginRight="10dp"
+               android:layout_below="@+id/include" 
+               >
+<LinearLayout android:layout_width="fill_parent"
+              android:layout_height="wrap_content"
+             
+              android:orientation="vertical">"
+<RelativeLayout 
+              
+              android:id="@+id/layout_1"
+              android:layout_width="fill_parent"
+              android:layout_height="40dp"
+              android:layout_marginTop="20dp"
+              android:background="#ffffff"
+              android:orientation="horizontal">
+    <TextView android:layout_width="wrap_content"
+              android:layout_height="fill_parent"
+              android:layout_alignParentLeft="true"
+              android:layout_marginLeft="20dp"
+              android:gravity="center_vertical"
+              android:text="申请部门"
+              android:textSize="18sp">
+    </TextView>
+    <TextView android:layout_width="wrap_content"
+              android:layout_height="fill_parent"
+              android:text="教务部"
+              android:textColor="#9a9a9a"
+              android:gravity="center_vertical"
+              android:layout_alignParentRight="true"
+              android:layout_marginRight="20dp"
+              android:textSize="18sp">
+    </TextView>
+</RelativeLayout>
+
+
+ <View  android:id="@+id/view_line1"
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:layout_below="@+id/layout_1"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:background="@color/line_meeting"
+         />
+ <LinearLayout 
+              android:id="@+id/layout_2"
+              android:layout_width="fill_parent"
+              android:layout_height="40dp"
+              android:layout_below="@+id/view_line1"
+              android:background="#ffffff"
+              android:orientation="horizontal">
+      <TextView 
+              
+              android:layout_width="wrap_content"
+              android:layout_height="fill_parent"
+              
+              android:layout_marginLeft="20dp"
+              android:gravity="center_vertical"
+              android:text="开始时间"
+              android:textSize="18sp">
+    </TextView>
+    <Button android:id="@+id/edt_start_time"
+              android:layout_width="fill_parent"
+              android:layout_height="fill_parent"
+              android:gravity="right|center_vertical"
+              android:text=""
+              android:background="#ffffff"
+              android:padding="2dp"
+              android:textColor="#9a9a9a"
+              android:layout_alignParentRight="true"
+              android:layout_marginRight="20dp"
+              android:textSize="18sp" />
+    
+</LinearLayout>
+<View   android:id="@+id/view_line2"
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+       
+        android:background="@color/line_meeting"
+         />
+<LinearLayout android:layout_width="fill_parent"
+              android:layout_height="40dp"
+              
+              android:background="#ffffff"
+              android:orientation="horizontal">
+    <TextView android:layout_width="wrap_content"
+              android:layout_height="fill_parent"
+              android:gravity="center_vertical"
+              android:layout_alignParentLeft="true"
+              android:layout_marginLeft="20dp"
+              android:text="结束时间"
+              android:textSize="18sp">
+    </TextView>
+    <Button android:id="@+id/edt_end_time"
+              android:layout_width="fill_parent"
+              android:layout_height="fill_parent"
+              android:gravity="right|center_vertical"
+              android:text=""
+              android:background="#ffffff"
+              android:padding="2dp"
+              android:textColor="#9a9a9a"
+              android:layout_alignParentRight="true"
+              android:layout_marginRight="20dp"
+              android:textSize="18sp" />
+    
+</LinearLayout>
+<!-- <View
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginBottom="20dp"
+        android:background="@color/line_meeting"
+         /> -->
+  <TextView android:layout_width="fill_parent"
+              android:layout_height="wrap_content"
+              android:gravity="center_vertical"
+              android:layout_alignParentLeft="true"
+              android:paddingLeft="20dp"
+              android:textColor="#9a9a9a"
+              android:text="请假事由"
+              
+              android:layout_marginTop="15dp"
+              android:layout_marginBottom="15dp"
+              android:textSize="18sp">
+    </TextView>
+    <RelativeLayout android:layout_width="fill_parent"
+              android:layout_height="150dp"
+              
+              android:background="#ffffff"
+              android:orientation="horizontal">
+		    <EditText android:layout_width="fill_parent"
+		              android:layout_height="fill_parent"
+		             
+		              android:gravity="top"
+		              android:background="#FFFFFF"
+		              android:layout_marginLeft="20dp"
+		              android:layout_marginRight="20dp"
+		              android:layout_marginTop="2dp"
+		              android:layout_marginBottom="2dp"
+		              android:maxLines="4"
+		              android:textSize="18sp"/>
+		    
+    
+   </RelativeLayout> 
+  <TextView android:layout_width="fill_parent"
+             android:layout_height="0dp"
+             android:layout_weight="1"
+             /> 
+ <RelativeLayout android:layout_width="fill_parent"
+                 android:layout_height="0dp"
+                 android:layout_weight="1">
+    <Button android:id="@+id/btn_submit"
+           android:layout_width="fill_parent"
+           android:layout_height="60dp"
+           android:text="提交申请"  
+           android:layout_alignParentBottom="true"
+           android:layout_marginLeft="10dp"
+           android:layout_marginRight="10dp"
+           android:layout_marginBottom="20dp"
+           android:textSize="18sp"
+           android:background="@drawable/btn_bg_green2"
+           android:textColor="#ffffff"/>
+  </RelativeLayout>
+  </LinearLayout>
+       </ScrollView>
+
+ 
+    
+</RelativeLayout>

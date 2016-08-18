@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical" >
+
+    <include layout="@layout/back_title" />
+
+    <TextView
+        android:id="@+id/tv_notice_title"
+        android:layout_width="fill_parent"
+        android:padding="10dp"
+        android:gravity="center_horizontal"
+        android:textSize="@dimen/tv_19sp38"
+        android:layout_height="wrap_content"
+        android:text="标题" />
+
+    
+    <TextView
+        android:id="@+id/tv_notice_content"
+        android:layout_width="fill_parent"
+        android:padding="10dp"
+        android:layout_marginTop="15dp"
+        android:gravity="left"
+        android:textSize="@dimen/tv_16sp32"
+        android:layout_height="wrap_content"
+        android:text="内容" />
+    
+    
+    
+    <TextView
+        android:id="@+id/tv_notice_time"
+        android:layout_width="fill_parent"
+        android:padding="10dp"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/people_description"
+        android:gravity="right"
+        android:textSize="@dimen/tv_15sp30"
+        android:layout_height="wrap_content"
+        android:text="时间" />
+</LinearLayout>

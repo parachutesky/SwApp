@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical" >
+
+    <!-- 课表查询 -->
+
+    <include layout="@layout/back_title" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <LinearLayout
+            android:id="@+id/lin_sw_schedule_title"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="1px"
+                    android:layout_marginTop="5dp"
+                    android:background="@color/line" />
+
+                <TextView
+                    android:id="@+id/tv_sw_schedule_name"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:padding="10dp"
+                    android:singleLine="true"
+                    android:text="企业投融资与资本运作"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/tv_17sp34" />
+
+                <TextView
+                    android:id="@+id/tv_sw_schedule_name_dec"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:paddingBottom="10dp"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:singleLine="true"
+                    android:text="全省国税系统办税骨干培训班"
+                    android:textColor="@color/people_description" />
+
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="1px"
+                    android:layout_marginTop="5dp"
+                    android:background="@color/line" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:padding="10dp"
+                    android:singleLine="true"
+                    android:text="课程信息"
+                    android:textColor="@color/people_description"
+                    android:textSize="@dimen/tv_17sp34" />
+
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="1px"
+                    android:layout_marginTop="5dp"
+                    android:background="@color/line" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="10dp" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:singleLine="true"
+                    android:text="培训班期数"
+                    android:textSize="@dimen/tv_16sp32" />
+
+                <TextView
+                    android:id="@+id/tv_sw_schedule_class_nub"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:gravity="right"
+                    android:paddingRight="10dp"
+                    android:singleLine="true"
+                    android:text="20"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/tv_17sp34" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="10dp" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:singleLine="true"
+                    android:text="时间"
+                    android:textSize="@dimen/tv_16sp32" />
+
+                <TextView
+                    android:id="@+id/tv_sw_schedule_class_time"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:gravity="right"
+                    android:paddingRight="10dp"
+                    android:singleLine="true"
+                    android:text="10:00-12:00"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/tv_17sp34" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="10dp" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:singleLine="true"
+                    android:text="日期"
+                    android:textSize="@dimen/tv_16sp32" />
+
+                <TextView
+                    android:id="@+id/tv_sw_schedule_class_date"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:gravity="right"
+                    android:paddingRight="10dp"
+                    android:singleLine="true"
+                    android:text="2015-12-16"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/tv_17sp34" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="10dp" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:singleLine="true"
+                    android:text="地点"
+                    android:textSize="@dimen/tv_16sp32" />
+
+                <TextView
+                    android:id="@+id/tv_sw_schedule_class_add"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:gravity="right"
+                    android:paddingRight="10dp"
+                    android:singleLine="true"
+                    android:text="301室"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/tv_17sp34" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1px"
+                android:layout_marginTop="5dp"
+                android:background="@color/line" />
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:padding="10dp"
+                    android:singleLine="true"
+                    android:text="课程内容"
+                    android:textColor="@color/people_description"
+                    android:textSize="@dimen/tv_17sp34" />
+
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="1px"
+                    android:layout_marginTop="5dp"
+                    android:background="@color/line" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/textView_sw_item_schedul_content"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text="MATLAB是矩阵实验室（Matrix Laboratory）的简称，是美国MathWorks公司出品的商业数学软件，用于算法开发、数据可视化、数据分析及数值计算的高级技术计算语言和交互式环境，主要包括MATLAB和Simulink两大部分。主要应用于工程计算、控制设计、信号处理与通讯、图像处理、信号检测、金融建模设计与分析等各个领域。Matlab语言在高校与研究单位起着重大的作用，是通用的科学计算、数值仿真和可视化及动态仿真的重要工具，所以在很多理工科院校MATLAB语言被作为通识课或公共课开设。我院以通识课的形式开设《MATLAB语言》，课时为32学时，其中理论课时20课时，上机实验12课时，通过本课程的学习，旨在提高学生解决实际问题的能力、软件应用能力，培养学生严谨、规范、理论联系实际的科学态度，为他们今后从事专业学习、科研活动和继续深造打下扎实的基础。"
+                android:textSize="@dimen/tv_15sp30" />
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

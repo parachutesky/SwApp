@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+       android:background="#b5555555"
+    
+    android:clickable="true"
+    android:orientation="vertical"
+   
+     >
+
+    <!-- android:background="@color/bg_cb" -->
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="#ffffff"
+        android:layout_margin="16dp"
+        android:orientation="vertical" >
+        <ImageView android:layout_width="89dp"
+                   android:layout_height="89dp"
+                   android:src="@drawable/tips_icon_update"
+                   android:layout_gravity="center_horizontal"/>
+
+        <TextView
+            android:id="@+id/pop_title"
+            android:layout_width="fill_parent"
+            android:layout_height="40dp"
+            android:gravity="center"
+            android:text="@string/versionUpdate"
+            android:textSize="20sp"
+            android:textColor="#21a3ed"
+            android:visibility="visible" />
+       
+        <TextView
+            android:id="@+id/pop__message"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="left|center"
+            android:lineSpacingMultiplier="1.5"
+            android:minHeight="120.0dip"
+            android:paddingBottom="15.0dip"
+            android:textColor="#a0a0a0"
+            android:textSize="13sp"
+            
+            android:layout_marginTop="16dip"
+            android:layout_marginLeft="13dp"
+            android:layout_marginRight="13dp"
+            android:layout_marginBottom="18dip"
+            android:text="body" />
+
+        <!-- android:background="@color/tanchukuang" -->
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1.0px" />
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="60.0dip"
+            android:layout_gravity="bottom"
+            android:gravity="center"
+            android:orientation="horizontal" >
+
+            <!-- android:textColor="@color/bg_cb" -->
+
+            <Button
+                android:id="@+id/pop_negativeButton"
+                
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#8d8d8d"
+                android:background="@drawable/btn_ground"
+                android:paddingBottom="10dp"
+                
+                android:textSize="@dimen/tv_16sp32"
+                android:paddingLeft="30dp"
+                android:paddingRight="30dp"
+                android:paddingTop="11dp"
+                android:text="下次再说" />
+
+            <!-- android:background="@drawable/x_btn_hui" -->
+            <!-- android:textColor="@color/bg_cb" -->
+
+            <Button
+                android:id="@+id/pop_positiveButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:textColor="@color/white"
+                android:background="@drawable/x_btn_huang"
+                android:paddingBottom="10dp"
+                android:paddingLeft="30dp"
+                android:paddingRight="30dp"
+                android:singleLine="true"
+                android:textSize="@dimen/tv_16sp32"
+                android:paddingTop="11dp"
+                android:text="马上更新" />
+        </LinearLayout>
+    </LinearLayout>
+
+</FrameLayout>

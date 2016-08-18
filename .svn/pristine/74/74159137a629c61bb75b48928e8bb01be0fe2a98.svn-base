@@ -1,0 +1,380 @@
+package com.jnwat.swmobilegy.news;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
+import android.os.AsyncTask;
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.AbsListView;
+import android.widget.AbsListView.OnScrollListener;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.handmark.pulltorefresh.library.PullToRefreshBase;
+import com.handmark.pulltorefresh.library.PullToRefreshBase.Mode;
+import com.handmark.pulltorefresh.library.PullToRefreshListView;
+import com.jnwat.analysis.AGetNews;
+import com.jnwat.bean.BIntentObj;
+import com.jnwat.bean.NewsInfo;
+import com.jnwat.config.AppConfig;
+import com.jnwat.swmobilegy.R;
+import com.jnwat.swmobilegy.workevent.DoProcessFragment;
+import com.lidroid.xutils.HttpUtils;
+import com.lidroid.xutils.exception.HttpException;
+import com.lidroid.xutils.http.RequestParams;
+import com.lidroid.xutils.http.ResponseInfo;
+import com.lidroid.xutils.http.callback.RequestCallBack;
+import com.lidroid.xutils.http.client.HttpRequest;
+import com.lidroid.xutils.util.LogUtils;
+
+public class NewsFragment extends Fragment {
+
+	private View view;
+	private PullToRefreshListView newList; //
+	private TextView showTipTxt, pageNumTxt; // pageNum为页码 showTipTxt为 提示没有数据的
+												// textView
+	private Activity mContext;
+	private List<NewsInfo> newsArrayList = new ArrayList<NewsInfo>();
+	private int IS = 0; // 标记 第一次 进入
+	private HttpUtils http; // 接口工具 类
+	private final String PREPAGECOUNT = "10";// 每页 最多有 几条新闻
+	private final String NEWSTYPE = "1"; // 该 类型 2 位 新闻
+	private int currentPage = 1; // 当前的页码
+	private int tempPage = 1; // 在 不知道 总共多少页的时候 先使用 临时 页码 当真正获取到数据 时 将 临时页码 进行
+								// 相加或相减后的值 赋值给 currentPage
+	private boolean isFirst = false;
+	private boolean DataComplete = false; // 当 所能查看到的数据全部加载 完成 时 变为 true
+
+	static DoProcessFragment newInstance(String s) {
+		DoProcessFragment newFragment = new DoProcessFragment();
+		Bundle bundle = new Bundle();
+		newFragment.setArguments(bundle);
+		return newFragment;
+
+	}
+
+	@Override
+	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+			Bundle savedInstanceState) {
+		// TODO Auto-generated method stub
+		if (view == null) {
+			view = inflater.inflate(R.layout.fragment_news, null);
+		}
+		ViewGroup parent = (ViewGroup) view.getParent();
+
+		if (IS == 0) {
+			initView();
+			initListen();
+			IS = 1;
+		}
+		if (parent != null) {
+			parent.removeView(view);
+		}
+		// Log.i("-----view.id is--------->", ""+view.getId());
+		// showInfo();
+		/*
+		 * if(!isFirst){ getWebData(1); // 此时为 第一次加载 isFirst = true; }
+		 */
+		return view;
+
+	}
+
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		// TODO Auto-generated method stub
+		super.onCreate(savedInstanceState);
+		mContext = this.getActivity();
+
+	}
+
+	public void initView() {
+		pageNumTxt = (TextView) view.findViewById(R.id.tv_pageNum); // 页码 暂时没有显示
+		newList = (PullToRefreshListView) view.findViewById(R.id.lv_news);
+		newList.setMode(Mode.BOTH); // 设置 PullToRefreshListView 的 模式 为 上下都可以刷新的
+		newList.getLoadingLayoutProxy(false, true).setPullLabel("放开加载");
+		newList.getLoadingLayoutProxy(false, true).setRefreshingLabel("正在载入");
+		newList.getLoadingLayoutProxy(false, true).setReleaseLabel("上拉加载");
+
+		showTipTxt = (TextView) view.findViewById(R.id.showTip_txt);
+
+		newList.setOnItemClickListener(new OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> arg0, View arg1,
+					int position, long arg3) {
+				// TODO Auto-generated method stub
+				Intent intent = new Intent();
+				intent.putExtra("URL", newsArrayList.get(position - 1).getUrl()); // PullToRefreshListView的数据部分是从
+																					// 1
+																					// 开始的
+				intent.setClass(getActivity(), NewsDetailActivity.class);
+				startActivity(intent);
+			}
+		});
+	}
+
+	// 监听 事件
+	public void initListen() {
+		newList.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener2<ListView>() {
+
+			@Override
+			public void onPullDownToRefresh(
+					PullToRefreshBase<ListView> refreshView) {
+				// TODO Auto-generated method stub
+				tempPage = 1; // 刷新 获取的是第一页的数据
+				new FinishRefresh().execute();
+			}
+
+			@Override
+			public void onPullUpToRefresh(
+					PullToRefreshBase<ListView> refreshView) {
+				// TODO Auto-generated method stub
+
+				tempPage = currentPage + 1;
+				new FinishRefreshUP().execute();
+			}
+
+		});
+		// 滑动监听 来更改 页码 这里的页码 是以 屏幕的头一条所在的 页码中来确定的
+		newList.setOnScrollListener(new OnScrollListener() {
+
+			@Override
+			public void onScroll(AbsListView view, int firstVisibleItem,
+					int visibleItemCount, int totalItemCount) {
+				// TODO Auto-generated method stub
+
+				/*
+				 * if(DataComplete==true){ int length =
+				 * Integer.parseInt(PREPAGECOUNT);
+				 * 
+				 * int pageNum = 1 ; pageNum =(firstVisibleItem+length-1) /
+				 * length; if(pageNum==0){ pageNum = 1; } chagePageNum(pageNum);
+				 * 
+				 * }
+				 */
+
+			}
+
+			@Override
+			public void onScrollStateChanged(AbsListView arg0, int arg1) {
+				// TODO Auto-generated method stub
+
+			}
+
+		});
+		/*
+		 * newList.setOnRefreshListener(new OnRefreshListener<ListView>() {
+		 * 
+		 * @Override public void onRefresh(PullToRefreshBase<ListView>
+		 * refreshView) { // TODO Auto-generated method stub
+		 * Toast.makeText(mContext, "hello world", Toast.LENGTH_SHORT) .show();
+		 * 
+		 * 
+		 * }
+		 * 
+		 * });
+		 */
+
+	}
+
+	// 改变页码 暂时未使用
+	public void changePageNum() {
+		String pageNum = "第  " + currentPage + " 页";
+		pageNumTxt.setText(pageNum);
+	}
+
+	// 改变 页码 暂时未使用
+	public void chagePageNum(int length) {
+		String pageNum = "第  " + length + " 页";
+		pageNumTxt.setText(pageNum);
+	}
+
+	// 检测是否有数据 主要是 判定 当没有数据的时候 显示“无数据”
+	public void showInfo(int status) {
+
+		int size = newsArrayList.size();
+		if (status == 1) {
+			showTipTxt.setVisibility(View.GONE);
+		} else if (status == 2 && size == 0) { // 当 status 为 2时 说明 正常没有获取 到数据
+			// 当没有数据的时候 为了 显示 提示 无数据 关闭 软键盘
+			InputMethodManager imm = (InputMethodManager) mContext
+					.getSystemService(Context.INPUT_METHOD_SERVICE);
+			imm.hideSoftInputFromWindow(showTipTxt.getWindowToken(), 0);
+			showTipTxt.setText("暂无数据");
+			showTipTxt.setVisibility(View.VISIBLE);
+		} else if (status == 0 && size == 0) {
+			InputMethodManager imm = (InputMethodManager) mContext
+					.getSystemService(Context.INPUT_METHOD_SERVICE);
+			imm.hideSoftInputFromWindow(showTipTxt.getWindowToken(), 0);
+			showTipTxt.setVisibility(View.VISIBLE);
+			showTipTxt.setText("获取新闻信息异常");
+		}
+	}
+
+	// 下拉刷新 使用
+	private class FinishRefresh extends AsyncTask<Void, Void, Void> {
+		@Override
+		protected Void doInBackground(Void... params) {
+
+			getWebData(1); // 1 代表是下拉刷新
+			try {
+				Thread.sleep(700);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return null;
+		}
+
+		@Override
+		protected void onPostExecute(Void result) {
+			// adapter.notifyDataSetChanged();
+
+			newList.onRefreshComplete();
+		}
+
+	}
+
+	// 上拉 加载使用
+	private class FinishRefreshUP extends AsyncTask<Void, Void, Void> {
+
+		@Override
+		protected Void doInBackground(Void... params) {
+
+			getWebData(2);// 2代表是 上拉加载
+			try {
+				Thread.sleep(700);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+			return null;
+		}
+
+		@Override
+		protected void onPostExecute(Void result) {
+			// adapter.notifyDataSetChanged();
+
+			newList.onRefreshComplete();
+		}
+	}
+
+	// 获取新闻内容
+	public void getWebData(final int type) {
+
+		// TODO Auto-generated method stub
+
+		http = new HttpUtils();
+		RequestParams params = new RequestParams(); // 参数
+
+		params.addBodyParameter("newsType", NEWSTYPE.trim()); // 类型
+
+		params.addBodyParameter("page", ("" + tempPage).trim());
+		// 当前页
+		params.addBodyParameter("prepageCount", PREPAGECOUNT.trim()); // 每页的 数量
+		http.send(HttpRequest.HttpMethod.POST, AppConfig.METHOD_GETNEWS,
+				params, new RequestCallBack<String>() {
+					@Override
+					public void onLoading(long total, long current,
+							boolean isUploading) {
+
+					}
+
+					@Override
+					public void onSuccess(
+							final ResponseInfo<String> responseInfo) {
+
+						LogUtils.d("responseInfo.result:" + responseInfo.result);
+						AGetNews AGetNews = new AGetNews();
+						int isGETDATA = AGetNews.analysisNews(
+								responseInfo.result, newsArrayList, type);// 参数
+																			// type=1
+																			// 代表
+																			// 下拉刷新
+																			// 参数type=
+																			// 2
+																			// 代表
+																			// 上拉加载
+						if (isGETDATA == 1) {
+							DataComplete = false; // 标记 此时 数据还未 加载 完成
+							if (type == 1) {
+								currentPage = 1; // 将当前页 设置为 1
+							} else {
+								currentPage = currentPage + 1;// 页码加1
+							}
+
+							if (newsArrayList.size() > 0) {
+								// wz
+								DataComplete = true; // 此时 标记 数据 加载完成 已经暂时没有
+														// 数据可以加载
+								BIntentObj.IsGetNews = true;
+								freshList();
+							}
+						} else if (isGETDATA == 2) {
+							if (newsArrayList.size() == 0) {
+								Toast.makeText(mContext, "暂无数据",
+										Toast.LENGTH_SHORT).show();
+							} else {
+								Toast.makeText(mContext, "没有更多",
+										Toast.LENGTH_SHORT).show();
+							}
+
+						} else if (isGETDATA == 0) {
+							Toast.makeText(mContext, "获得获取新闻列表发生异常",
+									Toast.LENGTH_SHORT).show();
+						}
+
+						showInfo(isGETDATA);
+
+						// changePageNum();
+					}
+
+					@Override
+					public void onStart() {
+					}
+
+					@Override
+					public void onFailure(HttpException error, String msg) {
+						System.out.println("error:" + error + msg);
+
+					}
+				});
+
+	}
+
+	// 刷新 数据
+	public void freshList() {
+	}
+
+	@Override
+	public void onResume() {
+		// TODO Auto-generated method stub
+		super.onResume();
+		if (BIntentObj.IsGetNews == false) {
+			new Thread(new Runnable() {
+
+				@Override
+				public void run() {
+					// TODO Auto-generated method stub
+					getWebData(1); // 此时为 第一次加载
+				}
+
+			}).start();
+
+		}
+
+	}
+
+}

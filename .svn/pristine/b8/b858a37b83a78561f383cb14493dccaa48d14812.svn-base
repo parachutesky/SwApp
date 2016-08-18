@@ -1,0 +1,437 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    <include layout="@layout/layout_title_process"
+           android:id="@+id/include"/>
+    <ScrollView android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                >
+    <LinearLayout android:layout_width="fill_parent"
+                  android:layout_height="wrap_content"
+                  
+                  android:orientation="vertical">
+    <LinearLayout android:layout_width="fill_parent"
+                  android:layout_height="wrap_content"
+                  android:layout_marginTop="20dp"
+                  android:layout_marginLeft="10dp"
+                  android:layout_marginRight="10dp"
+                  android:background="#ffffff">
+        <TextView android:id="@+id/tv_sw_trainingCourse_name"
+                  android:layout_width="fill_parent"
+                  android:layout_height="wrap_content"
+                  android:paddingLeft="5dp"
+                  android:textSize="16sp"
+                  
+                  android:paddingTop="10dp"
+                  android:paddingBottom="10dp"
+                  android:text="全省税系统办税服务厅业务骨干培训班"/>
+    </LinearLayout>
+    <LinearLayout android:layout_width="fill_parent"
+                  android:layout_height="wrap_content"
+                  android:layout_marginLeft="10dp"
+                  android:layout_marginRight="10dp"
+                  android:layout_marginTop="15dp"
+                  android:orientation="vertical"
+                  android:background="#ffffff">
+                  <RelativeLayout      android:layout_width="fill_parent"
+			                           android:layout_height="wrap_content"
+			                           android:paddingTop="5dp"
+			                           android:paddingBottom="5dp">
+			                  <TextView 
+			                  
+			                  android:layout_width="wrap_content"
+			                  android:layout_height="wrap_content"
+			                  android:layout_alignParentLeft="true"
+			                  android:layout_marginLeft="10dp"
+			                  android:layout_marginRight="20dp"
+			                  style="@style/myproject_text_label"
+			                  android:gravity="center_vertical"
+			                  android:text="期数"/>
+			                  <TextView 
+			                  android:id="@+id/tv_sw_trainingCourse_periodNum"
+			                  android:layout_width="wrap_content"
+			                  android:layout_height="wrap_content"
+			                  android:layout_alignParentRight="true"
+			                  android:layout_marginRight="20dp"
+			                  android:gravity="center_vertical"
+			                  style="@style/myproject_text_value"
+			                  android:text="5"/>
+			           </RelativeLayout>
+			           <View
+						        android:layout_width="fill_parent"
+						        android:layout_height="1dp"
+						        android:layout_marginLeft="10dp"
+						        android:layout_marginRight="10dp"
+						        android:background="@color/line_meeting"
+						         /> 
+                         <RelativeLayout      android:layout_width="fill_parent"
+			                           android:layout_height="wrap_content"
+			                           android:paddingTop="5dp"
+			                           android:paddingBottom="5dp">
+			                  <TextView 
+			                  
+			                  android:layout_width="wrap_content"
+			                  android:layout_height="wrap_content"
+			                  android:layout_alignParentLeft="true"
+			                  android:layout_marginLeft="10dp"
+			                  android:layout_marginRight="20dp"
+			                  style="@style/myproject_text_label"
+			                  android:gravity="center_vertical"
+			                  android:text="培训类型"/>
+			                  <TextView 
+			                  android:id="@+id/tv_sw_trainingCourse_trainType"
+			                  android:layout_width="wrap_content"
+			                  android:layout_height="wrap_content"
+			                  android:layout_alignParentRight="true"
+			                  android:layout_marginRight="20dp"
+			                  android:gravity="center_vertical"
+			                  style="@style/myproject_text_value"
+			                  android:text="工训"/>
+			           </RelativeLayout>
+			           <View
+						        android:layout_width="fill_parent"
+						        android:layout_height="1dp"
+						        android:layout_marginLeft="10dp"
+						        android:layout_marginRight="10dp"
+						        android:background="@color/line_meeting"
+						         /> 
+						<RelativeLayout      android:layout_width="fill_parent"
+			                           android:layout_height="wrap_content"
+			                           android:paddingTop="5dp"
+			                           android:paddingBottom="5dp">
+			                  <TextView 
+			                  
+			                  android:layout_width="wrap_content"
+			                  android:layout_height="wrap_content"
+			                  android:layout_alignParentLeft="true"
+			                  android:layout_marginLeft="10dp"
+			                  android:layout_marginRight="20dp"
+			                  style="@style/myproject_text_label"
+			                  android:gravity="center_vertical"
+			                  android:text="开始时间"/>
+			                  <TextView 
+			                  android:id="@+id/tv_sw_trainingCourse_startTime"
+			                  android:layout_width="wrap_content"
+			                  android:layout_height="wrap_content"
+			                  android:layout_alignParentRight="true"
+			                  android:layout_marginRight="20dp"
+			                  android:gravity="center_vertical"
+			                  style="@style/myproject_text_value"
+			                  android:text="2015-11-21"/>
+			           </RelativeLayout>
+			           <View
+						        android:layout_width="fill_parent"
+						        android:layout_height="1dp"
+						        android:layout_marginLeft="10dp"
+						        android:layout_marginRight="10dp"
+						        android:background="@color/line_meeting"
+						         /> 
+						<RelativeLayout      android:layout_width="fill_parent"
+			                           android:layout_height="wrap_content"
+			                           android:paddingTop="5dp"
+			                           android:paddingBottom="5dp">
+			                  <TextView 
+			                  
+			                  android:layout_width="wrap_content"
+			                  android:layout_height="wrap_content"
+			                  android:layout_alignParentLeft="true"
+			                  android:layout_marginLeft="10dp"
+			                  android:layout_marginRight="20dp"
+			                  style="@style/myproject_text_label"
+			                  android:gravity="center_vertical"
+			                  android:text="结算时间"/>
+			                  <TextView 
+			                  android:id="@+id/tv_sw_trainingCourse_endTime"
+			                  android:layout_width="wrap_content"
+			                  android:layout_height="wrap_content"
+			                  android:layout_alignParentRight="true"
+			                  android:layout_marginRight="20dp"
+			                  android:gravity="center_vertical"
+			                  style="@style/myproject_text_value"
+			                  android:text="2015-12-21"/>
+			           </RelativeLayout>
+			           <View
+						        android:layout_width="fill_parent"
+						        android:layout_height="1dp"
+						        android:layout_marginLeft="10dp"
+						        android:layout_marginRight="10dp"
+						        android:background="@color/line_meeting"
+						         /> 
+						<RelativeLayout      android:layout_width="fill_parent"
+			                           android:layout_height="wrap_content"
+			                           android:paddingTop="5dp"
+			                           android:paddingBottom="5dp">
+			                  <TextView 
+			                  
+			                  android:layout_width="wrap_content"
+			                  android:layout_height="wrap_content"
+			                  android:layout_alignParentLeft="true"
+			                  android:layout_marginLeft="10dp"
+			                  android:layout_marginRight="20dp"
+			                  style="@style/myproject_text_label"
+			                  android:gravity="center_vertical"
+			                  android:text="培训人数"/>
+			                  <TextView 
+			                  android:id="@+id/tv_sw_trainingCourse_trainPeopNum"
+			                  android:layout_width="wrap_content"
+			                  android:layout_height="wrap_content"
+			                  android:layout_alignParentRight="true"
+			                  android:layout_marginRight="20dp"
+			                  android:gravity="center_vertical"
+			                  style="@style/myproject_text_value"
+			                  android:text="39"/>
+			           </RelativeLayout>
+			           <View
+						        android:layout_width="fill_parent"
+						        android:layout_height="1dp"
+						        android:layout_marginLeft="10dp"
+						        android:layout_marginRight="10dp"
+						        android:background="@color/line_meeting"
+						         /> 
+					   <RelativeLayout      android:layout_width="fill_parent"
+			                           android:layout_height="wrap_content"
+			                           android:paddingTop="5dp"
+			                           android:paddingBottom="5dp">
+			                  <TextView 
+			                  
+			                  android:layout_width="wrap_content"
+			                  android:layout_height="wrap_content"
+			                  android:layout_alignParentLeft="true"
+			                  android:layout_marginLeft="10dp"
+			                  android:layout_marginRight="20dp"
+			                  style="@style/myproject_text_label"
+			                  android:gravity="center_vertical"
+			                  android:text="培训天数"/>
+			                  <TextView 
+			                  android:id="@+id/tv_sw_trainingCourse_trainingDays"
+			                  android:layout_width="wrap_content"
+			                  android:layout_height="wrap_content"
+			                  android:layout_alignParentRight="true"
+			                  android:layout_marginRight="20dp"
+			                  android:gravity="center_vertical"
+			                  style="@style/myproject_text_value"
+			                  android:text="20"/>
+			           </RelativeLayout>
+			           <View
+						        android:layout_width="fill_parent"
+						        android:layout_height="1dp"
+						        android:layout_marginLeft="10dp"
+						        android:layout_marginRight="10dp"
+						        android:background="@color/line_meeting"
+						         /> 
+						<RelativeLayout      android:layout_width="fill_parent"
+			                           android:layout_height="wrap_content"
+			                           android:paddingTop="5dp"
+			                           android:paddingBottom="5dp">
+			                  <TextView 
+			                  
+			                  android:layout_width="wrap_content"
+			                  android:layout_height="wrap_content"
+			                  android:layout_alignParentLeft="true"
+			                  android:layout_marginLeft="10dp"
+			                  android:layout_marginRight="20dp"
+			                  style="@style/myproject_text_label"
+			                  android:gravity="center_vertical"
+			                  android:text="项目联系人"/>
+			                  <TextView 
+			                  android:id="@+id/tv_sw_trainingCourse_respPeop"
+			                  android:layout_width="wrap_content"
+			                  android:layout_height="wrap_content"
+			                  android:layout_alignParentRight="true"
+			                  android:layout_marginRight="20dp"
+			                  android:gravity="center_vertical"
+			                  style="@style/myproject_text_value"
+			                  android:text="张永利"/>
+			           </RelativeLayout>
+			           <View
+						        android:layout_width="fill_parent"
+						        android:layout_height="1dp"
+						        android:layout_marginLeft="10dp"
+						        android:layout_marginRight="10dp"
+						        android:background="@color/line_meeting"
+						         /> 
+						<RelativeLayout      android:layout_width="fill_parent"
+			                           android:layout_height="wrap_content"
+			                           android:paddingTop="5dp"
+			                           android:paddingBottom="5dp">
+			                  <TextView 
+			                  
+			                  android:layout_width="wrap_content"
+			                  android:layout_height="wrap_content"
+			                  android:layout_alignParentLeft="true"
+			                  android:layout_marginLeft="10dp"
+			                  android:layout_marginRight="20dp"
+			                  style="@style/myproject_text_label"
+			                  android:gravity="center_vertical"
+			                  android:text="上课教室"/>
+			                  <TextView 
+			                  android:id="@+id/tv_sw_trainingCourse_classRoom"
+			                  android:layout_width="wrap_content"
+			                  android:layout_height="wrap_content"
+			                  android:layout_alignParentRight="true"
+			                  android:layout_marginRight="20dp"
+			                  android:gravity="center_vertical"
+			                  style="@style/myproject_text_value"
+			                  android:text="阶梯教室A302"/>
+			           </RelativeLayout>
+			           </LinearLayout>
+					<TextView android:layout_width="fill_parent"
+		              android:layout_height="wrap_content"
+		              android:gravity="center_vertical"
+		              android:layout_alignParentLeft="true"
+		              android:paddingLeft="20dp"
+		              android:textColor="#9a9a9a"
+		              android:text="公寓分配"
+		              android:layout_marginTop="10dp"
+		              
+		              android:textSize="16sp">
+					 
+		          </TextView>         
+                 <LinearLayout android:layout_width="fill_parent"
+		                        android:layout_height="wrap_content"
+		                        android:layout_marginTop="15dp"
+		                        android:layout_marginLeft="10dp"
+		                        android:layout_marginRight="10dp"
+		                        android:orientation="vertical"
+		                        android:background="#ffffff">
+		                 <RelativeLayout      android:layout_width="fill_parent"
+			                           android:layout_height="wrap_content"
+			                           android:paddingTop="5dp"
+			                           android:paddingBottom="5dp">
+			                  <TextView 
+			                  
+			                  android:layout_width="wrap_content"
+			                  android:layout_height="wrap_content"
+			                  android:layout_alignParentLeft="true"
+			                  android:layout_marginLeft="10dp"
+			                  android:layout_marginRight="20dp"
+			                  style="@style/myproject_text_label"
+			                  android:gravity="center_vertical"
+			                  android:text="5号楼"/>
+			                  <TextView 
+			                  android:id="@+id/tv_sw_trainingCourse_building5"
+			                  android:layout_width="wrap_content"
+			                  android:layout_height="wrap_content"
+			                  android:layout_alignParentRight="true"
+			                  android:layout_marginRight="20dp"
+			                  android:gravity="center_vertical"
+			                  style="@style/myproject_text_value"
+			                  android:text="3"/>
+			           </RelativeLayout>
+			           <View
+						        android:layout_width="fill_parent"
+						        android:layout_height="1dp"
+						        android:layout_marginLeft="10dp"
+						        android:layout_marginRight="10dp"
+						        android:background="@color/line_meeting"
+						         /> 
+						 <RelativeLayout      android:layout_width="fill_parent"
+			                           android:layout_height="wrap_content"
+			                           android:paddingTop="5dp"
+			                           android:paddingBottom="5dp">
+			                  <TextView 
+			                  
+			                  android:layout_width="wrap_content"
+			                  android:layout_height="wrap_content"
+			                  android:layout_alignParentLeft="true"
+			                  android:layout_marginLeft="10dp"
+			                  android:layout_marginRight="20dp"
+			                  style="@style/myproject_text_label"
+			                  android:gravity="center_vertical"
+			                  android:text="7号楼"/>
+			                  <TextView 
+			                  android:id="@+id/tv_sw_trainingCourse_building7"
+			                  android:layout_width="wrap_content"
+			                  android:layout_height="wrap_content"
+			                  android:layout_alignParentRight="true"
+			                  android:layout_marginRight="20dp"
+			                  android:gravity="center_vertical"
+			                  style="@style/myproject_text_value"
+			                  android:text="20"/>
+			           </RelativeLayout>
+			           <View
+						        android:layout_width="fill_parent"
+						        android:layout_height="1dp"
+						        android:layout_marginLeft="10dp"
+						        android:layout_marginRight="10dp"
+						        android:background="@color/line_meeting"
+						         /> 
+					    <RelativeLayout      android:layout_width="fill_parent"
+			                           android:layout_height="wrap_content"
+			                           android:paddingTop="5dp"
+			                           android:paddingBottom="5dp">
+			                  <TextView 
+			                  
+			                  android:layout_width="wrap_content"
+			                  android:layout_height="wrap_content"
+			                  android:layout_alignParentLeft="true"
+			                  android:layout_marginLeft="10dp"
+			                  android:layout_marginRight="20dp"
+			                  style="@style/myproject_text_label"
+			                  android:gravity="center_vertical"
+			                  android:text="10号楼"/>
+			                  <TextView 
+			                  android:id="@+id/tv_sw_trainingCourse_building10"
+			                  android:layout_width="wrap_content"
+			                  android:layout_height="wrap_content"
+			                  android:layout_alignParentRight="true"
+			                  android:layout_marginRight="20dp"
+			                  android:gravity="center_vertical"
+			                  style="@style/myproject_text_value"
+			                  android:text="16"/>
+			           </RelativeLayout>
+			           
+		          </LinearLayout> 
+                 <TextView android:layout_width="fill_parent"
+		              android:layout_height="wrap_content"
+		              android:gravity="center_vertical"
+		              android:layout_alignParentLeft="true"
+		              android:paddingLeft="20dp"
+		              android:textColor="#9a9a9a"
+		              android:text="备注"
+		              android:layout_marginTop="15dp"
+		              android:layout_marginBottom="15dp"
+		              android:textSize="16sp">
+					 
+		          </TextView>  
+		          
+		          <TextView android:id="@+id/tv_sw_trainingCourse_remark"
+		                    android:background="#ffffff"
+		                    android:layout_width="fill_parent"
+		                    android:layout_height="wrap_content"
+		                    android:layout_marginLeft="10dp"
+		                    android:layout_marginRight="10dp"
+		                    android:lines="6"
+		                    android:text=""
+		                    android:layout_marginBottom="20dp"
+		                    />   
+		          <LinearLayout  android:id="@+id/layout_btnShow"
+		                         android:layout_width="fill_parent"
+		                         android:layout_height="wrap_content"
+		                         android:layout_marginTop="15dp"
+		                         android:layout_marginLeft="20dp"
+		                         android:layout_marginRight="20dp"
+		                         android:layout_marginBottom="20dp"
+		                         android:orientation="vertical">
+					               <Button android:id="@+id/btn_course"
+					                       android:layout_width="fill_parent"
+					                       android:layout_height="60dp"
+					                       android:background="@drawable/btn_bg_green2"
+					                       android:textColor="#ffffff"
+					                       android:textSize="14sp"
+					                       android:text="课程表"/>
+					               <Button android:id="@+id/btn_participants"
+					                       android:layout_width="fill_parent"
+					                       android:layout_height="60dp"
+					                       android:layout_marginTop="15dp"
+					                       android:background="@drawable/btn_bg_green3"
+					                       android:textColor="#ffffff"
+					                       android:textSize="14sp"
+					                       android:text="学员名单表"/>
+		           </LinearLayout>   
+                 
+    </LinearLayout>
+</ScrollView>
+</LinearLayout>

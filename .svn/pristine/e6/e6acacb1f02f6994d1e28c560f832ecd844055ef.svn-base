@@ -1,0 +1,615 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white_maillist"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="48.0dip"
+        android:background="@color/black_dark" >
+
+        <ImageView
+            android:id="@+id/reback_imb_pdt"
+            android:layout_width="48.0dip"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:src="@drawable/nav_button_back_push" />
+
+        <TextView
+            android:id="@+id/title_txt"
+            style="@style/txt_titleStyle1"
+            android:layout_centerInParent="true"
+            android:text="个人资料"
+            android:textColor="#FFFFFF" />
+
+        <TextView
+            android:id="@+id/tv_edit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:clickable="true"
+            android:paddingBottom="10dp"
+            android:paddingLeft="30dp"
+            android:paddingRight="30dp"
+            android:paddingTop="15dp"
+            android:text="编辑"
+            android:textColor="#ffffff"
+            android:textSize="16sp" />
+    </RelativeLayout>
+
+    <ScrollView
+        android:id="@+id/scroll"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical" >
+
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="100dip"
+                android:background="@color/white_maillist"
+                android:orientation="horizontal" >
+
+                <TextView
+                    style="@style/MMFontTitleInList"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:text="头像"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv_head_edt"
+                    style="@style/MMFontTitleInList"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="30dp"
+                    android:layout_toLeftOf="@+id/head_img"
+                    android:text="编辑"
+                    android:textColor="#04a3ff"
+                    android:visibility="gone" />
+
+                <com.jnwat.swmobilegy.view.CircleImageView
+                    android:id="@+id/head_img"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="20dp"
+                    android:src="@drawable/detail_icon_user_default" />
+
+
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="10dip"
+                android:layout_marginRight="10dip"
+                android:background="@color/black2_maillist" />
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="40dp"
+                android:background="@color/white_maillist"
+                android:orientation="vertical" >
+
+                <RelativeLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="60dip"
+                    android:layout_gravity="center_vertical"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        style="@style/MMFontTitleInList"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="10dp"
+                        android:text="姓名"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <EditText
+                        android:id="@+id/edt_name"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginLeft="150dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_toLeftOf="@+id/iv_arrow_name"
+                        android:background="#ffffff"
+                        android:enabled="false"
+                        android:gravity="right|center_vertical"
+                        android:paddingRight="5dp"
+                        android:text=""
+                        android:textSize="16sp" />
+
+                    <ImageView
+                        android:id="@+id/iv_arrow_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="10dp"
+                        android:src="@drawable/right" />
+                    <!--
+                  <TextView       android:id="@+id/sex_txt"
+	                         android:layout_width="wrap_content"
+	                         android:layout_height="wrap_content"
+	                         android:layout_marginLeft="10dip"
+	                         android:layout_gravity="center_vertical"
+	                         style="@style/MMFontTitleInList"
+	                         android:text=""/>
+                    -->
+
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginLeft="10dip"
+                    android:layout_marginRight="10dip"
+                    android:background="@color/black2_maillist" />
+
+                <RelativeLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="60dip"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        style="@style/MMFontTitleInList"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerVertical="true"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="10dp"
+                        android:text="职务"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <EditText
+                        android:id="@+id/edt_position"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginLeft="150dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_toLeftOf="@+id/iv_arrow_position"
+                        android:background="#FFFFFF"
+                        android:enabled="false"
+                        android:gravity="right|center_vertical"
+                        android:paddingRight="5dp"
+                        android:text=""
+                        android:textSize="16sp" />
+
+                    <ImageView
+                        android:id="@+id/iv_arrow_position"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="10dp"
+                        android:src="@drawable/right" />
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginLeft="10dip"
+                    android:layout_marginRight="10dip"
+                    android:background="@color/black2_maillist" />
+
+                <RelativeLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="60dip"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/tv_dept"
+                        style="@style/MMFontTitleInList"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerVertical="true"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="10dp"
+                        android:text="所在部门"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <EditText
+                        android:id="@+id/edt_department"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginLeft="150dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_toLeftOf="@+id/iv_arrow_dept"
+                        android:background="#ffffff"
+                        android:enabled="false"
+                        android:gravity="right|center_vertical"
+                        android:paddingRight="5dp"
+                        android:text=""
+                        android:textSize="16sp" />
+
+                    <ImageView
+                        android:id="@+id/iv_arrow_dept"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="10dp"
+                        android:src="@drawable/right" />
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginLeft="10dip"
+                    android:layout_marginRight="10dip"
+                    android:background="@color/black2_maillist" />
+
+                <RelativeLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="60dip"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        style="@style/MMFontTitleInList"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerVertical="true"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="10dp"
+                        android:text="出生日期"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <EditText
+                        android:id="@+id/edt_birthday"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginLeft="150dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_toLeftOf="@+id/iv_arrow_birthday"
+                        android:background="#ffffff"
+                        android:enabled="false"
+                        android:gravity="right|center_vertical"
+                        android:paddingRight="5dp"
+                        android:text=""
+                        android:textSize="16sp" />
+
+                    <ImageView
+                        android:id="@+id/iv_arrow_birthday"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="10dp"
+                        android:src="@drawable/right" />
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginLeft="10dip"
+                    android:layout_marginRight="10dip"
+                    android:background="@color/black2_maillist" />
+
+                <RelativeLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="60dip"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/tel"
+                        style="@style/MMFontTitleInList"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerInParent="true"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="10dp"
+                        android:text="手机号"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <EditText
+                        android:id="@+id/edt_mobphone"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginLeft="150dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_toLeftOf="@+id/iv_arrow_tel"
+                        android:background="#ffffff"
+                        android:enabled="false"
+                        android:gravity="right|center_vertical"
+                        android:paddingRight="5dp"
+                        android:text=""
+                        android:textSize="16sp" />
+                    <!--
+                           <TextView android:id="@+id/mobphone_txt"
+	                         android:layout_width="wrap_content"
+	                         android:layout_height="wrap_content"
+	                         android:layout_toLeftOf="@+id/iv_arrow_tel"
+	                         android:layout_marginRight="10dp"
+	                         android:textColor="#BFBFBF"
+	                         android:layout_centerVertical="true"
+	                         android:textSize="16sp"
+	                         android:text=""/>
+                    -->
+
+                    <ImageView
+                        android:id="@+id/iv_arrow_tel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="10dip"
+                        android:src="@drawable/right" />
+                    <!--
+                    <ImageView android:id="@+id/iv_tel_send"
+	                           android:layout_width="wrap_content"
+	                           android:layout_height="wrap_content"
+	                           android:layout_toLeftOf="@+id/iv_tel_tel"
+	                           
+	                           android:layout_centerVertical="true"
+	                           android:layout_marginRight="5dip"
+	                           android:src="@drawable/addresslist_icon_message"
+	                         
+	                           />
+	                <ImageView android:id="@+id/iv_tel_tel"
+	                           android:layout_width="wrap_content"
+	                           android:layout_height="wrap_content"
+	                           
+	                           android:src="@drawable/addresslist_icon_dialing"
+	                           android:layout_centerVertical="true"
+	                           android:layout_alignParentRight="true"
+	                           android:layout_marginRight="10dip"
+	                            />
+                    -->
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginLeft="10dip"
+                    android:layout_marginRight="10dip"
+                    android:background="@color/black2_maillist" />
+
+                <RelativeLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="60dip"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/off"
+                        style="@style/MMFontTitleInList"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerVertical="true"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="10dp"
+                        android:text="办公电话"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <EditText
+                        android:id="@+id/edt_offphone"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginLeft="150dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_toLeftOf="@+id/iv_off_tel"
+                        android:background="#FFFFFF"
+                        android:enabled="false"
+                        android:gravity="right|center_vertical"
+                        android:paddingRight="5dp"
+                        android:text=""
+                        android:textSize="16sp" />
+
+                    <ImageView
+                        android:id="@+id/iv_off_tel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="10dp"
+                        android:src="@drawable/right" />
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginLeft="10dip"
+                    android:layout_marginRight="10dip"
+                    android:background="@color/black2_maillist" />
+
+                <RelativeLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="60dip"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/qq"
+                        style="@style/MMFontTitleInList"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerVertical="true"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="10dp"
+                        android:text="QQ"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <EditText
+                        android:id="@+id/edt_qq"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginLeft="150dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_toLeftOf="@+id/iv_qq"
+                        android:background="#FFFFFF"
+                        android:enabled="false"
+                        android:gravity="right|center_vertical"
+                        android:paddingRight="5dp"
+                        android:text=""
+                        android:textSize="16sp" />
+
+                    <ImageView
+                        android:id="@+id/iv_qq"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="10dp"
+                        android:src="@drawable/right" />
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginLeft="10dip"
+                    android:layout_marginRight="10dip"
+                    android:background="@color/black2_maillist" />
+
+                <RelativeLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="60dip"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/weixin"
+                        style="@style/MMFontTitleInList"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerVertical="true"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="10dp"
+                        android:text="微信"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <EditText
+                        android:id="@+id/edt_weixin"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginLeft="150dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_toLeftOf="@+id/iv_weixin"
+                        android:background="#FFFFFF"
+                        android:enabled="false"
+                        android:gravity="right|center_vertical"
+                        android:paddingRight="5dp"
+                        android:text=""
+                        android:textSize="16sp" />
+
+                    <ImageView
+                        android:id="@+id/iv_weixin"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="10dp"
+                        android:src="@drawable/right" />
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginLeft="10dip"
+                    android:layout_marginRight="10dip"
+                    android:background="@color/black2_maillist" />
+
+                <RelativeLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="60dip"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/graduInst"
+                        style="@style/MMFontTitleInList"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerVertical="true"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="10dp"
+                        android:text="毕业院校"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <EditText
+                        android:id="@+id/edt_graduInst"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginLeft="150dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_toLeftOf="@+id/iv_graduInst"
+                        android:background="#FFFFFF"
+                        android:enabled="false"
+                        android:gravity="right|center_vertical"
+                        android:paddingRight="5dp"
+                        android:text=""
+                        android:textSize="16sp" />
+
+                    <ImageView
+                        android:id="@+id/iv_graduInst"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="10dp"
+                        android:src="@drawable/right" />
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginLeft="10dip"
+                    android:layout_marginRight="10dip"
+                    android:background="@color/black2_maillist" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

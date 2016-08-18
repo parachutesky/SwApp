@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical" >
+
+    <include layout="@layout/back_title" />
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/tv_notice_title"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:gravity="center_horizontal"
+                android:padding="10dp"
+                android:text="标题"
+                android:textIsSelectable="true"
+                android:textSize="@dimen/tv_20sp40" />
+
+            <TextView
+                android:id="@+id/tv_notice_time"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:gravity="center"
+                android:maxLines="1"
+                android:padding="10dp"
+                android:text="时间"
+                android:textColor="@color/people_description"
+                android:textSize="@dimen/tv_15sp30" />
+
+            <TextView
+                android:id="@+id/tv_notice_content"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_marginTop="15dp"
+                android:gravity="left"
+                android:padding="15dp"
+                android:text="内容"
+                android:textIsSelectable="true"
+                android:textSize="@dimen/tv_17sp34" />
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

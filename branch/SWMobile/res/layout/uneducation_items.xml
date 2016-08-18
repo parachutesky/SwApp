@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    
+
+     <TextView android:id="@+id/tv_title"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/news_title1_color"
+                android:textSize="@dimen/news_title1_textSize"
+                android:maxEms="12"
+	            android:singleLine="true"
+	            android:ellipsize="end"
+                android:text="sys title"
+                />
+     <!--  
+       <TextView android:id="@+id/mess_text"
+	                android:layout_width="fill_parent"
+	                android:layout_height="wrap_content"
+	                android:textColor="@color/news_title2_color"
+	                android:textSize="@dimen/news_title2_textSize"
+	                android:maxEms="20"
+	                android:maxLines="2"
+	                android:ellipsize="end"
+	                android:text="sys2"
+	                />
+       -->
+</LinearLayout>

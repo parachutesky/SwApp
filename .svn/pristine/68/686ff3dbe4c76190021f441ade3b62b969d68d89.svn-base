@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/lin_meeting_main"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:clipToPadding="true"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical" >
+
+    <include layout="@layout/back_title" />
+
+    <ScrollView
+        android:id="@+id/sc_view"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:id="@+id/lin_meetingcheck_title"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+
+                <include layout="@layout/meetingstate_titlecontent" />
+            </LinearLayout>
+
+            <!-- 内容 -->
+
+            <LinearLayout
+                android:id="@+id/lin_meetingcheck_content"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="10dip"
+                android:orientation="vertical" >
+            </LinearLayout>
+
+            <!-- 审核状态 -->
+
+            <LinearLayout
+                android:id="@+id/lin_meetingcheck_detail_"
+                android:layout_width="fill_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:padding="10dp" >
+
+                <TextView
+                    android:id="@+id/tv_meetingappy_type_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="详情表单"
+                    android:textColor="@color/people_description"
+                    android:textSize="@dimen/tv_16sp32" />
+
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@color/line_meeting" />
+
+                <HorizontalScrollView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:fillViewport="true"
+                    android:scrollbars="none" >
+
+                    <LinearLayout
+                        android:id="@+id/lin_meetingcheck_detail"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="10dp" >
+                    </LinearLayout>
+                </HorizontalScrollView>
+            </LinearLayout>
+
+            <!-- 附件 -->
+
+            <LinearLayout
+                android:id="@+id/lin_meetingcheck_attachment"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="10dp" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="附件"
+                    android:textColor="@color/people_description"
+                    android:textSize="@dimen/tv_16sp32" />
+
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@color/line_meeting" />
+
+                <ListView
+                    android:id="@+id/lv_meetingapply_task_attachment"
+                    android:layout_width="fill_parent"
+                    android:layout_height="match_parent"
+                    android:listSelector="@android:color/transparent" >
+                </ListView>
+            </LinearLayout>
+
+            <!-- 任务 -->
+
+            <LinearLayout
+                android:id="@+id/lin_meetingcheck_task"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="10dp" >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:visibility="gone"
+                    android:weightSum="3" >
+
+                    <TextView
+                        android:id="@+id/tv_meetingapply_task_sp"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="审批" />
+
+                    <TextView
+                        android:id="@+id/tv_meetingapply_task_pl"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="评论" />
+
+                    <TextView
+                        android:id="@+id/tv_meetingapply_task_dt"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="动态" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="vertical" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="操作轨迹"
+                        android:textColor="@color/people_description"
+                        android:textSize="@dimen/tv_16sp32" />
+
+                    <View
+                        android:layout_width="fill_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="8dp"
+                        android:background="@color/line_meeting" />
+                </LinearLayout>
+
+                <ListView
+                    android:id="@+id/lv_meetingapply_task_listview"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:listSelector="@android:color/transparent"
+                    android:scrollbars="none" />
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btn_positiveButton"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="25dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="30dp"
+                android:background="#22bf64"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:text="同 意"
+                android:textColor="@color/white"
+                android:textSize="@dimen/tv_16sp32" />
+
+            <!-- android:background="@drawable/x_btn_hui" -->
+            <!-- android:textColor="@color/bg_cb" -->
+
+            <Button
+                android:id="@+id/btn_negativeButton"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="10dp"
+                android:background="#e0483d"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:text="驳 回"
+                android:textColor="@color/white"
+                android:textSize="@dimen/tv_16sp32" />
+
+            <Button
+                android:id="@+id/btn_meetingapply_check"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="25dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="30dp"
+                android:background="@color/title_blue"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:text="审批"
+                android:textColor="@color/white"
+                android:textSize="@dimen/people_name" />
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

@@ -1,0 +1,52 @@
+package com.jnwat.bean;
+
+/**
+ * Created by WeiBo on 15/1/6.
+ */
+public class BUserlogin {
+
+
+	public static int loginStatus = 0;//没登陆默认为0   ,1表示成功登录
+
+	public static String NO = "";
+	public static String EMPNO = "";
+	public static String NAME = "" ;
+	public static String PASS = "";
+	public static String FK_DEPT = "";
+	/**
+	 * 当前职务
+	 */
+	public static String FK_DUTY = "";
+	/**
+	 * 当前领导
+	 */
+	public static String LEADER = "";
+	/**
+	 * 安全校验码
+	 */
+	public static String SID = "";
+	public static String TEL = "";
+	/**
+	 * 部门数量
+	 */
+	public static String NUMOFDEPT;
+	public static String EMAIL;
+	public static String IDX;
+	public static String NO1;
+	public static String NAME1;
+	public static String NAMEOFPATH;
+	public static String PARENTNO;
+	public static String TREENO;
+	public static String LEADER1;
+	public static String TEL1;
+	public static String IDX1;
+	public static String ISDIR;
+	public static String PHOTO;
+	
+	public static String userid = "81cec29d-a185-4265-8193-e150de0a8990";
+	
+	
+
+
+
+}

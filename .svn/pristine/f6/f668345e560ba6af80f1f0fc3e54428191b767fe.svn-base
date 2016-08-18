@@ -1,0 +1,108 @@
+package com.jnwat.swmobilegy.dapter;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import com.jnwat.bean.BKaiBanTongZhi;
+import com.jnwat.swmobilegy.R;
+
+import android.content.Context;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.BaseAdapter;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+public class AdapterKaibanTongz  extends BaseAdapter{
+	private LayoutInflater layoutInflater;
+	private List<BKaiBanTongZhi> data;
+	private Context context;
+
+	public AdapterKaibanTongz(Context mcontext, List<BKaiBanTongZhi> data) {
+		if (null != data) {
+			this.data = data;
+		} else {
+			data = new ArrayList<BKaiBanTongZhi>();
+		}
+		this.data = data;
+		this.layoutInflater = LayoutInflater.from(mcontext);
+		context = mcontext;
+	}
+
+	@Override
+	public int getCount() {
+		if (null != data) {
+			return data.size();
+		} else {
+			return 0;
+		}
+	}
+
+	@Override
+	public Object getItem(int position) {
+		return data.get(position);
+	}
+
+	@Override
+	public long getItemId(int position) {
+		return position;
+	}
+
+	@Override
+	public View getView(int position, View convertView, ViewGroup parent) {
+
+		ViewHolder viewHolder;
+		if (convertView == null) {
+
+			convertView = layoutInflater.inflate(R.layout.message_listview,
+					null);
+			viewHolder = new ViewHolder();
+			viewHolder.tv_messageType = (TextView) convertView
+					.findViewById(R.id.message_tv_Type);
+
+			viewHolder.tv_messageTime = (TextView) convertView
+					.findViewById(R.id.message_tv_time);
+
+			viewHolder.tv_messageContent = (TextView) convertView
+					.findViewById(R.id.message_tv_content);
+
+			viewHolder.iv_circleImageView = (ImageView) convertView
+					.findViewById(R.id.message_iv_circleImageView);
+
+		} else {
+			viewHolder = (ViewHolder) convertView.getTag();
+		}
+
+		BKaiBanTongZhi message = data.get(position);
+		viewHolder.tv_messageTime.setText(message.getMsgSendTime());
+		viewHolder.tv_messageContent.setText(message.getMsgContent());
+		viewHolder.tv_messageType.setText(message.getTitle());
+
+
+
+		 if (Integer.parseInt(message.getMsgType()) == 2) {
+				viewHolder.iv_circleImageView.setImageDrawable(context
+						.getResources().getDrawable(
+								R.drawable.message_icon_notice_read));
+				/*		} else {
+				viewHolder.iv_circleImageView.setImageDrawable(context
+						.getResources().getDrawable(
+								R.drawable.message_icon_notice_unread));
+			}*/
+
+		} 
+		convertView.setTag(viewHolder);
+		return convertView;
+
+	}
+
+	class ViewHolder {
+		public TextView tv_messageType;
+		public TextView tv_messageTime;
+		public TextView tv_messageContent;
+		public ImageView iv_circleImageView;
+
+	}
+
+}

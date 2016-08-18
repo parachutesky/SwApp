@@ -1,0 +1,26 @@
+package com.jnwat.bean;
+
+/**
+ * Created by WeiBo on 15/1/6.
+ */
+public class BUserlogin {
+
+
+	public static int loginStatus = 0;//没登陆默认为0   ,1表示成功登录
+
+	public static String Username= "";
+	
+	public static String Departmentid;
+	public static String Postcode;
+	public static String Account;
+	public static String Flag;
+	
+	public static String userid = "81cec29d-a185-4265-8193-e150de0a8990";
+	
+	public static String NO = "";
+	public static String PASS = "";
+	
+
+
+
+}

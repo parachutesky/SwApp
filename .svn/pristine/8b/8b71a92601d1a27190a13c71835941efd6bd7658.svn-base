@@ -1,0 +1,156 @@
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!--
+        Base application theme, dependent on API level. This theme is replaced
+        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
+    -->
+    <!-- 图片样式 -->
+    <style name="img_Style">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:contentDescription">@string/app_name</item>
+    </style>
+
+    
+      <style name="text_detail">
+    <item name="android:textSize">17sp</item>
+    <item name="android:textStyle">normal</item>
+    <item name="android:paddingLeft">20dp</item>
+  </style>
+    
+    <style name="TxtTitle" parent="@style/img_Style">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">#000000</item>
+        <item name="android:paddingLeft">6.0dip</item>
+        <item name="android:paddingRight">6.0dip</item>
+        <item name="android:focusable">false</item>
+    </style>
+
+    <style name="popuStyle">
+        <item name="android:windowEnterAnimation">@anim/popup_anim_in</item>
+        <item name="android:windowExitAnimation">@anim/popup_anim_out</item>
+    </style>
+
+    <style name="AnimHead" parent="@android:style/Animation">
+        <item name="android:windowEnterAnimation">@anim/head_in</item>
+        <item name="android:windowExitAnimation">@anim/head_out</item>
+    </style>
+    <!-- POP格式 TOPMENU -->
+    <style name="popuStyle_topmenu">
+        <item name="android:windowEnterAnimation">@anim/zoom_enter</item>
+        <item name="android:windowExitAnimation">@anim/zoom_exit</item>
+    </style>
+
+    <style name="popuStyle_zoom">
+        <item name="android:windowEnterAnimation">@anim/zoom_enter</item>
+        <item name="android:windowExitAnimation">@anim/pop_zoom_exit</item>
+    </style>
+
+    <style name="MyTheme" parent="AppTheme">
+        <item name="android:windowAnimationStyle">@style/ActivityAnimation</item>
+    </style>
+    <!-- Standard animations for a full-screen window or activity. -->
+    <style name="ActivityAnimation">
+        <item name="android:activityOpenEnterAnimation">@anim/right_in</item>
+        <!-- 打开activity，设置activity进入展示动画 -->
+        <item name="android:activityOpenExitAnimation">@anim/left_out</item>
+        <!-- 打开activity，设置上个activity离开动画 -->
+        <item name="android:activityCloseEnterAnimation">@anim/left_in</item>
+        <!-- 结束activity，设置上个activity进入动画 -->
+        <item name="android:activityCloseExitAnimation">@anim/right_out</item>
+        <!-- 结束activity，设置当前activity离开动画 -->
+    </style>
+
+    <style name="AppBaseTheme" parent="android:Theme.Light">
+        <!--
+            Theme customizations available in newer API levels can go in
+            res/values-vXX/styles.xml, while customizations related to
+            backward-compatibility can go here.
+        -->
+    </style>
+    <!--
+    <style name="StyledIndicators" parent="@android:style/Theme.Light">
+        <item name="vpiTabPageIndicatorStyle">@style/CustomTabPageIndicator</item>
+    </style>
+    Application theme.
+    -->
+    <style name="AppTheme" parent="AppBaseTheme">
+        <!-- All customizations that are NOT specific to a particular API-level can go here. -->
+    </style>
+
+    <style name="text_title">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:padding">8dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@color/title_balck_dark</item>
+        <item name="android:layout_marginBottom">1dp</item>
+        <item name="android:textSize">@dimen/people_name</item>
+    </style>
+
+    <!-- ********************************   以下为 通讯录 所需的格式        START        ********************************** -->
+    <style name="MMListCatalog">
+        <item name="android:textSize">13.0sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">#a3a3a3</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:background">@color/windows_color_maillist</item>
+        <item name="android:paddingLeft">10.0dip</item>
+        <item name="android:paddingTop">5.0dip</item>
+        <item name="android:paddingBottom">5.0dip</item>
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">18dip</item>
+    </style>
+
+    <style name="MMListItem">
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:paddingLeft">8.0dip</item>
+        <item name="android:paddingRight">4.0dip</item>
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">52dip</item>
+    </style>
+
+    <style name="MMFontTitleInList">
+        <item name="android:textSize">16.0dip</item>
+        <item name="android:textColor">#ff595c61</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:singleLine">true</item>
+    </style>
+
+    <!-- 标题1样式 -->
+    <style name="txt_titleStyle1">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="myTransparent">
+        <item name="android:windowBackground">@color/transparent</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+    </style>
+    <!-- *****************************  通讯录结束      END*********************************** -->
+    <!-- 个人档案的dialog样式 -->
+     <style name="Dialog" parent="android:style/Theme.Dialog">  
+        <item name="android:background">#00000000</item>  
+       <item name="android:windowBackground">@android:color/transparent</item>  
+        <item name="android:windowNoTitle">true</item>  
+        <item name="android:windowIsFloating">true</item>
+        
+    </style>  
+    <!-- 项目明细的相关样式 -->
+        <style name="myproject_text_label">
+             <item name="android:textSize">14sp</item>
+             <item name="android:textColor">#404040</item> 
+        </style>
+        <style name="myproject_text_value">
+             <item name="android:textSize">14sp</item>
+             
+        </style>
+
+</resources>

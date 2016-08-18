@@ -1,0 +1,24 @@
+<resources>
+
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="people_description">18sp</dimen>
+    <dimen name="people_name">20sp</dimen>
+    <dimen name="people_time">16sp</dimen>
+        <dimen name="description14sp28">14sp</dimen>
+        <dimen name="tv_17sp34">17sp</dimen>
+        <dimen name="tv_19sp38">19sp</dimen>
+        <dimen name="tv_16sp32">16sp</dimen>
+        <dimen name="tv_13sp26">13sp</dimen>
+        <dimen name="tv_15sp30">15sp</dimen>
+        
+    <!-- 通讯录使用部分  START -->
+           <!-- Default screen margins, per the Android Design guidelines. -->
+		    <dimen name="activity_horizontal_margin">16dp</dimen>
+		    <dimen name="activity_vertical_margin">16dp</dimen>
+    <!-- 通讯录使用部分 END    -->
+   
+    <!-- 新闻中使用到的   START-->
+           <dimen name="news_title1_textSize">18sp</dimen>
+           <dimen name="news_title2_textSize">14sp</dimen>
+    <!-- 新闻中使用到的   END -->
+</resources>

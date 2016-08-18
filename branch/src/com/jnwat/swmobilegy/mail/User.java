@@ -1,0 +1,80 @@
+package com.jnwat.swmobilegy.mail;
+
+import java.io.IOException;
+import java.io.Serializable;
+
+import org.apache.http.entity.SerializableEntity;
+
+public class User implements Serializable{
+	
+    
+	private String telephone;// 手机号
+	private String userName;//用户名
+	private String sex;// 性别
+	private String location;// 家庭住址
+	private String birthday;// 鐢熸棩
+    private String headUrl;// 头像存在的 路径
+	private String firstLetter;//用户名首字母
+
+	public String getTelephone() {
+		return telephone;
+	}
+
+	public String getFirstLetter() {
+		return firstLetter;
+	}
+
+	public void setFirstLetter(String firstLetter) {
+		this.firstLetter = firstLetter;
+	}
+
+	public void setTelephone(String telephone) {
+		this.telephone = telephone;
+	}
+
+	
+
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
+	public String getHeadUrl() {
+		return headUrl;
+	}
+
+	public void setHeadUrl(String headUrl) {
+		this.headUrl = headUrl;
+	}
+
+
+	public String getSex() {
+		return sex;
+	}
+
+	public void setSex(String sex) {
+		this.sex = sex;
+	}
+
+	public String getLocation() {
+		return location;
+	}
+
+	public void setLocation(String location) {
+		this.location = location;
+	}
+
+	public String getBirthday() {
+		return birthday;
+	}
+
+	public void setBirthday(String birthday) {
+		this.birthday = birthday;
+	}
+
+	
+
+}

@@ -1,0 +1,126 @@
+package com.jnwat.oamobilegy;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import com.jnwat.analysis.AGetParticipatants;
+import com.jnwat.bean.Participatants;
+import com.jnwat.config.AppConfig;
+import com.jnwat.dialog.PopLoginDialog;
+import com.jnwat.oamobilegy.dapter.AdapterParticipants;
+import com.jnwat.personDetail.PersonalInfoActivity;
+import com.lidroid.xutils.HttpUtils;
+import com.lidroid.xutils.exception.HttpException;
+import com.lidroid.xutils.http.ResponseInfo;
+import com.lidroid.xutils.http.callback.RequestCallBack;
+import com.lidroid.xutils.http.client.HttpRequest;
+import com.lidroid.xutils.util.LogUtils;
+
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.ListView;
+import android.widget.PopupWindow;
+import android.widget.TextView;
+
+public class ParticipantsActivity extends BaseActivity{
+    private TextView title_bar_name;
+    private ListView listView;
+    private List<Participatants> data = new ArrayList<Participatants>();
+    private AdapterParticipants adapter;
+    private HttpUtils http;
+    private LinearLayout header;
+    private ImageView iv_back;
+    PopLoginDialog mPopLoginDialog = new PopLoginDialog();
+  /*  PopupWindow popWindow = new PopupWindow();
+    View progress;*/
+	@Override
+	protected void initView() {
+		// TODO Auto-generated method stub
+		iv_back = (ImageView) findViewById(R.id.iv_back);
+		View v =LayoutInflater.from(this).inflate(R.layout.header_participatants, null);
+		listView = (ListView) findViewById(R.id.list_participants);
+	//	header   = (LinearLayout) v.findViewById(R.id.header);
+		listView.addHeaderView(v);
+	//	progress = findViewById(R.id.progress_1);
+		
+	}
+
+	@Override
+	protected void setListener() {
+		// TODO Auto-generated method stub
+		iv_back.setOnClickListener(new OnClickListener(){
+
+			@Override
+			public void onClick(View arg0) {
+				// TODO Auto-generated method stub
+				finish();
+			}
+		});
+		
+		
+	}
+   
+	@Override
+	protected void initData() {
+		// TODO Auto-generated method stub
+		getWebData();
+		if(data.size()==0){
+		lcoalData();
+		}
+		adapter = new AdapterParticipants(this,data);
+		listView.setAdapter(adapter);
+		adapter.updateData();
+	}
+
+	@Override
+	protected void setView() {
+		// TODO Auto-generated method stub
+		setContentView(R.layout.activity_participants_list);
+		title_bar_name = (TextView) findViewById(R.id.title_bar_name);
+		title_bar_name.setText("学员名单");
+		
+	}
+   public void getWebData(){
+	   
+	   http = new HttpUtils();
+	   http.send(HttpRequest.HttpMethod.POST,
+			   AppConfig.getIp(ParticipantsActivity.this)+AppConfig.METHOAD_GETPARTICIPATANTS,
+				new RequestCallBack<String>() {
+
+					@Override
+					public void onFailure(HttpException arg0, String arg1) {
+						// TODO Auto-generated method stub
+					//	progress.setVisibility(View.GONE);
+					}
+
+					@Override
+					public void onSuccess(ResponseInfo<String> responseInfo) {
+						// TODO Auto-generated method stub
+						LogUtils.d("responseInfo.result:"
+								+ responseInfo.result);
+						try {
+							Thread.sleep(2000);
+						} catch (InterruptedException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+						AGetParticipatants aGetParticipatants = new AGetParticipatants();
+						aGetParticipatants.analysisParticipatants(responseInfo.result, data);
+						
+				//		progress.setVisibility(View.GONE);
+					}
+		   
+	   });
+   }
+   public void lcoalData(){
+	   String name ="梅西";
+	   for(int i =0;i < 20;i ++){
+		   Participatants participatants = new Participatants();
+		   participatants.setName(name);
+		   data.add(participatants);
+	   }
+   }
+}

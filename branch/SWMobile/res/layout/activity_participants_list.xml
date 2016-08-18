@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:wheel="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical" >
+    <include layout="@layout/layout_title_process_black"
+           android:id="@+id/include"
+/>  
+     
+      
+      
+   
+    <ListView android:id="@+id/list_participants"
+              android:layout_width="fill_parent"
+              android:divider="@null"
+              android:layout_marginLeft="10dp"
+              android:layout_marginRight="10dp"
+              android:listSelector="@android:color/transparent"  
+              android:layout_height="wrap_content">
+             <!--  <com.jnwat.view.ProgressWheel
+                        android:id="@+id/progress_1"
+                        android:layout_width="50dp"
+                        android:layout_height="40dp"
+                        android:layout_gravity="center"
+                        android:visibility="visible"
+                        wheel:matProg_barColor="#04a3ff"
+                        wheel:matProg_progressIndeterminate="true" /> -->
+              
+    </ListView>
+   
+   
+
+</LinearLayout>

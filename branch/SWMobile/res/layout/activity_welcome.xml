@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical" >
+
+    
+    <ImageView 
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:src="@drawable/welcom"
+        android:scaleType="centerCrop"
+        />
+    <ImageView
+        android:id="@+id/imagview_welcome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+            android:visibility="gone"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="117dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/icon" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+            android:visibility="gone"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/imagview_welcome"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="25dp"
+        android:text="同行共建    广域十年" />
+
+<TextView
+    android:id="@+id/textView1"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="34dp"
+    android:layout_gravity="bottom|center_horizontal"
+    android:hint="@string/version"
+    android:textSize="14dp" />
+
+</FrameLayout>

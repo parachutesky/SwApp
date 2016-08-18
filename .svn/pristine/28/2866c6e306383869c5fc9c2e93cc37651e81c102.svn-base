@@ -1,0 +1,77 @@
+package com.jnwat.swmobilegy;
+
+import java.io.File;
+import java.io.IOException;
+
+import com.jnwat.bean.BUserlogin;
+import com.jnwat.tools.SharedPrefsUtil;
+
+import android.app.Application;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
+import android.widget.Toast;
+
+//全局数据存储
+/**
+ * @author chang-zhiyuan
+ * 全局控制
+ */
+public class App extends Application {
+private final static float HEAP_UTILIZATION = 0.75f;
+private final static int MIN_HEAP_SIZE = 6* 1024* 1024 ;
+private final static String CONTACTS_NAME ="contacts.txt"; 
+private final static String SEND_PROCESS_NAME ="sendProcess.txt";
+private String CONTACTS_PATH;
+private String SEND_PROCESS_PATH;
+ @Override
+ public void onCreate() {
+	
+	super.onCreate();	
+	create();//创建存储文件
+	/*File file = new File(CONTACTS_PATH);
+	if(!file.exists()){
+		try {
+			file.createNewFile();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}*/
+	// 异常处理，不需要处理时注释掉这两句即可！
+	//CrashHandler crashHandler = CrashHandler.getInstance(); 
+	// 注册crashHandler 
+//	crashHandler.init(getApplicationContext());
+		
+	// 优化内存,以下非必须！
+	//VMRuntime.getRuntime().setTargetHeapUtilization(HEAP_UTILIZATION);
+	//VMRuntime.getRuntime().setMinimumHeapSize(MIN_HEAP_SIZE); 
+      //changeMetrics(this);//修改屏幕Density
+ }
+
+public String getCONTACTS_PATH() {
+	return CONTACTS_PATH;
+} 
+
+public String getSEND_PROCESS_PATH() {
+	return SEND_PROCESS_PATH;
+}
+public void create(){
+	String dirt = this.getFilesDir().getAbsolutePath();
+	CONTACTS_PATH =dirt+"/"+CONTACTS_NAME;
+	SEND_PROCESS_PATH = dirt+"/"+SEND_PROCESS_NAME;
+	createFile(CONTACTS_PATH);
+	createFile(SEND_PROCESS_PATH);
+}
+public void createFile(String path){
+	File file = new File(path);
+	if(!file.exists()){
+		try {
+			file.createNewFile();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+}
+
+}

@@ -1,0 +1,259 @@
+package com.jnwat.swmobilegy.mainpager;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import android.app.Activity;
+import android.content.Intent;
+import android.os.Bundle;
+import android.os.Handler;
+import android.support.v4.app.Fragment;
+import android.text.format.DateUtils;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ListView;
+
+import com.handmark.pulltorefresh.library.PullToRefreshBase;
+import com.handmark.pulltorefresh.library.PullToRefreshBase.Mode;
+import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener;
+import com.handmark.pulltorefresh.library.PullToRefreshListView;
+import com.jnwat.analysis.ATrainingCourse;
+import com.jnwat.config.AppConfig;
+import com.jnwat.config.ShowRemind;
+import com.jnwat.swmobilegy.R;
+import com.jnwat.swmobilegy.MyProjectDetailActivity;
+import com.jnwat.swmobilegy.dapter.AdapterAllProject;
+import com.jnwat.tools.ToastViewTools;
+import com.lidroid.xutils.HttpUtils;
+import com.lidroid.xutils.exception.HttpException;
+import com.lidroid.xutils.http.RequestParams;
+import com.lidroid.xutils.http.ResponseInfo;
+import com.lidroid.xutils.http.callback.RequestCallBack;
+import com.lidroid.xutils.http.client.HttpRequest;
+import com.lidroid.xutils.util.LogUtils;
+
+/**
+ * @author chang-zhiyuan 所有项目
+ */
+public class AllProjectNotDoFragment extends Fragment {
+	private View view;
+	private Activity mContext;
+	private PullToRefreshListView mPullToRefreshListView;
+	private int type;// 判断是否刷新的类型
+	private int nub = 1;// 页码
+	private int list_size = 0;// list的长度
+	private List<HashMap<String, String>> list;
+	private AdapterAllProject mAdapterAllProject;
+	private HttpUtils http;
+
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		// TODO Auto-generated method stub
+		super.onCreate(savedInstanceState);
+		http = new HttpUtils();
+		http.configTimeout(5000);
+		http.configCurrentHttpCacheExpiry(1000); // 缓存时间
+		mContext = this.getActivity();
+		if (null == list) {
+			list = new ArrayList<HashMap<String, String>>();
+		}
+
+	}
+
+	static AllProjectNotDoFragment newInstance(String s) {
+		AllProjectNotDoFragment newFragment = new AllProjectNotDoFragment();
+		Bundle bundle = new Bundle();
+		newFragment.setArguments(bundle);
+		return newFragment;
+
+	}
+
+	@Override
+	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+			Bundle savedInstanceState) {
+		// TODO Auto-generated method stub
+		if (view == null) {
+			view = inflater.inflate(R.layout.fragment_listview_overprocess,
+					null);
+			initView(view);
+			// initData();
+			// initListen();
+		}
+
+		ViewGroup parent = (ViewGroup) view.getParent();
+		/*
+		 * if(BUserlogin.loginStatus==1&&BIntentObj.IsGetOverProcess==false){
+		 * getWebData(); } if(BUserlogin.loginStatus==0){ clearData(); }
+		 */
+		if (parent != null) {
+			parent.removeView(view);
+		}
+		return view;
+
+	}
+
+	private void initView(View view) {
+		mPullToRefreshListView = (PullToRefreshListView) view
+				.findViewById(R.id.lv_workevent_over_progcess);
+		mPullToRefreshListView.getRefreshableView().setDivider(null);
+		mPullToRefreshListView.getRefreshableView().setSelector(
+				android.R.color.transparent);
+		mPullToRefreshListView.setMode(Mode.BOTH);
+		mPullToRefreshListView
+				.setOnRefreshListener(new OnRefreshListener<ListView>() {
+					@Override
+					public void onRefresh(
+							PullToRefreshBase<ListView> refreshView) {
+						String label = DateUtils.formatDateTime(getActivity(),
+								System.currentTimeMillis(),
+								DateUtils.FORMAT_SHOW_TIME
+										| DateUtils.FORMAT_SHOW_DATE
+										| DateUtils.FORMAT_ABBREV_ALL);
+						// Update the LastUpdatedLabel
+						refreshView.getLoadingLayoutProxy()
+								.setLastUpdatedLabel(label);
+						// Do work to refresh the list here.
+						if (mPullToRefreshListView.isHeaderShown()) {// 显示头部UI
+							// 添加数据 网络请求
+							mHandler.sendEmptyMessage(10);
+						} else if (mPullToRefreshListView.isFooterShown()) {// 显示底部UI
+							// 加载更多
+							nub++;
+							mHandler.sendEmptyMessage(100);
+						} else {
+							// 网络请求
+							LogUtils.d("初始化网络数据");
+							list_size = 0;
+							mHandler.sendEmptyMessage(10);
+						}
+
+					}
+				});
+		// 设置自动刷新
+		mPullToRefreshListView.setRefreshing(true);
+		mPullToRefreshListView
+				.setOnItemClickListener(new OnItemClickListener() {
+
+					@Override
+					public void onItemClick(AdapterView<?> arg0, View arg1,
+							int position, long arg3) {
+						// TODO Auto-generated method stub
+						Map<String, String> map = list.get(position - 1);
+						String projectId = map.get("Projectid");
+						Intent intent = new Intent();
+						intent.setClass(mContext, MyProjectDetailActivity.class);
+						intent.putExtra("from", 2);
+						intent.putExtra("Projectid", projectId);
+						startActivity(intent);
+
+					}
+				});
+
+		mAdapterAllProject = new AdapterAllProject(getActivity(), list);
+		mPullToRefreshListView.setAdapter(mAdapterAllProject);
+
+	}
+
+	private void initListen() {
+
+	}
+
+	// 消息处理
+	public Handler mHandler = new Handler() {
+		public void handleMessage(android.os.Message msg) {
+			switch (msg.what) {
+			case 0:
+				ToastViewTools.initToast(getActivity(), "暂无数据");
+				mPullToRefreshListView.onRefreshComplete();
+				break;
+			case 1:
+				ToastViewTools.initToast(getActivity(), "数据出错了");
+				mPullToRefreshListView.onRefreshComplete();
+				break;
+			case 9:
+				// 0代表成功 1 代表失败 2有新数据刷新 3 不刷新
+				System.out.println("Type:" + type);
+				list_size = list.size();
+				if (type == 0) {
+					System.out.println("刷新数据");
+					mAdapterAllProject.notifyDataSetChanged();
+					mPullToRefreshListView.onRefreshComplete();
+				}
+
+				if (type == 3) {
+
+					mAdapterAllProject.notifyDataSetChanged();
+					mPullToRefreshListView.onRefreshComplete();
+				}
+
+				break;
+			case 10:// 自动加载数据
+				nub = 1;
+				getTrainingCourse(nub, true);
+				break;
+			case 100:// 加载更多数据
+				getTrainingCourse(nub, false);
+				break;
+			case ShowRemind.HANDLER_STATUS:
+				ToastViewTools
+						.initToast(getActivity(), ShowRemind.ErrorMessage);
+				break;
+			}
+		};
+	};
+
+	/**
+	 * 所有项目 TrainingCourse
+	 */
+	private void getTrainingCourse(final int mnub, final boolean isClear) {
+		RequestParams params = new RequestParams(); // 参数
+		params.addBodyParameter("projecttype", "1");
+		// 页码
+		params.addBodyParameter("page", mnub + "");
+		params.addBodyParameter("proname", "");
+		System.out.println("projecttype:" + "3");
+		String url = AppConfig.getIp(getActivity())
+				+ AppConfig.METHOAD_TRAININGCOURSE;
+		LogUtils.d("课程查询:" + url + "当前页：" + mnub);
+		http.send(HttpRequest.HttpMethod.POST, url, params,
+				new RequestCallBack<String>() {
+					@Override
+					public void onLoading(long total, long current,
+							boolean isUploading) {
+					}
+
+					@Override
+					public void onSuccess(ResponseInfo<String> responseInfo) {
+						ATrainingCourse mATrainingCourse = new ATrainingCourse();
+						LogUtils.d("课程:" + responseInfo.result);
+						type = mATrainingCourse.analyTrainingCourse(
+								responseInfo.result, list, isClear);
+						LogUtils.d("共：" + list.size() + "项");
+						int new_list_size = list.size();
+						// if (new_list_size > list_size) {// 如果有获取的数据
+						// nub++;
+						// }
+
+						list_size = new_list_size;
+						mHandler.sendEmptyMessageDelayed(9, 500);
+					}
+
+					@Override
+					public void onStart() {
+					}
+
+					@Override
+					public void onFailure(HttpException error, String msg) {
+						mHandler.sendEmptyMessage(0);
+
+					}
+				});
+
+	}
+
+}

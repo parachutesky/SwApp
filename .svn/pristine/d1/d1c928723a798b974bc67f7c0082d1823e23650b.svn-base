@@ -1,0 +1,184 @@
+package com.jnwat.oamobilegy.mainpager;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
+import android.annotation.SuppressLint;
+import android.os.Handler;
+import android.widget.ListView;
+
+import com.handmark.pulltorefresh.library.PullToRefreshBase;
+import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener;
+import com.handmark.pulltorefresh.library.PullToRefreshListView;
+import com.jnwat.analysis.ASearchSchedule;
+import com.jnwat.bean.BUserlogin;
+import com.jnwat.config.AppConfig;
+import com.jnwat.config.ShowRemind;
+import com.jnwat.oamobilegy.BaseActivity;
+import com.jnwat.oamobilegy.R;
+import com.jnwat.oamobilegy.dapter.AdapterSearchSchedule;
+import com.jnwat.tools.ToastViewTools;
+import com.lidroid.xutils.HttpUtils;
+import com.lidroid.xutils.exception.HttpException;
+import com.lidroid.xutils.http.RequestParams;
+import com.lidroid.xutils.http.ResponseInfo;
+import com.lidroid.xutils.http.callback.RequestCallBack;
+import com.lidroid.xutils.http.client.HttpRequest;
+
+/**
+ * @author chang-zhiyuan 课表查询
+ */
+@SuppressLint("HandlerLeak")
+public class SearchScheduleActivity extends BaseActivity {
+	private HttpUtils http;
+	private PullToRefreshListView sw_lv_searchschedule;
+	private List<HashMap<String, String>> list;
+	private AdapterSearchSchedule mAdapterSearchSchedule;
+
+	@Override
+	protected void initView() {
+		setBackListener("课表查询", false);
+		mAdapterSearchSchedule = new AdapterSearchSchedule(SearchScheduleActivity.this, list);
+		sw_lv_searchschedule.setAdapter(mAdapterSearchSchedule);
+
+	}
+
+	@Override
+	protected void setListener() {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	protected void initData() {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	protected void setView() {
+		// TODO Auto-generated method stub
+		http = new HttpUtils();
+		http.configTimeout(8000);
+		http.configCurrentHttpCacheExpiry(1000); // 缓存时间
+		if(null == list){
+			list = new ArrayList<HashMap<String, String>>();
+		}
+		setContentView(R.layout.activity_searchschedule);
+		sw_lv_searchschedule = (PullToRefreshListView) findViewById(R.id.sw_lv_searchschedule);
+		sw_lv_searchschedule.getRefreshableView().setDivider(null);
+		sw_lv_searchschedule.getRefreshableView().setSelector(
+				android.R.color.transparent);
+		
+		// 设置刷新监听
+		sw_lv_searchschedule.setOnRefreshListener( new OnRefreshListener<ListView>() {
+
+		    @Override
+		    public void onRefresh(PullToRefreshBase<ListView> refreshView) {
+		       // Log.d("PullToRefresh","-------onRefresh被调用-------- ShownHeader="+refreshView.isShownHeader()+"  ShownFooter="+refreshView.isShownFooter());
+		   //     String str = DateUtils.formatDateTime(MainActivity.this, System.currentTimeMillis(), DateUtils.FORMAT_SHOW_TIME | DateUtils.FORMAT_SHOW_DATE | DateUtils.FORMAT_ABBREV_ALL);
+		        // 上拉加载更多 业务代码
+		        if (sw_lv_searchschedule.isHeaderShown()){
+		         //   Log.d("refresh", "-----上拉加载----------");
+		            refreshView.getLoadingLayoutProxy().setRefreshingLabel("正在加载");
+		            refreshView.getLoadingLayoutProxy().setPullLabel("上拉加载更多");
+		            refreshView.getLoadingLayoutProxy().setReleaseLabel("释放开始加载");
+		         //   refreshView.getLoadingLayoutProxy().setLastUpdatedLabel("最后加载时间:" + str);
+		            
+		            System.out.println("刷新加载数据 。。。。");
+		           // new MyTask().execute();
+		        }else{
+		            //Log.d("refresh", "------下拉刷新---------");
+		            refreshView.getLoadingLayoutProxy().setRefreshingLabel("正在刷新");
+		            refreshView.getLoadingLayoutProxy().setPullLabel("下拉刷新");
+		            refreshView.getLoadingLayoutProxy().setReleaseLabel("释放开始刷新");
+		           // refreshView.getLoadingLayoutProxy().setLastUpdatedLabel("最后更新时间:" + str);
+		         //   new MyTask().execute();
+		        }
+		    }
+		});
+		// 设置自动刷新
+		sw_lv_searchschedule.setRefreshing(true);
+		
+		
+		
+		getSearchSchedule();
+		/*
+		 * sw_lv_searchschedule .setOnRefreshListener(new
+		 * OnRefreshListener<ListView>() {
+		 * 
+		 * @Override public void onRefresh( PullToRefreshBase<ListView>
+		 * refreshView) { String label = DateUtils.formatDateTime(
+		 * SearchScheduleActivity.this, System.currentTimeMillis(),
+		 * DateUtils.FORMAT_SHOW_TIME | DateUtils.FORMAT_SHOW_DATE |
+		 * DateUtils.FORMAT_ABBREV_ALL);
+		 * 
+		 * // Update the LastUpdatedLabel refreshView.getLoadingLayoutProxy()
+		 * .setLastUpdatedLabel(label); if (BUserlogin.loginStatus == 1) { //
+		 * getUserTasks(); } else { sw_lv_searchschedule.onRefreshComplete(); }
+		 * 
+		 * // Do work to refresh the list here. } });
+		 */
+
+	}
+
+	/**
+	 * 得到SearchSchedule
+	 */
+	private void getSearchSchedule() {
+		RequestParams params = new RequestParams(); // 参数
+		params.addBodyParameter("userid", BUserlogin.NO);
+		String url = AppConfig.getIp(SearchScheduleActivity.this)
+				+ AppConfig.METHOAD_SEARCHSCHEDULE;
+
+		http.send(HttpRequest.HttpMethod.POST, url, params,
+				new RequestCallBack<String>() {
+					@Override
+					public void onLoading(long total, long current,
+							boolean isUploading) {
+					}
+
+					@Override
+					public void onSuccess(ResponseInfo<String> responseInfo) {
+						ASearchSchedule mASearchSchedule = new ASearchSchedule();
+						mASearchSchedule.analySearchSchedule(responseInfo.result, list);
+			
+						mHandler.postDelayed(new Runnable() {
+
+							@Override
+							public void run() {
+								// TODO Auto-generated method stub
+								// freshList();
+							}
+						}, 400);
+
+					}
+
+					@Override
+					public void onStart() {
+					}
+
+					@Override
+					public void onFailure(HttpException error, String msg) {
+					}
+				});
+
+	}
+
+	// 消息处理
+	public Handler mHandler = new Handler() {
+		public void handleMessage(android.os.Message msg) {
+			switch (msg.what) {
+			case 0:
+				ToastViewTools.initToast(SearchScheduleActivity.this, "暂无数据");
+				break;
+			case ShowRemind.HANDLER_STATUS:
+				ToastViewTools.initToast(SearchScheduleActivity.this,
+						ShowRemind.ErrorMessage);
+				break;
+			}
+		};
+	};
+
+}

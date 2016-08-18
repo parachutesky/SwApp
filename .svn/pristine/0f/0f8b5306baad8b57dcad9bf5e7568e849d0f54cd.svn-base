@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:wheel="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical" >
+
+    <include
+        android:id="@+id/set_title"
+        layout="@layout/set_layout_title" />
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:id="@+id/login_layout"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/setting_item_selector"
+                android:orientation="horizontal" >
+
+                <ImageView
+                    android:id="@+id/login_head_img"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_margin="15dip"
+                    android:paddingLeft="16dip"
+                    android:src="@drawable/list_icon_user_default" />
+
+                <TextView
+                    android:id="@+id/logInfo_txt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="15dip"
+                    android:gravity="center"
+                    android:text="未登录"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/tv_setname"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="20dip"
+                    android:gravity="center"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/txt_personlData"
+                style="@style/TxtTitle"
+                android:layout_width="fill_parent"
+                android:layout_height="48dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/setting_item_selector"
+                android:drawableRight="@drawable/right"
+                android:gravity="center_vertical"
+                android:paddingLeft="16dp"
+                android:paddingRight="15dp"
+                android:text="个人资料"
+                android:textColor="#585858"
+                android:textSize="16sp" />
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1.0dip"
+                android:background="@color/black2" />
+
+            <TextView
+                android:id="@+id/tv_xiaoxiSet"
+                style="@style/TxtTitle"
+                android:layout_width="fill_parent"
+                android:layout_height="48dp"
+                android:background="@drawable/setting_item_selector"
+                android:drawableRight="@drawable/right"
+                android:gravity="center_vertical"
+                android:paddingLeft="16dp"
+                android:paddingRight="15dp"
+                android:text="消息设置"
+                android:textColor="#585858"
+                android:textSize="16sp" />
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1.0dip"
+                android:background="@color/black2" />
+
+            <LinearLayout
+                android:id="@+id/lin_clearcache"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/setting_item_selector"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:id="@+id/txt_tongyong"
+                    style="@style/TxtTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="15dp"
+                    android:text="消除缓存"
+                    android:textColor="#585858"
+                    android:textSize="16sp" />
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" >
+
+                    <TextView
+                        android:id="@+id/txt_cachesize"
+                        style="@style/TxtTitle"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:gravity="right|center_vertical"
+                        android:paddingLeft="16dp"
+                        android:paddingRight="15dp"
+                        android:text="0.00M"
+                        android:textColor="#585858"
+                        android:textSize="16sp" />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="right"
+                        android:orientation="vertical" >
+
+                        <com.jnwat.view.ProgressWheel
+                            android:id="@+id/progress_wheel_clearcache"
+                            android:layout_width="50dp"
+                            android:layout_height="40dp"
+                            android:layout_marginRight="10dip"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:visibility="gone"
+                            wheel:matProg_barColor="#04a3ff"
+                            wheel:matProg_progressIndeterminate="true" />
+                    </RelativeLayout>
+                </FrameLayout>
+            </LinearLayout>
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1.0dip"
+                android:background="@color/black2" />
+
+            <LinearLayout
+                android:id="@+id/updateContactsLayout"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/setting_item_selector"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:id="@+id/txt_update_mailist"
+                    style="@style/TxtTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="15dp"
+                    android:text="同步通讯录"
+                    android:textColor="#585858"
+                    android:textSize="16sp" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="right"
+                        android:orientation="vertical" >
+                          <com.jnwat.view.ProgressWheel
+                            android:id="@+id/progress_wheel_updateContacts"
+                            android:layout_width="50dp"
+                            android:layout_height="40dp"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:visibility="gone"
+                            android:layout_marginRight="10dip"
+                            wheel:matProg_barColor="#04a3ff"
+                            wheel:matProg_progressIndeterminate="true" />
+                   
+                </RelativeLayout>
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/txt_softDestn"
+                style="@style/TxtTitle"
+                android:layout_width="fill_parent"
+                android:layout_height="48dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/setting_item_selector"
+                android:drawableRight="@drawable/right"
+                android:gravity="center_vertical"
+                android:paddingLeft="16dp"
+                android:paddingRight="15dp"
+                android:text="软件说明"
+                android:textColor="#585858"
+                android:textSize="16sp" />
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1.0dip"
+                android:background="@color/black2" />
+            
+                  <TextView
+                android:id="@+id/tv_modifyip"
+                style="@style/TxtTitle"
+                android:layout_width="fill_parent"
+                android:layout_height="48dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/setting_item_selector"
+                android:drawableRight="@drawable/right"
+                android:gravity="center_vertical"
+                android:paddingLeft="16dp"
+                android:paddingRight="15dp"
+                android:text="更换IP"
+                android:textColor="#585858"
+                android:textSize="16sp" />
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1.0dip"
+                android:background="@color/black2" />
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="80.0dip"
+                android:layout_marginTop="6dip"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="20.0dip" >
+
+                <Button
+                    android:id="@+id/btnexit"
+                    android:layout_width="fill_parent"
+                    android:layout_height="50.0dip"
+                    android:background="@drawable/btn_bg_red2"
+                    android:padding="10.0dip"
+                    android:text="退出当前账户"
+                    android:textColor="@color/white" />
+                <com.jnwat.view.ProgressWheel
+                        android:id="@+id/progress_wheel_exit"
+                        android:layout_width="50dp"
+                        android:layout_height="40dp"
+                        android:gravity="right|center_vertical"
+                        android:visibility="gone"
+                        wheel:matProg_barColor="#04a3ff"
+                        wheel:matProg_progressIndeterminate="true" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

@@ -1,0 +1,165 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- 红色字体 -->
+    <color name="redTxt">#cc0000</color>
+
+    <!-- 底层浅灰色 -->
+    <color name="bg">#f1f2f6</color>
+<!--     二级 灰色1 -->
+    <color name="erji1e4e4e4">#e4e4e4</color>
+    <color name="eerji2f2f2f2">#f2f2f2</color>
+    
+    
+    
+    <color name="griditems_bg">#ffe8ecef</color>
+    <!-- 驳回字体 -->
+    <color name="redbohui">#e0483d</color>
+    <!-- 绿色字体 -->
+    <color name="redtongyi">#22bf64</color>
+    <!-- 蓝色字体 -->
+    <color name="redfaqi">#04a3ff</color>
+    <!-- 黑色透明度50% -->
+    <color name="black50">#666666</color>
+    <!-- 浅灰色，gridview -->
+    <color name="black40">#737373</color>
+    <color name="line">#ffd3dde6</color>
+    <!-- 酒红色 -->
+    <color name="light_red">#EE4000</color>
+    <!-- 浅灰色字体 -->
+    <color name="black_white_babababa">#bababa</color>
+    <color name="meeting_black_dre">#000000</color>
+    <!-- 通讯录详细信息的 popupwindow -->
+    <color name="mailDetail_gray">#808080</color>
+    <!-- 灰黑色 -->
+    <color name="black_dark_dialog">#434753</color>
+    <color name="black_dark">#205081</color>
+    <color name="left_drawer_item_bg_normal">#ff393939</color>
+    <color name="left_drawer_item_bg_pressed">#ff292929</color>
+    <!-- 白色 -->
+    <color name="white">#ffffff</color>
+    <color name="black2">#ffeeeeee</color>
+    <!-- 会议申请审核 -->
+    <color name="line_meeting">#d2d2d2</color>
+
+    <!-- 人名 -->
+    <color name="people_name">#1f1f1f</color>
+    <color name="background_tab_pressed">#6633B5E5</color>
+
+    <!-- 人名下面的描述 -->
+    <color name="people_description">#9a9a9a</color>
+    <color name="title_white">#fff7f7f7</color>
+    <!-- title的蓝色 -->
+    <color name="btn_blue">#04a3ff</color>
+    <!-- 低饱和度深蓝 -->
+    <color name="title_blue">#205081</color>
+    <color name="bar_color">#232325</color>
+    <!-- 头部的字体颜色 浅灰色 -->
+    <color name="title_balck_dark">#585858</color>
+    <color name="bg_qidong">#f7f7f7</color>
+    <!-- 启动页面背景色,浅灰色 -->
+    <color name="red">#FC2828</color>
+    <color name="qidong_text">#c7c7c7</color>
+
+    <!-- 启动页面logo下的英文，灰色，字体Arial，字号24px -->
+
+    <color name="qi_text">#b2b2b2</color>
+    <!-- 启动页面最下面的英文，灰色，字体Arial，字号24px -->
+
+    <color name="bg_hs">#eeeeee</color>
+    <!-- 首页页面背景色,灰色 -->
+    <color name="item_sel">#808080</color>
+    <color name="bg_qhs">#f5f5f5</color>
+    <!-- 首页页面搜索底部背景色,浅灰色 -->
+
+    <color name="bg_cb">#ffffff</color>
+    <!-- 首页页面4个按钮图标底部背景，纯白色 -->
+
+    <color name="bg_xzsyztys">#0383de</color>
+    <!-- 选中时首页页面4个按钮图标文字,橙色，字号21px，字体微软雅黑 -->
+
+    <color name="bg_wxzsyztys">#535353</color>
+    <!-- 未选中时首页页面4个按钮图标文字,灰色，字号21px，字体微软雅黑 -->
+
+    <color name="text_chucuo">#999999</color>
+    <!-- 提示文字“网络出错”,灰色，字号30px，字体微软雅黑 -->
+
+    <color name="text_chucuo_bs">#ffffff</color>
+    <!-- 刷新按钮文字,纯白色，字号30px，字体微软雅黑 -->
+
+    <color name="text_chucuo_anxia">#f0f0f0</color>
+    <!-- 刷新按钮文字按下,灰色，字号30px，字体微软雅黑 -->
+
+    <color name="title_line">#e8e8e8</color>
+    <!-- 主界面白色框上的灰色线 -->
+
+    <color name="tanchukuang">#777777</color>
+    <!-- 弹出框分割线，字体微软雅黑 -->
+
+    <color name="guanyu_zitiyanse">#3f3f3f</color>
+    <!-- 关于页面的字体颜色 -->
+
+
+    <!-- 扫一扫背景白色 -->
+
+    <color name="hezi_btn_pressed">#e1e1e1</color>
+    <!-- 盒子选中后变色，灰色 -->
+
+    <color name="xaila">#e8e8e8</color>
+    <!-- 下拉弹出框分割线，灰色 -->
+
+    <color name="hezi_brn_txt">#464652</color>
+    <!-- 下拉弹出框分割线，灰色 -->
+
+    <color name="shezhi_wenzi">#eeeeee</color>
+    <!-- 设置标头文字 -->
+
+    <color name="ziti">#212027</color>
+    <!-- 设置下大标题 -->
+
+    <color name="zitixiao">#212027</color>
+    <!-- 设置下文字字体 -->
+
+    <color name="shezhi_bianxian">#b7b7b7</color>
+    <!-- 设置下灰色边线 -->
+
+    <color name="textColorHint_disabled_holo_dark">#ff4c4c4c</color>
+    <!-- EditText 的 提示字体颜色，不是正式显示的字体 -->
+
+    <color name="list_item_text_title">#1a1a1a</color>
+    <!-- 商铺列表标题字体颜色 -->
+
+    <color name="list_item_text_content">#5a5a5a</color>
+    <!-- 商铺列表内容字体颜色 -->
+
+    <color name="list_item_text_ceng">#e73a12</color>
+    <!-- 商铺列表楼层字体颜色 -->
+
+    <color name="login_regist">#e52e04</color>
+    <!-- 黑色 -->
+    <color name="black">#000000</color>
+
+    <!-- ********************************** 通讯录使用到的颜色**START**************************************** -->
+    <color name="windows_color_maillist">#F5F5F5</color>
+    <color name="side_maillist">#04a3ff</color>
+    <color name="white_maillist">#ffffff</color>
+    <color name="greeny_maillist">#ff11aca6</color>
+    <color name="black2_maillist">#ffeeeeee</color>
+    <color name="black1_maillist">#7A7E83</color>
+    <color name="bar_color_maillist">#232325</color>
+    <color name="transparent">#404040</color>
+    <!-- ***************通讯录使用的颜色  ***END******************************************* -->
+    <!-- *******************************新闻中使用   START****************************************************************** -->
+    <color name="news_title1_color">#1f1f1f</color>
+    <color name="news_title2_color">#9a9a9a</color>
+    <!-- *******************************新闻中使用 END*********************************************************** -->
+    <!-- 请假申请中的 -->
+    <color name="btn_submit_green">#22bf64</color>
+    <color name="btn_submit_green_press">#ff11aca6</color>
+    <!-- 项目详情中的 -->
+    <color name="btn_myProject_submit_green">#22bf64</color>
+    <color name="btn_myProject_submit_green_press">#6699cc</color>
+    <color name="btn_myProject_submit_green2">#04a3ff</color>
+    <color name="btn_myProject_submit_green_press2">#6699cc</color>
+
+</resources>

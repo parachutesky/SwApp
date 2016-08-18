@@ -1,0 +1,58 @@
+package com.jnwat.dialog;
+
+import com.jnwat.swmobilegy.R;
+
+import android.app.ActionBar.LayoutParams;
+import android.app.Activity;
+import android.graphics.drawable.BitmapDrawable;
+import android.view.Gravity;
+import android.view.View;
+import android.widget.PopupWindow;
+
+public class PopLoginDialog {
+
+	private PopupWindow popupWindow;
+
+	public PopLoginDialog() {
+	}
+
+	public void showPoploginDialog(Activity ac) {
+
+		if (popupWindow == null) {
+			popupWindow = new PopupWindow(ac);
+			popupWindow.setBackgroundDrawable(new BitmapDrawable());
+			popupWindow.setTouchable(false); // 设置PopupWindow可触摸
+			popupWindow.setFocusable(true);// 不能取消
+			popupWindow.setOutsideTouchable(false); // 设置非PopupWindow区域可触摸
+		}
+		View view = ac.getLayoutInflater().inflate(R.layout.pop_login_progress,
+				null);
+
+		popupWindow.setContentView(view);
+		// 软键盘不会挡着popupwindow
+		// popupWindow.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
+		popupWindow.setWidth(LayoutParams.MATCH_PARENT);
+		popupWindow.setHeight(LayoutParams.MATCH_PARENT);
+		popupWindow.setAnimationStyle(R.style.popuStyle_zoom); // 设置
+		popupWindow.showAtLocation(
+				ac.getWindow().getDecorView()
+						.findViewById(android.R.id.content), Gravity.CENTER, 0,
+				0);
+		popupWindow.update();
+
+	}
+
+	public void dismisPop() {
+
+		if (popupWindow != null) {
+			try {
+				if (popupWindow.isShowing()) {
+					popupWindow.dismiss();
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+
+	}
+}

@@ -1,0 +1,146 @@
+package com.jnwat.oamobilegy.dapter;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
+import android.content.Context;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.BaseAdapter;
+import android.widget.TextView;
+
+import com.jnwat.oamobilegy.R;
+import com.lidroid.xutils.util.LogUtils;
+
+/**
+ * @author chang-zhiyuan 课表查询
+ */
+public class AdapterSearchSchedule extends BaseAdapter {
+	private LayoutInflater layoutInflater;
+	private List<HashMap<String, String>> data;
+
+	public AdapterSearchSchedule(Context mcontext,
+			List<HashMap<String, String>> mdata) {
+		if (null != mdata) {
+		} else {
+			data = new ArrayList<HashMap<String, String>>();
+		}
+		data = mdata;
+		this.layoutInflater = LayoutInflater.from(mcontext);
+		LogUtils.d("初始化课程表适配器");
+	}
+
+	@Override
+	public int getCount() {
+		return data.size();
+	}
+
+	@Override
+	public Object getItem(int position) {
+		return data.get(position);
+	}
+
+	@Override
+	public long getItemId(int position) {
+		return position;
+	}
+
+	public int getItemType(int position) {
+		// TODO Auto-generated method stub
+		if (data.get(position).get("TYPE").equals("1")) {
+
+			return 1;
+		} else {
+			return 2;
+		}
+	}
+
+	@Override
+	public int getViewTypeCount() {
+		// TODO Auto-generated method stub
+		// 因为有两种视图，所以返回2
+		return 2;
+
+	}
+
+	@Override
+	public View getView(int position, View convertView, ViewGroup parent) {
+
+		ViewHolder viewHolder = null;
+		ViewHolderTitle mViewHolderTitle = null;
+		int type = getItemType(position);
+		System.out.println("data:"+data.get(position).toString());
+		if (convertView == null) {
+			if (type == 1) { // 显示时间
+				convertView = layoutInflater.inflate(
+						R.layout.sw_item_title_date, parent, false);
+				mViewHolderTitle = new ViewHolderTitle();
+				mViewHolderTitle.tv_sw_title_date = (TextView) convertView
+						.findViewById(R.id.tv_sw_title_date);
+				convertView.setTag(mViewHolderTitle);
+
+			} else {
+				convertView = layoutInflater
+						.inflate(R.layout.sw_item_searchschudule_listview,
+								parent, false);
+				viewHolder = new ViewHolder();
+				viewHolder.textView_sw_item_schedul_time = (TextView) convertView
+						.findViewById(R.id.textView_sw_item_schedul_time);
+
+				viewHolder.textView_sw_item_schedul_course = (TextView) convertView
+						.findViewById(R.id.textView_sw_item_schedul_course);
+
+				viewHolder.textView_sw_item_schedul_positon = (TextView) convertView
+						.findViewById(R.id.textView_sw_item_schedul_positon);
+				convertView.setTag(viewHolder);
+			}
+		} else {
+			System.out.println("111111---22");
+			if (type == 2) {
+				viewHolder = (ViewHolder) convertView.getTag();
+				viewHolder.textView_sw_item_schedul_time.setText(data.get(
+						position).get("Sxw"));
+				viewHolder.textView_sw_item_schedul_course.setText(data.get(
+						position).get("COURSE"));
+				viewHolder.textView_sw_item_schedul_positon.setText(data.get(
+						position).get("Positon"));
+			} else {
+				mViewHolderTitle = (ViewHolderTitle) convertView.getTag();
+				mViewHolderTitle.tv_sw_title_date.setText(data.get(position)
+						.get("classdate"));
+			}
+			
+		}
+    	if (type == 2) {
+			viewHolder.textView_sw_item_schedul_time.setText(data.get(
+					position).get("Sxw"));
+			viewHolder.textView_sw_item_schedul_course.setText(data.get(
+					position).get("COURSE"));
+			viewHolder.textView_sw_item_schedul_positon.setText(data.get(
+					position).get("Positon"));
+		} else {
+			mViewHolderTitle.tv_sw_title_date.setText(data.get(position)
+					.get("classdate"));
+			System.out.println("data.get(position).classdate:"
+					+ data.get(position).get("classdate"));
+		}
+
+		return convertView;
+
+	}
+
+	class ViewHolder {
+		public TextView textView_sw_item_schedul_time;
+		public TextView textView_sw_item_schedul_course;
+		public TextView textView_sw_item_schedul_positon;
+
+	}
+
+	class ViewHolderTitle {
+		public TextView tv_sw_title_date;
+
+	}
+
+}

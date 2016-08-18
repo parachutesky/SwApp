@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/fragment_set"
+    android:layout_width="fill_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg" >
+
+    <TextView
+        android:id="@+id/showTip_txt"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:gravity="center"
+        android:text="暂无数据"
+        android:visibility="gone" />
+
+   <com.handmark.pulltorefresh.library.PullToRefreshListView
+        android:id="@+id/lv_workevent_over_progcess"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_marginTop="10dp"
+        android:divider="@android:color/transparent"
+        android:listSelector="@drawable/setting_item_selector" >
+    </com.handmark.pulltorefresh.library.PullToRefreshListView> 
+   
+        
+    
+   
+</FrameLayout>

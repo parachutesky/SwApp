@@ -1,0 +1,335 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.jnwat.oamobilegy"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" >
+    </uses-permission>
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.SEND_SMS" />
+    <!-- 联网权限 -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <!-- 获取用户手机的IMEI，用来唯一的标识用户。 -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <!-- 蓝判断不同网路 -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <!-- 在sdcard中创建/删除文件的权限 -->
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+    <!-- 扫一扫 -->
+    <uses-permission android:name="android.permission.CAMERA" />
+    <!-- 加入在SDCard中创建与删除文件的权限 -->
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+    <!-- 加入在SDCard中写入数据的权限 -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <!-- 获取mac地址作为用户的备用唯一标识 -->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+
+    <uses-sdk
+        android:minSdkVersion="14"
+        android:targetSdkVersion="21" />
+
+    <application
+        android:name="com.jnwat.oamobilegy.App"
+        android:allowBackup="true"
+        android:icon="@drawable/icon"
+        android:label="@string/app_name" >
+        
+        <activity
+            android:name="com.jnwat.oamobilegy.MainActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Light.NoTitleBar"
+            android:windowSoftInputMode="adjustNothing" >
+        </activity>
+        
+        <!-- 搜索页面 -->
+        <activity
+            android:name="com.jnwat.oamobilegy.SerchActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Light.NoTitleBar"
+            android:windowSoftInputMode="adjustResize" />
+        <!-- 通讯录的 activity -->
+        <activity
+            android:name="com.jnwat.oamobilegy.mail.MailDetalActivity"
+            android:theme="@android:style/Theme.Light.NoTitleBar"
+            android:windowSoftInputMode="adjustResize" >
+        </activity>
+        
+        <!-- 通讯录activity结束 -->
+        <activity
+            android:name="com.jnwat.oamobilegy.mail.MailSearchActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Light.NoTitleBar"
+            android:windowSoftInputMode="adjustResize|adjustPan" >
+        </activity>
+        <!-- 会议申请 -->
+        <activity
+            android:name="com.jnwat.oamobilegy.workevent.MeetingApply"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Light.NoTitleBar"
+            android:windowSoftInputMode="adjustPan" >
+        </activity>
+        <!-- 登录 -->
+        <activity
+            android:name="com.jnwat.oamobilegy.LoginActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Light.NoTitleBar"
+            android:windowSoftInputMode="stateHidden|adjustResize" >
+        </activity>
+        <!-- 消息的 查看的activity -->
+        <activity
+            android:name="com.jnwat.oamobilegy.MessageActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Light.NoTitleBar"
+            android:windowSoftInputMode="adjustResize" >
+        </activity>
+        <!-- 流程列表展示的activity -->
+        <activity
+            android:name="com.jnwat.oamobilegy.ProcessActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Light.NoTitleBar"
+            android:windowSoftInputMode="stateHidden|stateUnchanged" >
+        </activity>
+        <!-- 欢迎页面 -->
+        
+       
+  <activity
+            android:name="com.jnwat.oamobilegy.WelcomeActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Light.NoTitleBar.Fullscreen"
+            android:windowSoftInputMode="stateHidden|stateUnchanged" >
+          <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>   
+        </activity>  
+        <!-- 引导页面 -->
+        <activity
+            android:name="com.jnwat.oamobilegy.GuiderActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Light.NoTitleBar.Fullscreen"
+            android:windowSoftInputMode="stateHidden|stateUnchanged" >
+        </activity>
+        <!-- 个人资料 页面 -->
+        <activity
+            android:name="com.jnwat.oamobilegy.set.PersonalDataActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Light.NoTitleBar"
+            android:windowSoftInputMode="stateHidden|stateUnchanged" >
+        </activity>
+        <!-- 个人资料头像显示-->
+         <activity
+            android:name="com.jnwat.personDetail.AvatorView"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Light.NoTitleBar"
+            android:windowSoftInputMode="stateHidden|stateUnchanged" >
+        </activity>
+        <!-- 已办流程的具体列表 -->
+        <activity
+            android:name="com.jnwat.oamobilegy.OverProcessDetailActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Light.NoTitleBar"
+            android:windowSoftInputMode="stateHidden|stateUnchanged" >
+        </activity>
+        <!-- 新闻详细界面 -->
+        <activity
+            android:name="com.jnwat.oamobilegy.mainpager.NewsDetailActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Light.NoTitleBar"
+            android:windowSoftInputMode="stateHidden|stateUnchanged" >
+        </activity>
+        <!-- 消息通知 -->
+        <activity
+            android:name="com.jnwat.oamobilegy.NotifiMessageActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Light.NoTitleBar"
+            android:windowSoftInputMode="stateHidden|stateUnchanged" >
+        </activity>
+        <!-- 消息设置 -->
+        <activity
+            android:name="org.androidpn.client.NotificationSettingsActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Light.NoTitleBar"
+            android:windowSoftInputMode="stateHidden|stateUnchanged" >
+        </activity>
+        <activity
+            android:name="com.jnwat.oamobilegy.set.MessageSet"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Light.NoTitleBar"
+            android:windowSoftInputMode="stateHidden|stateUnchanged" >
+        </activity>
+        <!-- 软件说明 -->
+        <activity
+            android:name="com.jnwat.oamobilegy.SoftDestn"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Light.NoTitleBar"
+            android:windowSoftInputMode="stateHidden|stateUnchanged" >
+        </activity>
+        <!-- 短消息查看 -->
+        <activity
+            android:name="com.jnwat.oamobilegy.NoticeSortMessageActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Light.NoTitleBar"
+            android:windowSoftInputMode="stateHidden|stateUnchanged" >
+        </activity>
+        <!-- 课表查询-->
+        <activity
+            android:name="com.jnwat.oamobilegy.mainpager.SearchScheduleActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Light.NoTitleBar"
+            android:windowSoftInputMode="stateHidden|stateUnchanged" >
+        </activity>
+        
+        <activity
+            android:name="com.jnwat.oamobilegy.UnEducationListActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Light.NoTitleBar"
+            android:windowSoftInputMode="stateHidden|stateUnchanged" >
+        </activity>
+        <activity 
+             android:name="com.jnwat.oamobilegy.UnEduProgramDetailActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Light.NoTitleBar"
+            android:windowSoftInputMode="stateHidden|stateUnchanged" >
+            </activity>
+        <activity
+            android:name="com.jnwat.oamobilegy.TrainingProgramActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Light.NoTitleBar"
+            android:windowSoftInputMode="stateHidden|stateUnchanged">
+        </activity>
+        
+        <!-- 薪资查询 -->
+        <activity 
+             android:name="com.jnwat.oamobilegy.SalaryQueryActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Light.NoTitleBar"
+            android:windowSoftInputMode="stateHidden|stateUnchanged"
+            />
+        
+        <!-- 课表查询详情-->
+        <activity
+            android:name="com.jnwat.oamobilegy.mainpager.SearchScheduleDetailActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Light.NoTitleBar"
+            android:windowSoftInputMode="stateHidden|stateUnchanged" >
+        </activity>
+                <!-- 学员互动 -->
+        <activity
+            android:name="com.jnwat.oamobilegy.mainpager.ProjectQuestionAnswerActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Light.NoTitleBar"
+            android:windowSoftInputMode="stateHidden|stateUnchanged" >
+        </activity>
+                <!-- 项目查询 -->
+        <activity
+            android:name="com.jnwat.oamobilegy.mainpager.ProjectSearchActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Light.NoTitleBar"
+            android:windowSoftInputMode="stateHidden|stateUnchanged" >
+        </activity>
+       
+        <!-- 开班通知 -->
+        <activity
+            android:name="com.jnwat.oamobilegy.mainpager.ClassNotificationActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Light.NoTitleBar"
+            android:windowSoftInputMode="stateHidden|stateUnchanged" >
+        </activity>
+        <!-- 个人信息 -->
+         <activity
+            android:name="com.jnwat.personDetail.PersonalInfoActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Light.NoTitleBar"
+            android:windowSoftInputMode="stateHidden|stateUnchanged" >
+           
+        </activity>
+         <!-- 请假管理 -->
+        <activity
+            android:name="com.jnwat.oamobilegy.LeaveManageActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Light.NoTitleBar"
+            android:windowSoftInputMode="stateHidden|stateUnchanged" >
+            <intent-filter>
+               <!--  <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" /> -->
+            </intent-filter>  
+        </activity>
+        <!-- 请假申请 -->
+          <activity
+            android:name="com.jnwat.oamobilegy.ApplicaLeave"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Light.NoTitleBar"
+            android:windowSoftInputMode="adjustPan|adjustResize">
+             <!--  <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>  -->
+        </activity>
+         <!-- 请假申请 -->
+          <activity
+            android:name="com.jnwat.oamobilegy.ApplicaLeaveDetail"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Light.NoTitleBar"
+            android:windowSoftInputMode="adjustPan|adjustResize">
+             <!--   <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>   -->
+        </activity>
+        <!-- 薪资明细 -->
+         <activity
+            android:name="com.jnwat.oamobilegy.SalaryDetailActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Light.NoTitleBar"
+            android:windowSoftInputMode="adjustPan|adjustResize">
+           <!--   <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>    -->
+        </activity>
+        <!-- 项目明细 (培训课程) -->
+        <activity
+            android:name="com.jnwat.oamobilegy.MyProjectDetailActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Light.NoTitleBar"
+            android:windowSoftInputMode="adjustPan|adjustResize">
+             <!--  <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>  -->
+        </activity>
+        <!-- 学员名单 -->
+         <activity
+            android:name="com.jnwat.oamobilegy.ParticipantsActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Light.NoTitleBar"
+            android:windowSoftInputMode="adjustPan|adjustResize">
+           <!--  <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>      -->
+        </activity>
+        <!-- APK升级的服务 -->
+        <service android:name="com.jnwat.service.UpdateAppService" />
+
+        <!-- 推送服务 -->
+        <service
+            android:name="org.androidpn.client.NotificationService"
+            android:enabled="true"
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="org.androidpn.client.NotificationService." />
+            </intent-filter>
+        </service>
+    </application>
+
+</manifest>

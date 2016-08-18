@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:id="@+id/mLayout"
+    android:layout_height="wrap_content"
+android:background="@color/white"
+    android:orientation="horizontal" >
+
+    <TextView
+        android:id="@+id/textView_auditing_dept"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:padding="5dp"
+        android:text="部门名称" />
+
+    <TextView
+        android:id="@+id/textView_auditing_nub"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="5dp"
+        android:gravity="center_vertical"
+        android:text="(10)"
+        android:textColor="@color/black"
+        android:visibility="gone" />
+
+    <ImageView
+        android:id="@+id/iv_pop_sec"
+        android:layout_width="1dp"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="10dp"
+        android:gravity="right"
+        android:src="@drawable/addresslist_icon_correct"
+        android:visibility="invisible" />
+
+</LinearLayout>

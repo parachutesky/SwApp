@@ -1,0 +1,149 @@
+package com.jnwat.oamobilegy;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import android.content.Intent;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ImageView;
+import android.widget.ListView;
+
+import com.jnwat.analysis.AGetOverProcessDetail;
+import com.jnwat.bean.BIntentObj;
+import com.jnwat.bean.BUserTasks;
+import com.jnwat.bean.BUserlogin;
+import com.jnwat.config.AppConfig;
+import com.jnwat.oamobilegy.dapter.AdapterOverProcess;
+import com.jnwat.oamobilegy.workevent.MeetingApply;
+import com.jnwat.tools.ModifySysTitle;
+import com.jnwat.tools.ToastViewTools;
+import com.lidroid.xutils.HttpUtils;
+import com.lidroid.xutils.exception.HttpException;
+import com.lidroid.xutils.http.RequestParams;
+import com.lidroid.xutils.http.ResponseInfo;
+import com.lidroid.xutils.http.callback.RequestCallBack;
+import com.lidroid.xutils.http.client.HttpRequest;
+import com.lidroid.xutils.util.LogUtils;
+
+public class OverProcessDetailActivity extends BaseActivity{
+    private ListView list;
+    private HttpUtils http;
+    private List<BUserTasks> lisArray = new ArrayList<BUserTasks>();
+    private AdapterOverProcess adapter;
+    private String flowId = "";
+    private ImageView rebackBtn;
+	@Override
+	protected void initView() {
+		// TODO Auto-generated method stub
+		list =(ListView) findViewById(R.id.lv_overProcessDetail);
+		rebackBtn = (ImageView)findViewById(R.id.iv_back_overProcess);
+	}
+
+	@Override
+	protected void setListener() {
+		// TODO Auto-generated method stub
+		rebackBtn.setOnClickListener(new OnClickListener(){
+
+			@Override
+			public void onClick(View arg0) {
+				// TODO Auto-generated method stub
+				finish();
+			}
+			
+		});
+		list.setOnItemClickListener(new OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
+					long arg3) {
+				// TODO Auto-generated method stub
+				//赋值
+				BIntentObj.mBUserTasks = lisArray.get(arg2);
+				BIntentObj.mBUserTasks.setFlowID(flowId);
+				Intent intent = new Intent();
+				intent.putExtra("From","OverProcessDetailActivity");
+				intent.setClass(OverProcessDetailActivity.this, MeetingApply.class);
+				startActivity(intent);
+			}
+		});
+	}
+
+	@Override
+	protected void initData() {
+		// TODO Auto-generated method stub
+		adapter = new AdapterOverProcess(this,lisArray);
+		list.setAdapter(adapter);
+		getWebData(BUserlogin.NO,flowId);
+	}
+
+	@Override
+	protected void setView() {
+		// TODO Auto-generated method stub
+		setContentView(R.layout.activity_over_process_detail);
+		ModifySysTitle.ModifySysTitleStyle(R.color.title_blue, this);
+		Intent intent =this.getIntent();
+		flowId =intent.getStringExtra("FLOWID");
+		
+	}
+   public void getWebData(final String userNo,final String flowid){
+	   http = new HttpUtils();
+	   new Thread(new Runnable(){
+
+		@Override
+		public void run() {
+			// TODO Auto-generated method stub
+			RequestParams params = new RequestParams(); // 参数
+			params.addBodyParameter("userNo",userNo.trim());
+			params.addBodyParameter("flowid", flowid.trim());
+			http.send(HttpRequest.HttpMethod.POST,
+					AppConfig.METHOD_DB_FLOWCOMPLETEDTL, params,
+					new RequestCallBack<String>() {
+						@Override
+						public void onLoading(long total, long current,
+								boolean isUploading) {
+
+						}
+						@Override
+						public void onSuccess(
+								ResponseInfo<String> responseInfo) {
+							LogUtils.d("responseInfo.result:"
+									+ responseInfo.result);
+							AGetOverProcessDetail AGetOverProcessDetail = new AGetOverProcessDetail();
+							int status =AGetOverProcessDetail.analysisOverdProcess(responseInfo.result, lisArray);
+							if(lisArray.size()>0){
+								freshList();
+							}
+							if(status==0){
+								ToastViewTools.initToast(OverProcessDetailActivity.this, "获取已办详情异常");
+							}else if(status==2){
+								ToastViewTools.initToast(OverProcessDetailActivity.this, "没有获取到数据");
+							}
+						}
+
+						@Override
+						public void onStart() {
+						}
+
+						@Override
+						public void onFailure(HttpException error,
+								String msg) {
+							ToastViewTools.initToast(OverProcessDetailActivity.this, "连接数据失败");
+							System.out.println("error:" + error + msg);
+							finish();
+							closePop();
+
+						}
+					});
+
+		
+		}
+		   
+	   }).start();
+   }
+   public void freshList(){
+	   adapter.notifyDataSetChanged();
+   }
+}

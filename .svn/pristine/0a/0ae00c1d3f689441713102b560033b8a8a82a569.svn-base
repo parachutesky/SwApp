@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#ffffff"
+    android:orientation="vertical" >
+    <LinearLayout android:layout_width="fill_parent"
+                  android:layout_height="50dp"
+                  android:orientation="horizontal">
+        <ImageView android:id="@+id/iv_process_bmp"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:src="@drawable/icon"
+                   />
+        <RelativeLayout android:layout_width="0dp"
+                      android:layout_height="fill_parent"
+                      android:layout_weight="1"
+                      >
+            
+            <TextView android:id="@+id/tv_duty"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content" 
+                      android:layout_alignTop="@+id/tv_duty"
+                      android:textColor="#9a9a9a"
+                      android:textSize="18sp"
+                      android:text="分管校长"
+                      />       
+             <TextView android:id="@+id/tv_adutor"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content" 
+                      android:textColor="#9a9a9a"
+                      android:layout_toRightOf="@+id/tv_duty"
+                      android:layout_marginLeft="10dp"
+                      android:text="杨合景"
+                      android:textSize="18sp"
+                      />       
+              <TextView android:id="@+id/tv_status"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content" 
+                      android:textColor="#9a9a9a"
+                      android:layout_toRightOf="@+id/tv_adutor"
+                      android:layout_marginLeft="10dp"
+                      android:textSize="18sp"
+                      android:text="审核中"
+                      />  
+               <TextView android:id="@+id/tv_time"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content" 
+                      android:textColor="#9a9a9a"
+                      android:layout_below="@+id/tv_duty"
+                     
+                      android:layout_marginLeft="10dp"
+                      android:text="2015-12-8 10:30"
+                      android:textSize="18sp"
+                      />   
+                <View
+			        android:layout_width="fill_parent"
+			        android:layout_height="1dp"
+			       
+			        
+			        android:layout_alignParentBottom="true"
+			        android:background="@color/line_meeting"
+			         />     
+        </RelativeLayout>
+    </LinearLayout>
+   
+
+</LinearLayout>

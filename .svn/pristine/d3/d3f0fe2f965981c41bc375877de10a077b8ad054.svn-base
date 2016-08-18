@@ -1,0 +1,79 @@
+package com.jnwat.oamobilegy.dapter;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
+
+import com.jnwat.bean.Message;
+import com.jnwat.bean.OverTask;
+import com.jnwat.oamobilegy.R;
+import com.jnwat.oamobilegy.dapter.AdapterMessage.ViewHolder;
+import com.jnwat.oamobilegy.view.CircleImageView;
+
+import android.app.Activity;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.BaseAdapter;
+import android.widget.TextView;
+
+public class AdapterOverProcessSort extends BaseAdapter {
+	private Activity mContext;
+	private List<OverTask> lisArray ;
+   public AdapterOverProcessSort(Activity Context,List<OverTask> list){
+	   mContext = Context;
+	   lisArray = list;
+   }
+	@Override
+	public int getCount() {
+		// TODO Auto-generated method stub
+		return lisArray.size();
+	}
+
+	@Override
+	public Object getItem(int position) {
+		// TODO Auto-generated method stub
+		return lisArray.get(position);
+	}
+
+	@Override
+	public long getItemId(int position) {
+		// TODO Auto-generated method stub
+		return position;
+	}
+
+	@Override
+	public View getView(int position, View convertView, ViewGroup parent) {
+		// TODO Auto-generated method stub
+		ViewHolder viewHolder;
+		if (convertView == null) {
+			LayoutInflater layoutInflater =LayoutInflater.from(mContext);
+			convertView = layoutInflater.inflate(
+					R.layout.item_process_sort, null);
+			viewHolder = new ViewHolder();
+			
+			
+		} else {
+			viewHolder = (ViewHolder) convertView.getTag();
+		}
+		viewHolder.sort = (TextView) convertView.findViewById(R.id.sort);
+		viewHolder.num  = (TextView) convertView.findViewById(R.id.num);
+		
+		OverTask task =lisArray.get(position);
+		viewHolder.sort.setText(task.getFLOWNAME());
+		int index = -1;
+		if(( index =task.getNUM().indexOf("."))!=-1){
+			task.setNUM(task.getNUM().substring(0,index));
+		}
+		viewHolder.num.setText(task.getNUM()+"条");
+		
+		convertView.setTag(viewHolder);
+		return  convertView;
+	}
+	class ViewHolder{
+		TextView sort;
+		TextView num;
+		
+	}
+
+}

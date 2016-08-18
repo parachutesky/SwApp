@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:id="@+id/lin_auth"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:id="@+id/tv_item_meetingapply_content_key"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:paddingLeft="25dp"
+            android:gravity="center_vertical"
+            android:text="张明亮"
+            android:layout_weight="1.5"
+          />
+
+
+        <ImageView
+            android:id="@+id/iv_pop_sec"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:visibility="visible"
+            android:layout_marginRight="20dp"
+            android:src="@drawable/addresslist_icon_correct" />
+        
+    </LinearLayout>
+
+
+</LinearLayout>

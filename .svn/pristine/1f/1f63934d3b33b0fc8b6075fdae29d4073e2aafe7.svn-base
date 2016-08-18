@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:fitsSystemWindows="true"
+        android:clipToPadding="true"
+    android:orientation="vertical" >
+
+    <include layout="@layout/back_title" />
+
+<LinearLayout 
+    android:layout_weight="2"
+    android:layout_width="fill_parent"
+    android:layout_height="0dp"
+    android:orientation="horizontal"
+    >
+    <ListView 
+        android:id="@+id/lv_auditing_dept"
+        android:layout_weight="2"
+        android:listSelector="@android:color/white"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        ></ListView>
+    
+        <ListView
+            android:id="@+id/lv_auditing_name"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2" >
+</ListView>
+        
+</LinearLayout>
+
+<TextView
+    android:id="@+id/textView1"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="选择下一节点人员信息"
+    android:textAppearance="?android:attr/textAppearanceLarge" />
+
+<GridView 
+    android:layout_width="fill_parent"
+    android:layout_height="0dp"
+    android:numColumns="4"
+        android:layout_weight="1"
+    android:id="@+id/gd_taskaudting"
+    ></GridView>
+
+
+
+
+
+<LinearLayout 
+    android:layout_weight="2"
+    android:layout_width="fill_parent"
+    android:layout_height="0dp"
+    android:orientation="horizontal"
+    >
+        </LinearLayout>
+
+
+
+
+</LinearLayout>

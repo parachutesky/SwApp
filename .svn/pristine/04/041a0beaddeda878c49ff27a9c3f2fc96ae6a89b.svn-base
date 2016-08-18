@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">培训平台</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="workevent_tab_1">待办流程</string>
+    <string name="workevent_tab_2">发起流程</string>
+    <string name="workevent_tab_3">已办流程</string>
+    <!-- POP窗口字体 -->
+    <string name="pop_ok">确&#x0020;&#x0020;&#x0020;&#x0020;定</string>
+    <string name="pop_dis">取&#x0020;&#x0020;&#x0020;&#x0020;消</string>
+    <!-- 版本提示 -->
+    <string name="versionUpdate">版本更新</string>
+    <!-- 版本号 -->
+    <string name="version">当前版本 1.0</string>
+     <!-- 通讯录   使用字符串 开始 -->
+    
+    
+  
+    
+    <string name="contacts">通讯录</string>
+    <string name="detail">详情</string>
+    <string name="set">设置</string>
+    <string name="message">消息</string>
+    <string name="personalData">个人资料</string>
+    <string name="overProcess">已办流程</string>
+    <!-- 通讯录  结束 -->
+</resources>

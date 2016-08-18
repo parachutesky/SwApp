@@ -1,0 +1,50 @@
+/**
+ * 
+ */
+package com.jnwat.oamobilegy;
+
+/**
+ * @author zhaorl
+ * 
+ * 离退休职工薪资列表
+ *
+ */
+public class RetirementSalaryDetailActivity extends BaseActivity {
+
+	/* (non-Javadoc)
+	 * @see com.jnwat.oamobilegy.BaseActivity#initView()
+	 */
+	@Override
+	protected void initView() {
+		// TODO Auto-generated method stub
+
+	}
+
+	/* (non-Javadoc)
+	 * @see com.jnwat.oamobilegy.BaseActivity#setListener()
+	 */
+	@Override
+	protected void setListener() {
+		// TODO Auto-generated method stub
+
+	}
+
+	/* (non-Javadoc)
+	 * @see com.jnwat.oamobilegy.BaseActivity#initData()
+	 */
+	@Override
+	protected void initData() {
+		// TODO Auto-generated method stub
+
+	}
+
+	/* (non-Javadoc)
+	 * @see com.jnwat.oamobilegy.BaseActivity#setView()
+	 */
+	@Override
+	protected void setView() {
+		// TODO Auto-generated method stub
+
+	}
+
+}

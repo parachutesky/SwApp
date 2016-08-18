@@ -1,0 +1,93 @@
+package com.jnwat.oamobilegy.dapter;
+
+import java.util.List;
+
+import com.jnwat.bean.NewsInfo;
+import com.jnwat.oamobilegy.R;
+
+import android.app.Activity;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.BaseAdapter;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+public class NewsListAdapter extends BaseAdapter {
+	private List<NewsInfo> newsList;
+	private Activity mContext;
+	LayoutInflater mInflater;
+
+	public NewsListAdapter(Activity Context, List<NewsInfo> list) {
+		mContext = Context;
+		newsList = list;
+	}
+
+	@Override
+	public int getCount() {
+		// TODO Auto-generated method stub
+		return newsList.size();
+	}
+
+	@Override
+	public Object getItem(int position) {
+		// TODO Auto-generated method stub
+		return newsList.get(position);
+	}
+
+	@Override
+	public long getItemId(int id) {
+		// TODO Auto-generated method stub
+		return id;
+	}
+
+	@Override
+	public View getView(int position, View ConvertView, ViewGroup arg2) {
+		// TODO Auto-generated method stub
+		viewHolder viewHolder = null;
+		if (ConvertView == null) {
+			mInflater = LayoutInflater.from(mContext);
+			ConvertView = mInflater.inflate(R.layout.news_list_item, null);
+			viewHolder = new viewHolder();
+
+		} else {
+			viewHolder = (viewHolder) ConvertView
+					.getTag();
+
+		}
+
+		viewHolder.newsImg = (ImageView) ConvertView
+				.findViewById(R.id.news_img);
+		viewHolder.Title = (TextView) ConvertView
+				.findViewById(R.id.tv_title);
+		/*viewHolder.newsType = (TextView) ConvertView
+				.findViewById(R.id.news_type);*/
+		viewHolder.nextTitle = (TextView) ConvertView
+				.findViewById(R.id.tv_nextTitle);
+		viewHolder.publishDate = (TextView) ConvertView
+				.findViewById(R.id.news_date);
+		NewsInfo newsInfo = newsList.get(position);
+		// �? 这里将图片放�? drawable �? 的固定图�? 真正获取数据时应该获�? 图片路径
+	//	viewHolder.newsImg.setImageResource();
+		String title = newsInfo.getTitle();
+		if(null!=title&&!title.equals("")){
+			viewHolder.Title.setText(title);
+		}
+		String img = newsInfo.getThumUrl();
+		if(null!= img && !"".equals(img)){
+			
+		}else{
+			viewHolder.newsImg.setImageResource(R.drawable.news_pic_1);
+		}
+		viewHolder.nextTitle.setText(newsInfo.getNextTitle());
+		viewHolder.publishDate.setText(newsInfo.getPublishDate());
+		ConvertView.setTag(viewHolder);
+		return ConvertView;
+	}
+
+	class viewHolder {
+		ImageView newsImg; //图片
+		TextView Title, nextTitle, publishDate;//  标题    副标题    发布日期 
+    
+	}
+}

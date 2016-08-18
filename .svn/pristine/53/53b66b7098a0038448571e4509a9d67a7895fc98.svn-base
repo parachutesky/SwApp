@@ -1,0 +1,92 @@
+package com.jnwat.oamobilegy.dapter;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
+import android.content.Context;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.BaseAdapter;
+import android.widget.TextView;
+
+import com.jnwat.oamobilegy.R;
+
+/**
+ * @author chang-zhiyuan
+ * 课表查询
+ */
+public class AdapterSearchSchedule extends BaseAdapter {
+	private LayoutInflater layoutInflater;
+	private List<HashMap<String, String>> data;
+
+	public AdapterSearchSchedule(Context mcontext, List<HashMap<String, String>> mdata) {
+	    if (null != data) {
+	    	this.data= data;
+	        } else {
+	        	data=new ArrayList<HashMap<String, String>>();
+	        }
+		this.layoutInflater = LayoutInflater.from(mcontext);
+	}
+
+	@Override
+	public int getCount() {
+		if (null != data) {
+			return data.size();
+		} else {
+			return 0;
+		}
+	}
+
+	@Override
+	public Object getItem(int position) {
+		return data.get(position);
+	}
+
+	@Override
+	public long getItemId(int position) {
+		return position;
+	}
+
+	@Override
+	public View getView(int position, View convertView, ViewGroup parent) {
+		
+		ViewHolder viewHolder;
+		if (convertView == null) {
+			
+			convertView = layoutInflater.inflate(
+					R.layout.sw_item_searchschedul_listview, null);
+			viewHolder = new ViewHolder();
+		    viewHolder.textView_sw_item_schedul_time = (TextView) convertView
+				.findViewById(R.id.textView_sw_item_schedul_time);
+			
+			viewHolder.textView_sw_item_schedul_course = (TextView) convertView
+					.findViewById(R.id.textView_sw_item_schedul_course);
+			
+			/*viewHolder.tv_messageContent = (TextView) convertView
+					.findViewById(R.id.message_tv_content);
+			
+			viewHolder.iv_circleImageView = (CircleImageView) convertView
+					.findViewById(R.id.message_iv_circleImageView);
+			*/
+		} else {
+			viewHolder = (ViewHolder) convertView.getTag();
+		}
+		viewHolder.textView_sw_item_schedul_time.setText(data.get(position).get("CLASSDAT"));
+		viewHolder.textView_sw_item_schedul_course.setText(data.get(position).get("COURSE"));
+		//viewHolder.tv_messageContent.setText(message.getContent());
+		convertView.setTag(viewHolder);
+		return  convertView;
+	
+}
+
+	 class ViewHolder {
+		public TextView textView_sw_item_schedul_time;
+		public TextView textView_sw_item_schedul_course;
+		//public TextView tv_messageContent;
+		//public CircleImageView iv_circleImageView;
+
+	}
+
+}

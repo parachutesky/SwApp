@@ -1,0 +1,89 @@
+/**
+ * 
+ */
+package com.jnwat.swmobilegy.dapter;
+
+import java.util.List;
+import java.util.Map;
+
+import com.jnwat.swmobilegy.R;
+import com.jnwat.swmobilegy.dapter.TrainingProgramListAdapter.ViewHolder;
+
+import android.annotation.SuppressLint;
+import android.content.Context;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.BaseAdapter;
+import android.widget.TextView;
+
+/**
+ * @author zhaorl
+ * 
+ * @category 薪资查询的列表
+ *
+ */
+public class SalaryQueryListAdapter extends BaseAdapter {
+
+	private LayoutInflater layoutInflater;
+	private List<Map<String,Object>> data;
+	
+	public SalaryQueryListAdapter(Context mcontext, List<Map<String,Object>> data){
+		
+		   this.data  = data;
+		   this.layoutInflater = LayoutInflater.from(mcontext);
+	}
+	
+	@Override
+	public int getCount() {
+		if (null != data) {
+			return data.size();
+		} else {
+			return 0;
+		}
+	}
+
+	@Override
+	public Object getItem(int position) {
+		return data.get(position);
+	}
+
+	@Override
+	public long getItemId(int position) {
+		return position;
+	}
+
+	@SuppressLint("ResourceAsColor")
+	@Override
+	public View getView(int position, View view, ViewGroup parent) {
+		ViewHolder viewHolder;
+		if (view == null) {
+			
+			view = layoutInflater.inflate(
+					R.layout.salary_list_items, null);
+			viewHolder = new ViewHolder();
+			viewHolder.tv_date =  (TextView) view
+					.findViewById(R.id.date_tv);
+			viewHolder.tv_value = (TextView) view
+					.findViewById(R.id.salary_text);
+			
+			view.setTag(viewHolder);
+		} else {
+			
+			viewHolder = (ViewHolder) view.getTag();
+		}
+		
+		viewHolder.tv_date.setText(data.get(position).get("date").toString()+"  工资");
+		viewHolder.tv_value.setText(data.get(position).get("gz").toString());
+		view.setTag(viewHolder);
+		
+		return view;
+	}
+
+	 class ViewHolder {
+		public TextView tv_date;
+		public TextView tv_value;
+
+	}
+
+}

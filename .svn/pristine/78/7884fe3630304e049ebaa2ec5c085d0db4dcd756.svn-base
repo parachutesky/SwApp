@@ -1,0 +1,110 @@
+package com.jnwat.swmobilegy.mainpager;
+
+import android.app.Activity;
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.ViewPager;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import com.jnwat.swmobilegy.R;
+import com.jnwat.swmobilegy.mainpager.ProjectQuestionAnswerActivity.myPagerAdapter;
+import com.jnwat.swmobilegy.view.PagerSlidingTabStrip;
+import com.jnwat.tools.ModifySysTitle;
+
+/**
+ * @author chang-zhiyuan
+ * 项目查询
+ */
+public class MyPjSearchActivity extends FragmentActivity {
+	private ViewPager viewPager;
+	private PagerSlidingTabStrip tabs;
+	Activity mContext;
+	public static FragmentManager fm;
+	public TextView title_bar_name;
+	private ImageView iv_back;
+	/**
+	 * Tab标题
+	 */
+
+	private static final String[] TITLE = new String[] { "未开班", "进行中","已结束"};
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_projectanswer);
+		ModifySysTitle.ModifySysTitleStyle(R.color.title_blue,
+				MyPjSearchActivity.this);
+		fm = getSupportFragmentManager();
+		// ViewPager的adapter
+		viewPager = (ViewPager) findViewById(R.id.viewPager);
+		iv_back = (ImageView) findViewById(R.id.iv_back);
+		viewPager.setAdapter(new myPagerAdapter(fm));
+		tabs = (PagerSlidingTabStrip) findViewById(R.id.tabs);
+		tabs.setViewPager(viewPager);
+		title_bar_name = (TextView) findViewById(R.id.title_bar_name);
+		title_bar_name.setText("我的项目");
+		iv_back.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View view) {
+				// TODO Auto-generated method stub
+				finish();
+			}
+		});
+
+		// 只當容器，主要內容已Fragment呈現
+	}
+
+	class myPagerAdapter extends FragmentPagerAdapter {
+		
+		MyProjectSortFragment fragment1,fragment2,fragment3;
+
+		public myPagerAdapter(FragmentManager fm) {
+			super(fm);
+		}
+
+		@Override
+		public Fragment getItem(int position) {
+			switch (position) {
+			case 0:
+				if (null == fragment1) {
+					fragment1 = new MyProjectSortFragment(1);
+				}
+
+				return fragment1;
+			case 1:
+				if (null == fragment2) {
+					fragment2 = new MyProjectSortFragment(2);
+				}
+				return fragment2;
+			case 2:
+				if (null == fragment3) {
+					fragment3 = new MyProjectSortFragment(3);
+				}
+
+				return fragment3;
+			default:
+				return null;
+			}
+
+		}
+
+		@Override
+		public int getCount() {
+
+			return TITLE.length;
+		}
+
+		@Override
+		public CharSequence getPageTitle(int position) {
+			return TITLE[position];
+		}
+
+	}
+
+}

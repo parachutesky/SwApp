@@ -1,0 +1,96 @@
+package com.jnwat.bean;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
+/**
+ * @author chang-zhiyuan 会议申请审核
+ */
+public class BTaskInfo {
+	
+	/**
+	 * 任务ID
+	 */
+	public String TaskId;
+
+	/**
+	 * 工作ID
+	 */
+	public String WorkId;
+	/*	*//**
+	 * 动态
+	 */
+	/*
+	 * public Object dynamic;
+	 *//**
+	 * 审批信息
+	 */
+	/*
+	 * //public Object examination;
+	 *//**
+	 * 从表信息
+	 */
+	/*
+	 * // public Object detail;
+	 *//**
+	 * 附件信息
+	 */
+	/*
+	 * //public Object Attachment;
+	 *//**
+	 * 具体字段及值 ,
+	 */
+	/*
+	 * // public Object content;
+	 */
+
+	// Attachment 内容
+	public ArrayList<HashMap<String, Object>> attachment;
+	// 取的content 内容
+	public ArrayList<HashMap<String, Object>> content;
+	// WF_Direction 内容
+	public ArrayList<HashMap<String, Object>> WF_Direction;
+	// WF_Node 内容
+	public ArrayList<HashMap<String, Object>> WF_Node;
+	// WF_SelectAccper 内容
+	public ArrayList<HashMap<String, Object>> WF_SelectAccper;
+	// WF_CCList 内容
+	public ArrayList<HashMap<String, Object>> WF_CCList;
+	// Track 内容
+	public ArrayList<HashMap<String, Object>> Track;
+	
+	
+	public ArrayList<HashMap<String, Object>> TaskSzs;
+
+
+	/**
+	 * 得到下一节点
+	 */
+	public ArrayList<BMeetingApplyLeade> list_getnode; 
+	
+	
+	
+	
+	// detail 内容,多个表内容
+	public ArrayList<BTaskInfo_DetailForm> detail ;
+	
+	public boolean isselect;
+	public boolean isline;	
+	public boolean isend;
+
+	public void toHashMapString() {
+		// System.out.println("attachment:" + attachment.size());
+//		System.out.println("content:" + content.size());
+		// System.out.println("WF_Direction:"+WF_Direction.size());
+		// System.out.println("WF_Node:"+WF_Node.size());
+		// System.out.println("WF_SelectAccper:"+WF_SelectAccper.size());
+		// System.out.println("WF_CCList:" + WF_CCList.size());
+		// System.out.println("Track:" + Track.size());
+		// System.out.println("detail:" + detail.size());
+
+	}
+	
+
+	
+}

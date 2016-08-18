@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:padding="10dp"
+    android:layout_height="match_parent"
+    >
+    
+<ImageView 
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:src="@drawable/attached_icon_excel"
+    android:id="@+id/iv_item_meeting_file"
+    />
+
+<TextView
+    android:id="@+id/tv_filesize"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_alignBottom="@+id/iv_item_meeting_file"
+    android:textSize="@dimen/tv_13sp26"
+    android:singleLine="true"
+    android:ellipsize="middle"
+    android:layout_marginLeft="16dp"
+    android:textColor="@color/black_white_babababa"
+    android:layout_toRightOf="@+id/iv_item_meeting_file"
+    android:text="TextView" />
+
+<TextView
+    android:id="@+id/tv_filename"
+    android:layout_width="match_parent"
+        android:singleLine="true"
+    android:ellipsize="middle"
+    android:layout_height="wrap_content"
+    android:layout_alignLeft="@+id/tv_filesize"
+    android:layout_alignTop="@+id/iv_item_meeting_file"
+    android:layout_toLeftOf="@+id/iv_download"
+    android:text="name"
+    android:textSize="@dimen/tv_17sp34" />
+
+<ImageView
+    android:id="@+id/iv_download"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_above="@+id/tv_filesize"
+    android:layout_alignParentRight="true"
+    android:layout_marginRight="14dp"
+    android:src="@drawable/attached_icon_download_ing" />
+
+</RelativeLayout>

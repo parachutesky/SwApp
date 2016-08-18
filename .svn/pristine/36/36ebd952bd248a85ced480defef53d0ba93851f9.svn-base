@@ -1,0 +1,87 @@
+{
+    "Status": 200,
+    "Message": "",
+    "ReplyObject": {
+        "TaskId": "",
+        "WorkId": "",
+        "TaskInfoContent": [
+            {
+                "ColumnName": "XinWenLeiXing",
+                "ColumnValue": "国内",
+                "ColumnType": false
+            },
+            {
+                "ColumnName": "姓名",
+                "ColumnValue": "121",
+                "ColumnType": false
+            },
+            {
+                "ColumnName": "年龄",
+                "ColumnValue": "21",
+                "ColumnType": false
+            }
+,
+            {
+                "ColumnName": "年龄",
+                "ColumnValue": "21",
+                "ColumnType": false
+            }
+,
+            {
+                "ColumnName": "2015",
+                "ColumnValue": "那年花开，看得见花，却看不见你",
+                "ColumnType": true
+            }
+        ],
+        "TaskInfoDetails": [
+            {
+                "Titles": [
+                    {
+                        "Name": "时间,事件,单位,备注1,备注2,备注3"
+                    }
+                ],
+                "Columns": [
+                    {
+                        "Row": "2015-09-29,12,1,2,3,4"
+                    },
+                    {
+                        "Row": "2015-10-21,122ss1,1"
+                    },
+                    {
+                        "Row": "2015-11-03,1212,2"
+                    },
+                    {
+                        "Row": "2015-11-04,2121,3"
+                    },
+                    {
+                        "Row": "2015-10-20,1,4"
+                    }
+                ],
+                "Bottmons": ""
+            }
+        ],
+        "Attachments": [
+            {
+                "FileName": "OAdoc1.docx",
+                "FileExcute": "docx",
+                "FileUrl": "http://nj02.poms.baidupcs.com/file/f07386dcc9b609871143a6c4948d0375?bkt=p3-1400f07386dcc9b609871143a6c4948d03755db442cc000000054334&fid=4045331430-250528-321056811276379&time=1447638827&sign=FDTAXGERLBH-DCb740ccc5511e5e8fedcff06b081203-ASeISN5SqxitaooFAiT5LYsjd08%3D&to=n2b&fm=Nan,B,G,ny&sta_dx=0&sta_cs=0&sta_ft=docx&sta_ct=0&fm2=Nanjing02,B,G,ny&newver=1&newfm=1&secfm=1&flow_ver=3&pkey=1400f07386dcc9b609871143a6c4948d03755db442cc000000054334&sl=78905423&expires=8h&rt=sh&r=801727854&mlogid=7408074186717916616&vuk=4045331430&vbdid=4135820158&fin=2015%E5%B9%B411%E6%9C%8813%E6%97%A5%20%E4%BF%AE%E6%94%B9%E7%9A%84%E5%9C%B0%E6%96%B9.docx&fn=2015%E5%B9%B411%E6%9C%8813%E6%97%A5%20%E4%BF%AE%E6%94%B9%E7%9A%84%E5%9C%B0%E6%96%B9.docx&slt=pm&uta=0&rtype=1&iv=0&isw=0&dp-logid=7408074186717916616&dp-callid=0.1.1",
+                "FileSize": "626.66kb"
+            },   {
+                "FileName": "OAppt1.ppt",
+                "FileExcute": "ppt",
+                "FileUrl": "http://nbct01.baidupcs.com/file/fe81f3ca67d1480e434899a3cade03be?bkt=p3-1400fe81f3ca67d1480e434899a3cade03be789b624300000009ae00&fid=4045331430-250528-699157406247094&time=1447638659&sign=FDTAXGERLBH-DCb740ccc5511e5e8fedcff06b081203-fQsCGDPDI7Ra1m3aEwsAFRIZoBU%3D&to=nbhb&fm=Nin,B,M,ny&sta_dx=1&sta_cs=0&sta_ft=ppt&sta_ct=0&fm2=Ningbo,B,M,ny&newver=1&newfm=1&secfm=1&flow_ver=3&pkey=1400fe81f3ca67d1480e434899a3cade03be789b624300000009ae00&sl=68747343&expires=8h&rt=sh&r=735138939&mlogid=7408029298772673783&vuk=4045331430&vbdid=4135820158&fin=ppt4394.ppt&fn=ppt4394.ppt&slt=pm&uta=0&rtype=1&iv=0&isw=0&dp-logid=7408029298772673783&dp-callid=0.1.1",
+                "FileSize": "1038.01kb"
+            }
+        ],
+"TaskSzs":[{"NodeName":"员工发起","NodeCheckoer":"陈朋飞 ","NodeCheckoerPhotoUrl":"","NodeState":"前进(发送)","NodeCheckDatetime":"15年10月28日  星期三  07时53分","NodeToName":"部门主任审核","NodeToTime":"","UseTime":"","Msg":"共(2)人接收\t\n(济南广域软件有限公司,谢彦峰)\t\n(济南广域软件有限公司,吴保强)\t\n"}]}}
+
+
+
+
+
+
+
+
+
+
+

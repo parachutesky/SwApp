@@ -1,0 +1,98 @@
+package com.jnwat.bean;
+
+import com.lidroid.xutils.db.annotation.NoAutoIncrement;
+import com.lidroid.xutils.db.annotation.Table;
+
+/**
+ * @author chang-zhiyuan 推送消息
+ */
+// 指定该类保存在数据库中的表名
+@Table(name = "PushMessageTable")
+public class BPushMessageInfo {
+	/**
+	 * 数据的ID
+	 */
+	@NoAutoIncrement
+	private int id;
+	/**
+	 * 消息内容
+	 */
+	private String MsgContent;
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getMsgContent() {
+		return MsgContent;
+	}
+
+	public void setMsgContent(String msgContent) {
+		MsgContent = msgContent;
+	}
+
+	public String getTitle() {
+		return Title;
+	}
+
+	public void setTitle(String title) {
+		Title = title;
+	}
+
+	public String getFromUser() {
+		return FromUser;
+	}
+
+	public void setFromUser(String fromUser) {
+		FromUser = fromUser;
+	}
+
+	public String getMsgSendTime() {
+		return MsgSendTime;
+	}
+
+	public void setMsgSendTime(String msgSendTime) {
+		MsgSendTime = msgSendTime;
+	}
+
+	public int getMsgType() {
+		return MsgType;
+	}
+
+	public void setMsgType(int msgType) {
+		MsgType = msgType;
+	}
+
+	private int isRead;
+
+	public int getIsRead() {
+		return isRead;
+	}
+
+	public void setIsRead(int isRead) {
+		this.isRead = isRead;
+	}
+
+	/**
+	 * 发送标题
+	 */
+	private String Title;
+	/**
+	 * 发送人
+	 */
+	private String FromUser;
+
+	/**
+	 * 发送时间
+	 */
+	private String MsgSendTime;
+	/**
+	 * 消息类型
+	 */
+	private int MsgType;
+
+}

@@ -1,0 +1,288 @@
+package com.jnwat.oamobilegy;
+
+import org.androidpn.client.ServiceManager;
+
+import android.content.Context;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.ViewGroup.LayoutParams;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import com.jnwat.analysis.AGetUserInfo;
+import com.jnwat.bean.BIntentObj;
+import com.jnwat.bean.BUserlogin;
+import com.jnwat.bean.UserInfo;
+import com.jnwat.config.AppConfig;
+import com.jnwat.config.ShowRemind;
+import com.jnwat.dialog.PopLoginDialog;
+import com.jnwat.dialog.Popup_LoginType;
+import com.jnwat.dialog.Popup_LoginType.OnItemOnClickListener;
+import com.jnwat.oamobilegy.view.ActionItem;
+import com.jnwat.tools.IMEIiUtil;
+import com.jnwat.tools.ModifySysTitle;
+import com.jnwat.tools.SharedPrefsUtil;
+import com.jnwat.tools.ToastViewTools;
+import com.lidroid.xutils.HttpUtils;
+import com.lidroid.xutils.exception.HttpException;
+import com.lidroid.xutils.http.RequestParams;
+import com.lidroid.xutils.http.ResponseInfo;
+import com.lidroid.xutils.http.callback.RequestCallBack;
+import com.lidroid.xutils.http.client.HttpRequest;
+import com.lidroid.xutils.util.LogUtils;
+
+/**
+ * @author chang-zhiyuan 登录
+ * 
+ */
+public class LoginActivity extends BaseActivity {
+	EditText et_loginname;
+	EditText et_passwd;
+	TextView tv_forget_pwd,EditText_type;
+	Button btn_login;
+	private int Type = 0;// 0老师 1学生
+	private String url = "";
+	private Popup_LoginType mPopup_LoginType;
+	public static ServiceManager serviceManager;
+
+	@Override
+	protected void initView() {
+		// TODO Auto-generated method stub
+		et_loginname = (EditText) findViewById(R.id.et_loginname);
+		et_passwd = (EditText) findViewById(R.id.et_passwd);
+		btn_login = (Button) findViewById(R.id.btn_login);
+		tv_forget_pwd = (TextView) findViewById(R.id.tv_forget_pwd);
+		EditText_type = (TextView) findViewById(R.id.EditText_type);
+		http.configTimeout(1500);
+	}
+
+	@Override
+	protected void setListener() {
+		// TODO Auto-generated method stub
+		btn_login.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View arg0) {
+				// TODO Auto-generated method stub
+				if (Type == 1) {// 判断类型 0 老师
+					url = AppConfig.getIp(LoginActivity.this)+AppConfig.METHOAD_GETUSERINFO_STUDENT;
+				} else {
+					url = AppConfig.getIp(LoginActivity.this)+AppConfig.METHOAD_GETUSERINFO_TEACHER;
+				}
+
+				if (isCanLogin()) {
+					mPopLoginDialog.showPoploginDialog(LoginActivity.this);
+					RequestParams params = new RequestParams(); // 参数
+					// params.addHeader("Content-Type",
+					// "application/x-www-form-urlencoded");
+					params.addBodyParameter("LoginName", et_loginname.getText()
+							.toString().trim());
+					params.addBodyParameter("Password", et_passwd.getText()
+							.toString().trim());
+					System.out.println("登录地址:" + url);
+					http.send(HttpRequest.HttpMethod.POST,
+							url, params,
+							new RequestCallBack<String>() {
+								@Override
+								public void onLoading(long total, long current,
+										boolean isUploading) {
+
+								}
+
+								@Override
+								public void onSuccess(
+										ResponseInfo<String> responseInfo) {
+									LogUtils.d("responseInfo.result:"
+											+ responseInfo.result);
+									AGetUserInfo mAGetUserInfo = new AGetUserInfo();
+									mAGetUserInfo.analysisUserLogin(
+											responseInfo.result, mHandler);
+									closePop();
+									if (BUserlogin.loginStatus == 1) {
+										UserInfo user = new UserInfo();
+										user.setName(BUserlogin.NO);
+										user.setPasswd(BUserlogin.PASS);
+										SharedPrefsUtil.putUserLogin(
+												LoginActivity.this, user);
+										BIntentObj.recover();
+									}
+									// 启动推送服务
+									startPushService(LoginActivity.this,
+											BUserlogin.NO);
+
+									finish();
+								}
+
+								@Override
+								public void onStart() {
+								}
+
+								@Override
+								public void onFailure(HttpException error,
+										String msg) {
+									System.out.println("error:" + error + msg);
+									/*
+									 * ToastViewTools.initToast(
+									 * LoginActivity.this,
+									 * ShowRemind.LOGIN_NETERROR);
+									 */
+									// BUserlogin.loginStatus = 0;
+									// mApp.recover();
+									finish();
+									closePop();
+
+								}
+							});
+
+				} else {
+					ToastViewTools.initToast(LoginActivity.this,
+							ShowRemind.LOGIN_FORMERROR);
+				}
+			}
+
+			// 根据用户信息启动推送服务
+
+			private void startPushService(Context mcontext, String user) {
+				// 不启动服务或者临时推送
+				if (null == serviceManager) {
+
+					serviceManager = new ServiceManager(LoginActivity.this,
+							user + 2, IMEIiUtil
+									.getDeviceIMEI(LoginActivity.this));
+					serviceManager.setNotificationIcon(R.drawable.launcher);
+					System.out.println("------启动 登录、、、推送登录...-----");
+					// serviceManager.startService();
+				} else {
+					// serviceManager.startService();
+				}
+			}
+
+		});
+
+		tv_forget_pwd.setOnClickListener(new OnClickListener() {// 忘记密码
+
+					@Override
+					public void onClick(View arg0) {
+						// TODO Auto-generated method stub
+						ToastViewTools.initToast(LoginActivity.this, "忘记密码");
+					}
+				});
+		
+		EditText_type.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				mPopup_LoginType.show(v);
+			}
+		});
+	}
+
+	@Override
+	protected void initData() {
+		// TODO Auto-generated method stub
+		mPopLoginDialog = new PopLoginDialog();
+	}
+
+	private OnItemOnClickListener onitemClick = new OnItemOnClickListener() {
+
+		@Override
+		public void onItemClick(ActionItem item, int position) {
+			// mLoadingDialog.show();
+			switch (position) {
+			case 0:// 老师
+				Type = 0;
+				EditText_type.setText("老师");
+				break;
+			case 1:// 学生
+				Type = 1;
+				EditText_type.setText("学生");
+				break;
+			default:
+				break;
+			}
+		}
+	};
+	private void initPopWindow() {
+		// 实例化标题栏弹窗
+		mPopup_LoginType = new Popup_LoginType(LoginActivity.this, LayoutParams.MATCH_PARENT,
+				LayoutParams.WRAP_CONTENT);
+		mPopup_LoginType.setItemOnClickListener(onitemClick);
+		// 给标题栏弹窗添加子类
+		mPopup_LoginType
+				.addAction(new ActionItem(LoginActivity.this,
+						"老师",
+						R.drawable.menu_button_workevent_add));
+		mPopup_LoginType
+				.addAction(new ActionItem(LoginActivity.this,
+						"学生",
+						R.drawable.menu_button_workevent_add));
+	}
+	
+	@Override
+	protected void setView() {
+		// TODO Auto-generated method stub
+		ModifySysTitle.ModifySysTitleStyle(R.color.black_dark,
+				LoginActivity.this);
+		setContentView(R.layout.activity_login);
+		initPopWindow();
+		setTitleListener("登录", "注册");
+		http = new HttpUtils();
+		http.configTimeout(2500);
+		http.configCurrentHttpCacheExpiry(1500); // 缓存时间
+	}
+
+	/**
+	 * 判断是否能登录
+	 * 
+	 * @return
+	 */
+	private boolean isCanLogin() {
+
+		if (et_loginname.getText().toString().trim().equals("")
+				|| et_passwd.getText().toString().trim().equals("")) {
+			return false;
+		}
+		return true;
+
+	}
+
+	/**
+	 * 将用户信息填写入 sharedPreference 进行记录
+	 */
+	public void noteUserInfo(Object obj) {
+		// SharedPrefsUtil.putUserLogin(this,obj);
+	}
+
+	/**
+	 * 设置返回Title的返回监听
+	 * 
+	 * @param view
+	 */
+	public void setTitleListener(String title, String register) {
+		TextView title_bar_register = (TextView) findViewById(R.id.title_bar_register);
+		ImageView iv_back = (ImageView) findViewById(R.id.iv_back);
+		iv_back.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View view) {
+				// TODO Auto-generated method stub
+				finish();
+			}
+		});
+		title_bar_register.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View view) {
+				// TODO Auto-generated method stub
+				ToastViewTools.initToast(LoginActivity.this, "注册");
+			}
+		});
+		TextView title_bar_name = (TextView) findViewById(R.id.title_bar_name);
+		title_bar_name.setText(title);
+		title_bar_register.setText(register);
+	}
+
+}

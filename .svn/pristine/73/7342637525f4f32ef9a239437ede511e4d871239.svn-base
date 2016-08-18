@@ -1,0 +1,134 @@
+/**
+ * 
+ */
+package com.jnwat.oamobilegy;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
+import com.google.gson.Gson;
+import com.handmark.pulltorefresh.library.PullToRefreshListView;
+import com.jnwat.analysis.AGetUnEducationMessage;
+import com.jnwat.analysis.ASearchSchedule;
+import com.jnwat.bean.BUserlogin;
+import com.jnwat.bean.TrainingProgramBean;
+import com.jnwat.bean.UnEducationBean;
+import com.jnwat.config.AppConfig;
+import com.lidroid.xutils.HttpUtils;
+import com.lidroid.xutils.exception.HttpException;
+import com.lidroid.xutils.http.RequestParams;
+import com.lidroid.xutils.http.ResponseInfo;
+import com.lidroid.xutils.http.callback.RequestCallBack;
+import com.lidroid.xutils.http.client.HttpRequest;
+import com.lidroid.xutils.util.LogUtils;
+
+import android.os.Bundle;
+import android.util.Log;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+/**
+ * @author zhaorl
+ * 
+ * 培训项目统计
+ *
+ */
+public class TrainingProgramActivity extends BaseActivity {
+
+	private  static String TAG  = " TrainingProgramListActivity_20151202140120";
+	private  String mTitle = "培训项目统计列表";
+	private  TextView  mTitle_tv;
+	private  PullToRefreshListView mProgram_lv;
+	private ImageView iv_back;
+	private List<HashMap<String, String>> list;
+	Gson gson = null;
+	private TrainingProgramBean programBean  = null;
+	private List<UnEducationBean> listAll =  null;
+	@Override
+	protected void initView() {
+		// TODO Auto-generated method stub
+		setBackListener(mTitle, false);
+	}
+
+	/* (non-Javadoc)
+	 * @see com.jnwat.oamobilegy.BaseActivity#setListener()
+	 */
+	@Override
+	protected void setListener() {
+		// TODO Auto-generated method stub
+
+	}
+	/* (non-Javadoc)
+	 * @see com.jnwat.oamobilegy.BaseActivity#initData()
+	 */
+	@Override
+	protected void initData() {
+		// TODO Auto-generated method stub
+
+	}
+	/* (non-Javadoc)
+	 * @see com.jnwat.oamobilegy.BaseActivity#setView()
+	 */
+	@Override
+	protected void setView() {
+		// TODO Auto-generated method stub
+		
+		setContentView(R.layout.activity_uneducation_list);
+		iv_back = (ImageView) findViewById(R.id.iv_back);
+		mTitle_tv = (TextView) findViewById(R.id.title_bar_name);
+		mProgram_lv  =  (PullToRefreshListView) findViewById(R.id.lv_trainpro);
+		
+		getDateByHttp();
+	}
+
+	private void getDateByHttp() {
+		// TODO Auto-generated method stub
+		
+		if(null == list){
+			list = new ArrayList<HashMap<String, String>>();
+		}
+		
+		http = new HttpUtils();
+		http.configTimeout(8000);
+		http.configCurrentHttpCacheExpiry(1000); // 缓存时间
+		RequestParams params = new RequestParams(); // 参数
+		params.addBodyParameter("projecttype", "1");
+		String url = AppConfig.getIp(TrainingProgramActivity.this)
+				+ AppConfig.METHOAD_TRAINING_PROGRAM_LIST;
+
+		http.send(HttpRequest.HttpMethod.POST, url, params,
+				new RequestCallBack<String>() {
+					@Override
+					public void onLoading(long total, long current,
+							boolean isUploading) {
+					}
+					@Override
+					public void onSuccess(ResponseInfo<String> responseInfo) {
+						
+						Log.e(">>>>>>httprequest>>>>>>","result=="+responseInfo.result);
+//						AGetUnEducationMessage mUnEduMessage  = new AGetUnEducationMessage();
+//						listAll  = mUnEduMessage.getUnEducationList(responseInfo.result, mHandler);
+						
+//						mHandler.postDelayed(new Runnable() {
+//							@Override
+//							public void run() {
+//								// TODO Auto-generated method stub
+//								// freshList();
+//							}
+//						}, 400);
+					}
+
+					@Override
+					public void onStart() {
+					}
+
+					@Override
+					public void onFailure(HttpException error, String msg) {
+						
+						LogUtils.e("error code==="+msg.toString());
+					}
+				});
+	}
+
+}

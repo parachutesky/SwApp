@@ -1,0 +1,79 @@
+package com.jnwat.swmobilegy;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+import android.content.Intent;
+import android.widget.TextView;
+
+import com.jnwat.bean.BIntentObj;
+import com.jnwat.swmobilegy.R;
+import com.jnwat.swmobilegy.workevent.WorkeventFragment;
+import com.jnwat.tools.ModifySysTitle;
+
+/**
+ * @author chang-zhiyuan 短消息和通知查看
+ */
+public class NoticeSortMessageActivity extends BaseActivity {
+	private TextView tv_notice_title, tv_notice_content, tv_notice_time;
+	private String time, content, title;
+
+	@Override
+	protected void initView() {
+		// TODO Auto-generated method stub
+		tv_notice_title = (TextView) findViewById(R.id.tv_notice_title);
+		tv_notice_content = (TextView) findViewById(R.id.tv_notice_content);
+		tv_notice_time = (TextView) findViewById(R.id.tv_notice_time);
+	}
+
+	@Override
+	protected void setListener() {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	protected void initData() {
+		// TODO Auto-generated method stub
+		tv_notice_title.setText(title);
+		tv_notice_content.setText(content);
+		
+		
+		tv_notice_time.setText(timestampToDate(Long.parseLong(time)));
+	}
+	public String timestampToDate(long time) {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		String sd = sdf.format(new Date(time));
+
+		String sendTime = sd.substring(5);
+		int index = sendTime.lastIndexOf(":");
+		sendTime = sendTime.substring(0, index);
+
+		return sendTime;
+	}
+	@Override
+	protected void setView() {
+		// TODO Auto-generated method stub
+		setContentView(R.layout.activity_notice_sort_message);
+		ModifySysTitle.ModifySysTitleStyle(R.color.black_dark, this);
+
+		Intent intent = this.getIntent();
+		try {
+			time = intent.getStringExtra("time");
+			content = intent.getStringExtra("content");
+			title = intent.getStringExtra("title");
+			setBackListener(title, false);
+			/*
+			WorkeventFragment mWorkeventFragment =WorkeventFragment.newInstance("");
+			BIntentObj.IsGetNewPushMessage = false;
+			mWorkeventFragment.setMessageStage();*/
+			
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+
+	}
+
+}

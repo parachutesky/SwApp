@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/setting_item_selector"
+    
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        
+        android:orientation="vertical"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp" >
+
+        <TextView
+            android:id="@+id/textView_sw_item_schedul_course"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:text="课程"
+            android:textColor="@color/black"
+            android:textSize="@dimen/tv_17sp34" />
+
+        <TextView
+            android:id="@+id/textView_sw_item_schedul_time"
+            android:layout_width="wrap_content"
+            android:layout_marginTop="12dp"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:text="上课时间"
+            android:textSize="@dimen/tv_15sp30" />
+
+        <TextView
+            android:id="@+id/textView_sw_item_schedul_positon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+               android:layout_marginTop="10dp"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:layout_marginBottom="5dp"
+            android:text="地点"
+            android:textSize="@dimen/tv_15sp30" />
+    </LinearLayout>
+
+</LinearLayout>

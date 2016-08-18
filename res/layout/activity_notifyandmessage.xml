@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/bg"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical" >
+
+    <!-- <include layout="@layout/back_title" /> -->
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="48.0dip"
+        android:background="@color/black_dark" >
+
+        <ImageView
+            android:id="@+id/iv_back"
+            android:layout_width="48.0dip"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:src="@drawable/nav_button_back_push" />
+
+        <TextView
+            android:id="@+id/title_bar_name"
+            style="@style/txt_titleStyle1"
+            android:layout_centerInParent="true"
+            android:text="个人资料"
+            android:textColor="#FFFFFF" />
+
+        <TextView
+            android:id="@+id/tv_edit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:clickable="true"
+            android:paddingBottom="10dp"
+            android:paddingLeft="30dp"
+            android:paddingRight="30dp"
+            android:paddingTop="15dp"
+            android:text="编辑"
+            android:textColor="#ffffff"
+            android:textSize="16sp" />
+    </RelativeLayout>
+
+    <FrameLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" >
+
+        <include layout="@layout/activity_show" />
+
+        <com.handmark.pulltorefresh.library.PullToRefreshListView
+            android:id="@+id/lv_notifymessage"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:listSelector="@drawable/setting_item_selector"
+            android:paddingTop="10dp" >
+        </com.handmark.pulltorefresh.library.PullToRefreshListView>
+    </FrameLayout>
+
+</LinearLayout>

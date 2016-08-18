@@ -1,0 +1,70 @@
+package com.jnwat.analysis;
+
+import java.util.HashMap;
+import java.util.List;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import com.jnwat.bean.NewsInfo;
+import com.lidroid.xutils.util.LogUtils;
+
+/**
+ * @author chang-zhiyuan
+ * 解析课表查询
+ */
+public class ASearchSchedule {
+	//0代表成功 1 代表失败  2有新数据刷新 3 不刷新
+	
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	public int analySearchSchedule(String result,List<HashMap<String, String>> list){
+		int type = 1;
+		try {
+			JSONObject jsonObj = new JSONObject(result);
+			String message = jsonObj.getString("Message");
+		    int status = jsonObj.getInt("Status");
+		    if(status!=0&&status==200){
+		    	if(type==1){ //如果 type为1 说明是下拉  刷新   当 type 为2的时候说明是上拉加载
+		    	     list.clear();
+		    	}
+		    	
+		    	 JSONArray jsonArray = jsonObj.getJSONArray("ReplyObject");
+		    	 int length = jsonArray.length();
+		    	 if(length>0){
+		    		 type = 2;
+		    	 }else{
+		    		 type = 3; // 当 isGetDATA为 2时 说明  正常情况下 无数据
+		    	 }
+		    	 for(int i =0;i < length ;i ++){
+			    		JSONObject obj = (JSONObject) jsonArray.get(i);
+			    		HashMap hashmap = new HashMap<String, String>();
+			    	    String CLASSDATE = obj.getString("CLASSDATE" );
+			    		String COURSE = obj.getString( "COURSE");
+			    		hashmap.put("CLASSDATE", CLASSDATE);
+			    		hashmap.put("COURSE", COURSE);
+			    		list.add(hashmap);
+		    	 }
+		    	
+		    	 
+		     }
+		    
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			LogUtils.d("课表查询异常");
+			e.printStackTrace();
+			
+		}
+		
+		
+		
+		
+		return type;
+		
+		
+		
+	}
+	
+	
+
+}

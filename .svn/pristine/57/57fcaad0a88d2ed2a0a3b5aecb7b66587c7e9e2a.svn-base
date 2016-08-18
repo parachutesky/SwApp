@@ -1,0 +1,362 @@
+package com.jnwat.swmobilegy;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import com.jnwat.analysis.AGetSalaryDetail;
+import com.jnwat.analysis.ASalaryQuery;
+import com.jnwat.bean.BUserlogin;
+import com.jnwat.config.AppConfig;
+import com.jnwat.swmobilegy.R;
+import com.jnwat.tools.ModifySysTitle;
+import com.lidroid.xutils.HttpUtils;
+import com.lidroid.xutils.exception.HttpException;
+import com.lidroid.xutils.http.RequestParams;
+import com.lidroid.xutils.http.ResponseInfo;
+import com.lidroid.xutils.http.callback.RequestCallBack;
+import com.lidroid.xutils.http.client.HttpRequest;
+import com.lidroid.xutils.util.LogUtils;
+
+import android.content.Intent;
+import android.os.Handler;
+import android.os.Message;
+import android.util.Log;
+import android.widget.TextView;
+import android.widget.Toast;
+
+public class SalaryDetailActivity extends BaseActivity {
+	
+	private Map<String,Object> map  = null;
+	
+    private TextView date_tv;
+    private TextView totalSalary_tv;
+    private TextView baseSalary_tv;
+    private TextView salaryGrade_tv;
+    private TextView teachYearsSalary_tv;;
+    private TextView jixiaoSalary_tv;
+    private TextView jiangliSalary_tv;
+    private TextView wuye_tv;
+    private TextView percentTen_tv; 
+    private TextView telephone_tv;
+    private TextView shuiwu_tv;
+    private TextView home_tv;
+    private TextView qita_tv;
+    private TextView salaryCount_tv; //薪资小计
+    
+    private TextView waterCoast_tv;
+    private TextView foodCoast_tv;
+    private TextView personalCoast_tv;
+    private TextView publicCoast_tv;
+    private TextView yibao_tv;
+    private TextView yanglao_tv;
+    private TextView daikou1_tv;
+    private TextView daikou2_tv;
+    private TextView koutotal_tv;
+    
+    
+    private TextView add_salary_tv;
+    private TextView salary_teach_tv;;
+    private TextView salary_home_tv;
+    private TextView salary_wuye_tv;
+    private TextView salary_retire_tv;
+    private TextView qita_tv1; 
+    private TextView qita_tv2;
+  
+    private TextView gas_coast_tv;
+    private TextView park_coast_tv;
+    private TextView recent_coast_tv;
+    private TextView kou_tv;
+    private TextView coast_account_tv;
+    
+    public String date  = "";
+    public String total  = "";
+    private String name = "";
+    private String mTitle = "薪资明细";
+    private String flag  = "2";
+    private Handler handler  =  new Handler(){
+
+		@Override
+		public void handleMessage(Message msg) {
+			// TODO Auto-generated method stub
+			super.handleMessage(msg);
+			
+			switch(msg.what){
+			
+			case 0:
+				
+				Toast.makeText(getApplicationContext(), "网络链接失败", 0).show();
+		    break;
+		    
+			case 100:
+				initTextDate();
+		    break;
+		    
+			case 101:
+				initTextDate1();
+		    break;
+		    
+			}
+		}
+
+		
+    	
+    };
+	@Override
+	protected void initView() {
+		// TODO Auto-generated method stub
+		
+		
+		if(BUserlogin.Flag.equals("2")){
+			
+			 date_tv  = (TextView)findViewById(R.id.salary_date_tv); 
+			 totalSalary_tv  = (TextView)findViewById(R.id.tv_total_salary);
+			 
+			 baseSalary_tv  = (TextView)findViewById(R.id.baseSalary_tv);
+			 salaryGrade_tv  = (TextView)findViewById(R.id.salary_grade_tv);
+			 teachYearsSalary_tv  = (TextView)findViewById(R.id.teachYearsSalary_tv);
+			jixiaoSalary_tv  = (TextView)findViewById(R.id.jixiaoSalary_tv);
+			jiangliSalary_tv  = (TextView)findViewById(R.id.jiangliSalary_tv);
+			wuye_tv  = (TextView)findViewById(R.id.wuye_tv);
+			percentTen_tv  = (TextView)findViewById(R.id.percentTen_tv);
+			telephone_tv  = (TextView)findViewById(R.id.telephone_tv);
+			shuiwu_tv  = (TextView)findViewById(R.id.shuiwu_tv);
+			home_tv  = (TextView)findViewById(R.id.home_tv);
+			qita_tv  = (TextView)findViewById(R.id.qita_tv);
+			salaryCount_tv  = (TextView)findViewById(R.id.salaryCount_tv);
+			
+			waterCoast_tv  = (TextView)findViewById(R.id.waterCoast_tv);
+			foodCoast_tv  = (TextView)findViewById(R.id.foodCoast_tv);
+			personalCoast_tv  = (TextView)findViewById(R.id.personalCoast_tv);
+			publicCoast_tv  = (TextView)findViewById(R.id.publicCoast_tv);
+			yibao_tv  = (TextView)findViewById(R.id.yibao_tv);
+			yanglao_tv  = (TextView)findViewById(R.id.yanglao_tv);
+			daikou1_tv  = (TextView)findViewById(R.id.daikou1_tv);
+			daikou2_tv  = (TextView)findViewById(R.id.daikou2_tv);
+			//daikou3_tv  = (TextView)findViewById(R.id.daikou3_tv);
+			koutotal_tv  = (TextView)findViewById(R.id.koutotal_tv);
+		}else{
+			
+			 date_tv  = (TextView)findViewById(R.id.salary_date_tv); 
+			 totalSalary_tv  = (TextView)findViewById(R.id.tv_total_num);
+			 baseSalary_tv  = (TextView)findViewById(R.id.base_Salary_tv);
+			 add_salary_tv  = (TextView)findViewById(R.id.add_salary_tv);
+			 salary_teach_tv  = (TextView)findViewById(R.id.salary_teach_tv);
+			 salary_home_tv  = (TextView)findViewById(R.id.salary_home_tv);
+			 salary_wuye_tv  = (TextView)findViewById(R.id.salary_wuye_tv);
+			 salary_retire_tv  = (TextView)findViewById(R.id.salary_retire_tv);
+			 qita_tv1  = (TextView)findViewById(R.id.qita_tv1);
+			 qita_tv2  = (TextView)findViewById(R.id.qita_tv2);
+			 salaryCount_tv  = (TextView)findViewById(R.id.salaryCount_tv);
+			 
+			 waterCoast_tv  = (TextView)findViewById(R.id.waterCoast_tv);
+			 gas_coast_tv  = (TextView)findViewById(R.id.gas_coast_tv);
+			 park_coast_tv  = (TextView)findViewById(R.id.park_coast_tv);
+			 recent_coast_tv  = (TextView)findViewById(R.id.recent_coast_tv);
+			 kou_tv  = (TextView)findViewById(R.id.kou_tv);
+			 coast_account_tv  = (TextView)findViewById(R.id.coast_account_tv);
+			 
+			 
+		}
+		
+		
+	}
+	
+	private void initTextDate() {
+		// TODO Auto-generated method stub
+		
+		date_tv.setText( date+"  工资");
+		totalSalary_tv.setText(total);
+
+		LogUtils.e("实发工资："+map.get("Shfgz").toString());
+		baseSalary_tv.setText(map.get("Gwgz").toString());
+		salaryGrade_tv.setText(map.get("Xjgz").toString());
+		teachYearsSalary_tv.setText(map.get("Jljt").toString());
+		jixiaoSalary_tv.setText(map.get("Jcjx").toString());
+		jiangliSalary_tv.setText(map.get("Jljx").toString());
+		wuye_tv.setText(map.get("Wybt").toString());
+		baseSalary_tv.setText(map.get("Swjt").toString());
+		percentTen_tv.setText(map.get("Tigao").toString());
+		
+		telephone_tv.setText(map.get("Txbt").toString());
+		shuiwu_tv.setText(map.get("Swjt").toString());
+		
+		home_tv.setText(map.get("Zfbt").toString());
+		qita_tv.setText(map.get("Qt").toString());
+		salaryCount_tv.setText(map.get("Gzhj").toString());
+		waterCoast_tv.setText(map.get("Shd").toString());
+		foodCoast_tv.setText(map.get("Cf").toString());
+		personalCoast_tv.setText(map.get("Sds").toString());
+		yibao_tv.setText(map.get("Yb").toString());
+		yanglao_tv.setText(map.get("Ylbx").toString());
+		publicCoast_tv.setText(map.get("Zfgjj").toString());
+		daikou1_tv.setText(map.get("Dk1").toString());
+		daikou2_tv.setText(map.get("Dk2").toString());
+		koutotal_tv.setText(map.get("Xj").toString());
+		
+	}
+	
+	private void initTextDate1(){
+
+		
+		date_tv.setText( date+"  工资");
+		totalSalary_tv.setText(total);
+		
+		baseSalary_tv.setText(map.get("Jbtxf").toString());
+		add_salary_tv.setText(map.get("Zftxf").toString());
+		salary_teach_tv.setText(map.get("Jljt").toString());
+		salary_home_tv.setText(map.get("Zfbt").toString());
+		salary_wuye_tv.setText(map.get("Wybt").toString());
+		salary_retire_tv.setText(map.get("Txbt").toString());
+		qita_tv1.setText(map.get("Qt1").toString());
+		qita_tv2.setText(map.get("Qt2").toString());
+		salaryCount_tv.setText(map.get("Gzhj").toString());
+		
+		waterCoast_tv.setText(map.get("Sf").toString());
+		gas_coast_tv.setText(map.get("Nqf").toString());
+		park_coast_tv.setText(map.get("Df").toString());
+		recent_coast_tv.setText(map.get("Fz").toString());
+		kou_tv.setText(map.get("Dk").toString());
+		coast_account_tv.setText(map.get("Xj").toString());
+	}
+
+	@Override
+	protected void setListener() {
+		// TODO Auto-generated method stub
+		setBackListener(mTitle, false);
+		
+	}
+
+	@Override
+	protected void initData() {
+		// TODO Auto-generated method stub
+		
+
+	}
+
+	@Override
+	protected void setView() {
+		// TODO Auto-generated method stub
+		
+		 Intent mIntent  = getIntent();
+		 date =	mIntent.getStringExtra("date");
+	     total =	mIntent.getStringExtra("salary");
+	     name = mIntent.getStringExtra("name");
+	     
+	     if(BUserlogin.Flag.equals("2")){
+	    	 setContentView(R.layout.activity_salary_detail);
+	    	 getSalaryDetailsData();
+	     }else{
+	    	 setContentView(R.layout.retire_salary_detail);
+	    	 getRetirementSalary();
+	     }
+	     ModifySysTitle.ModifySysTitleStyle(R.color.black_dark,
+	    		 SalaryDetailActivity.this);
+	}
+
+	private void getRetirementSalary() {
+		// TODO Auto-generated method stub
+		http = new HttpUtils();
+		http.configTimeout(5000);
+		http.configCurrentHttpCacheExpiry(1000); // 缓存时间
+		Log.d("","参数列表==》》"+"名字"+name+"月份："+date);
+		RequestParams params = new RequestParams(); // 参数
+		params.addBodyParameter("username", BUserlogin.Username);
+		params.addBodyParameter("userflag", BUserlogin.Flag);
+		params.addBodyParameter("monthly", date);
+		
+		if(map==null){
+			map = new HashMap<String,Object>();
+		}
+		String url = AppConfig.getIp(SalaryDetailActivity.this)
+				+ AppConfig.METHOAD_SALARY_DETAIL;
+		Log.e("地址===","param==>>"+params
+				+"url==="+url);
+		http.send(HttpRequest.HttpMethod.POST, url, params,
+				new RequestCallBack<String>() {
+					@Override
+					public void onLoading(long total, long current,
+							boolean isUploading) {
+					}
+
+					@Override
+					public void onSuccess(ResponseInfo<String> responseInfo) {
+						
+						AGetSalaryDetail mASalaryList = new AGetSalaryDetail();
+						LogUtils.d("薪资:" + responseInfo.result);
+						boolean flag = mASalaryList.getRetirementSalaryDetail(
+								responseInfo.result, map);
+                    if(flag){
+                    	handler.sendEmptyMessageDelayed(101, 100);
+                    }else{
+                    	handler.sendEmptyMessageDelayed(0, 100);
+                    }
+                    
+					}
+					@Override
+					public void onStart() {
+						
+					}
+
+					@Override
+					public void onFailure(HttpException error, String msg) {
+						LogUtils.
+						e("错误信息:" + msg);
+						handler.sendEmptyMessage(0);
+					}
+				});
+		
+	}
+
+	private void getSalaryDetailsData() {
+		// TODO Auto-generated method stub
+		http = new HttpUtils();
+		http.configTimeout(5000);
+		http.configCurrentHttpCacheExpiry(1000); // 缓存时间
+		Log.d("","参数列表==》》"+"名字"+name+"月份："+date);
+		RequestParams params = new RequestParams(); // 参数
+		params.addBodyParameter("username", name);
+		params.addBodyParameter("userflag", flag);
+		params.addBodyParameter("monthly", date);
+		
+		if(map==null){
+			map = new HashMap<String,Object>();
+		}
+		String url = AppConfig.getIp(SalaryDetailActivity.this)
+				+ AppConfig.METHOAD_SALARY_DETAIL;
+		Log.e("地址===","param==>>"+params
+				+"url==="+url);
+		http.send(HttpRequest.HttpMethod.POST, url, params,
+				new RequestCallBack<String>() {
+					@Override
+					public void onLoading(long total, long current,
+							boolean isUploading) {
+					}
+
+					@Override
+					public void onSuccess(ResponseInfo<String> responseInfo) {
+						
+						AGetSalaryDetail mASalaryList = new AGetSalaryDetail();
+						LogUtils.d("薪资:" + responseInfo.result);
+						boolean flag = mASalaryList.getSalaryDetail(
+								responseInfo.result, map);
+                    if(flag){
+                    	handler.sendEmptyMessageDelayed(100, 100);
+                    }else{
+                    	handler.sendEmptyMessageDelayed(0, 100);
+                    }
+					}
+					@Override
+					public void onStart() {
+						
+					}
+
+					@Override
+					public void onFailure(HttpException error, String msg) {
+						LogUtils.
+						e("错误信息:" + msg);
+						handler.sendEmptyMessage(0);
+					}
+				});
+	}
+
+}

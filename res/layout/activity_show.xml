@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rel_show"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:visibility="gone" >
+
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+        android:layout_above="@+id/textView_show"
+        android:layout_centerHorizontal="true"
+        android:padding="10dp"
+        android:src="@drawable/icon_warning" />
+
+    <TextView
+        android:id="@+id/textView_show"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+                style="@style/myproject_text_label"
+        
+        android:text="暂时没有您的课程安排!"
+        android:textSize="17sp" />
+
+</RelativeLayout>

@@ -1,0 +1,221 @@
+/**
+ * 
+ */
+package com.jnwat.oamobilegy;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import com.handmark.pulltorefresh.library.PullToRefreshListView;
+import com.jnwat.bean.BUserlogin;
+import com.jnwat.bean.UnEducationBean;
+import com.jnwat.config.AppConfig;
+import com.jnwat.oamobilegy.dapter.UnEducationListAdapter;
+import com.jnwat.tools.ToastViewTools;
+import com.lidroid.xutils.HttpUtils;
+import com.lidroid.xutils.exception.HttpException;
+import com.lidroid.xutils.http.RequestParams;
+import com.lidroid.xutils.http.ResponseInfo;
+import com.lidroid.xutils.http.callback.RequestCallBack;
+import com.lidroid.xutils.http.client.HttpRequest;
+import com.lidroid.xutils.util.LogUtils;
+
+/**
+ * @author zhaorl
+ * 
+ *         培训项目列表页
+ * 
+ */
+public class UnEducationListActivity extends BaseActivity {
+
+	private static String TAG = " UnEducationListActivity_201512021301223";
+	private String mTitle = "非教学工作列表";
+	private TextView mTitle_tv;
+	private PullToRefreshListView mProgram_lv;
+	private ImageView iv_back;
+	private List<HashMap<String, String>> list;
+	private UnEducationListAdapter unedu_adapter = null;
+	private List<UnEducationBean> listAll = null;
+
+	@Override
+	protected void initView() {
+		// TODO Auto-generated method stub
+		setBackListener(mTitle, false);
+	}
+
+	@Override
+	protected void setListener() {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	protected void initData() {
+		// TODO Auto-generated method stub
+		listAll = new ArrayList<UnEducationBean>();
+		unedu_adapter = new UnEducationListAdapter(this, listAll);
+		getA();
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.jnwat.oamobilegy.BaseActivity#setView()
+	 */
+	@Override
+	protected void setView() {
+		// TODO Auto-generated method stub
+
+		http = new HttpUtils();
+		http.configTimeout(5000);
+		http.configCurrentHttpCacheExpiry(1000); // 缓存时间
+		setContentView(R.layout.activity_uneducation_list);
+		iv_back = (ImageView) findViewById(R.id.iv_back);
+		mTitle_tv = (TextView) findViewById(R.id.title_bar_name);
+		mProgram_lv = (PullToRefreshListView) findViewById(R.id.lv_trainpro);
+		// mProgram_lv.getRefreshableView().setDivider(null);
+		// mProgram_lv.getRefreshableView().setSelector(
+		// android.R.color.transparent);
+
+		// 设置刷新监听
+		// mProgram_lv.setOnRefreshListener( new OnRefreshListener<ListView>() {
+		//
+		// @Override
+		// public void onRefresh(PullToRefreshBase<ListView> refreshView) {
+		// //
+		// Log.d("PullToRefresh","-------onRefresh被调用-------- ShownHeader="+refreshView.isShownHeader()+"  ShownFooter="+refreshView.isShownFooter());
+		// // String str = DateUtils.formatDateTime(MainActivity.this,
+		// System.currentTimeMillis(), DateUtils.FORMAT_SHOW_TIME |
+		// DateUtils.FORMAT_SHOW_DATE | DateUtils.FORMAT_ABBREV_ALL);
+		// // 上拉加载更多 业务代码
+		// if (mProgram_lv.isHeaderShown()){
+		// // Log.d("refresh", "-----上拉加载----------");
+		// refreshView.getLoadingLayoutProxy().setRefreshingLabel("正在加载");
+		// refreshView.getLoadingLayoutProxy().setPullLabel("上拉加载更多");
+		// refreshView.getLoadingLayoutProxy().setReleaseLabel("释放开始加载");
+		// // refreshView.getLoadingLayoutProxy().setLastUpdatedLabel("最后加载时间:"
+		// + str);
+		// System.out.println("刷新加载数据 。。。。");
+		// // new MyTask().execute();
+		// }else{
+		// //Log.d("refresh", "------下拉刷新---------");
+		// refreshView.getLoadingLayoutProxy().setRefreshingLabel("正在刷新");
+		// refreshView.getLoadingLayoutProxy().setPullLabel("下拉刷新");
+		// refreshView.getLoadingLayoutProxy().setReleaseLabel("释放开始刷新");
+		// // refreshView.getLoadingLayoutProxy().setLastUpdatedLabel("最后更新时间:"
+		// + str);
+		// }
+		// }
+		// });
+
+		// getDateByHttp();
+	}
+
+	public void getA() {
+
+		RequestParams params = new RequestParams(); // 参数
+		 params.addBodyParameter("userid",BUserlogin.userid);
+		 String url = AppConfig.getIp(UnEducationListActivity.this)+AppConfig.METHOAD_UNEDUCATION_WORK_LIST;
+		http.send(HttpRequest.HttpMethod.POST, url, params,
+				new RequestCallBack<String>() {
+					@Override
+					public void onLoading(long total, long current,
+							boolean isUploading) {
+						// tv_gettaskinfo.setText(current + "/" + total);
+					}
+
+					@Override
+					public void onSuccess(ResponseInfo<String> responseInfo) {
+
+ToastViewTools.initToast(getApplication(), responseInfo.result);
+
+					}
+
+					@Override
+					public void onStart() {
+					}
+
+					@Override
+					public void onFailure(HttpException error, String msg) {
+						ToastViewTools.initToast(getApplication(), error.getMessage()+"error:"+error);
+						
+					}
+				});
+
+	}
+
+	private void getDateByHttp() {
+		// TODO Auto-generated method stub
+
+		if (null == list) {
+			list = new ArrayList<HashMap<String, String>>();
+		}
+
+		RequestParams params = new RequestParams(); // 参数
+		params.addBodyParameter("userid", BUserlogin.userid);
+		String url = AppConfig.getIp(UnEducationListActivity.this)
+				+ AppConfig.METHOAD_UNEDUCATION_WORK_LIST;
+		LogUtils.d("非教学工作:" + url);
+		http.send(HttpRequest.HttpMethod.POST, url, params,
+				new RequestCallBack<String>() {
+					@Override
+					public void onLoading(long total, long current,
+							boolean isUploading) {
+					}
+
+					@Override
+					public void onSuccess(ResponseInfo<String> responseInfo) {
+
+						LogUtils.e("全部信息：" + responseInfo.result);
+						// try {
+						// AGetUnEducationMessage mUnEduMessage = new
+						// AGetUnEducationMessage();
+						// listAll =
+						// mUnEduMessage.getUnEducationList(responseInfo.result,
+						// mHandler);
+						//
+						// } catch (JSONException e) {
+						// e.printStackTrace();
+						// }
+						mHandler.postDelayed(new Runnable() {
+							@Override
+							public void run() {
+								// TODO Auto-generated method stub
+							}
+						}, 400);
+					}
+
+					@Override
+					public void onStart() {
+					}
+
+					@Override
+					public void onFailure(HttpException error, String msg) {
+
+						LogUtils.e("错误的信息：" + msg);
+					}
+				});
+	}
+
+	@Override
+	public void setBackListener(String title, boolean isshow) {
+		// TODO Auto-generated method stub
+		super.setBackListener(title, isshow);
+
+		iv_back.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View view) {
+				// TODO Auto-generated method stub
+				finish();
+			}
+		});
+		mTitle_tv.setText(title);
+	}
+
+}

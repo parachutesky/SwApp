@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/bg"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical" >
+
+    <include layout="@layout/back_title" />
+
+
+        <com.handmark.pulltorefresh.library.PullToRefreshListView
+            android:id="@+id/lv_trainpro"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:listSelector="@drawable/setting_item_selector" >
+        </com.handmark.pulltorefresh.library.PullToRefreshListView>
+</LinearLayout>

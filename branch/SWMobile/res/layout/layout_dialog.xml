@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/dialog"
+    android:orientation="vertical" >
+ <TextView android:id="@+id/tv_title"
+            android:layout_width="fill_parent"
+            android:layout_height="40dp"
+             android:background="@drawable/title"
+             android:textSize="18sp"
+             android:textColor="#FFFFFF"
+            android:gravity="center"
+            android:text="请选择获取图片方式"/>
+   <View
+				android:layout_width="match_parent"
+				android:layout_height="1dp"
+				android:layout_marginLeft="10dip"
+				android:layout_marginRight="10dip"
+				android:background="@color/black2_maillist" />
+  <TextView android:id="@+id/tv_localFile"
+            android:layout_width="fill_parent"
+            android:layout_height="40dp"
+            android:gravity="center"
+            android:text="本地文件"
+            />
+   <View
+				android:layout_width="match_parent"
+				android:layout_height="1dp"
+				android:layout_marginLeft="10dip"
+				android:layout_marginRight="10dip"
+				android:background="@color/black2_maillist" />
+  <TextView android:id="@+id/tv_takePhoto"
+            android:layout_width="fill_parent"
+            android:layout_height="40dp"
+            android:gravity="center"
+            android:text="相机拍摄"
+            />
+   <View
+				android:layout_width="match_parent"
+				android:layout_height="1dp"
+				android:layout_marginLeft="10dip"
+				android:layout_marginRight="10dip"
+				android:background="@color/black2_maillist" />
+  <TextView android:id="@+id/tv_cancel"
+            android:layout_width="fill_parent"
+            android:layout_height="40dp"
+            android:gravity="center"
+            android:text="取消"
+            />
+   <View
+				android:layout_width="match_parent"
+				android:layout_height="1dp"
+				android:layout_marginLeft="10dip"
+				android:layout_marginRight="10dip"
+				android:background="@color/black2_maillist" />
+</LinearLayout>

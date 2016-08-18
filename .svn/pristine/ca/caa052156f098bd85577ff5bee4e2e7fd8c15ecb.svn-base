@@ -1,0 +1,36 @@
+package com.jnwat.config;
+
+/**
+ * @author chang-zhiyuan
+ * 提醒用语，用于人机交互
+ */
+public class ShowRemind {
+	
+	public static String ErrorMessage;//错误信息
+	public static final int HANDLER_STATUS = 400;// 错误代码
+	
+	public static final  int HANDLER_NET_ERROE = 0;// 网络错误
+	public static final  int HANDLER_ANALYSIS_ERROE = 1;// 解析错误
+	public static final  int HANDLER_DELER_ERROE = 2;// 超时
+	public static final  int HANDLER_LOGIN_SUCCESS = 3;
+	public static final  int HANDLER_GET_SUCCESS = 4;
+	public static final  int HANDLER_SHOW_DIALOG = 5;
+	public static final  int HANDLER_DISMISS_DIALOG = 6;
+	public static final  int HANDLER_NET_TYPE = 7;
+	public static final  int HANDLER_DB_ERROR = 1000;
+	public static final  int HANDLER_SUCCESS = 200;
+	
+	
+	
+	
+	
+	//登录模块提示用语
+	public final static String LOGIN_ERROR = "网络失败或者用户名密码不正确!";
+	public final static String LOGIN_NETERROR = "请检查网络!";
+	public final static String LOGIN_FORMERROR = "请输入用户名密码!";
+	public final static String ANALYSIS_ERROE = "获取信息失败!";
+	public final static String NET_ERROE = "获取信息失败!";
+	public final static String NET_TYPE = "当前使用的是GPRS流量!";
+	public final static String DB_ERROR = "数据库连接出错!";
+
+}

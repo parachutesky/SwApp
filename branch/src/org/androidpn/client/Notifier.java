@@ -1,0 +1,114 @@
+/*
+ * Copyright (C) 2010 Moduad Co., Ltd.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package org.androidpn.client;
+
+import java.util.Random;
+
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.util.Log;
+
+import com.jnwat.bean.BIntentObj;
+import com.jnwat.swmobilegy.NotifiMessageActivity;
+
+/**
+ * This class is to notify the user of messages with NotificationManager.
+ * 
+ * @author Sehwan Noh (devnoh@gmail.com)
+ */
+public class Notifier {
+	Intent intent;
+	Notification notification;
+	private static final String LOGTAG = LogUtil.makeLogTag(Notifier.class);
+
+	private static final Random random = new Random(System.currentTimeMillis());
+
+	private Context context;
+
+	private SharedPreferences sharedPrefs;
+
+	private NotificationManager notificationManager;
+
+	public Notifier(Context context) {
+		this.context = context;
+		this.sharedPrefs = context.getSharedPreferences(
+				Constants.SHARED_PREFERENCE_NAME, Context.MODE_PRIVATE);
+		this.notificationManager = (NotificationManager) context
+				.getSystemService(Context.NOTIFICATION_SERVICE);
+	}
+
+	@SuppressWarnings("deprecation")
+	public void notify(String notificationId, String title, String message,
+			String uri) {
+		Log.d(LOGTAG, "notify()...");
+
+	
+
+			// Notification
+			if (notification == null) {
+				notification = new Notification();
+			}
+			// 创建一个即将要执行的PendingIntent对象
+			intent = new Intent(context, NotifiMessageActivity.class);
+
+			notification.icon = getNotificationIcon();
+			notification.defaults = Notification.DEFAULT_LIGHTS;
+			if (isNotificationSoundEnabled()) {
+				notification.defaults |= Notification.DEFAULT_SOUND;
+			}
+			if (isNotificationVibrateEnabled()) {
+				notification.defaults |= Notification.DEFAULT_VIBRATE;
+			}
+			notification.flags |= Notification.FLAG_AUTO_CANCEL;
+			notification.when = System.currentTimeMillis();
+			notification.tickerText = message;
+			intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+			intent.setFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
+			intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+			intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+			intent.putExtra("selectObj", false);// 等于fasle查看推送的列表
+
+			PendingIntent contentIntent = PendingIntent.getActivity(context, 0,
+					intent, PendingIntent.FLAG_UPDATE_CURRENT);
+			notification.setLatestEventInfo(context, title, message,
+					contentIntent);
+			notificationManager.notify(0, notification);
+
+		}/* else {
+			Log.w(LOGTAG, "Notificaitons disabled.");
+		}*/
+//	}
+
+	private int getNotificationIcon() {
+		return sharedPrefs.getInt(Constants.NOTIFICATION_ICON, 0);
+	}
+
+	
+
+	private boolean isNotificationSoundEnabled() {
+		return sharedPrefs.getBoolean(Constants.SETTINGS_SOUND_ENABLED, true);
+	}
+
+	private boolean isNotificationVibrateEnabled() {
+		return sharedPrefs.getBoolean(Constants.SETTINGS_VIBRATE_ENABLED, true);
+	}
+
+
+}

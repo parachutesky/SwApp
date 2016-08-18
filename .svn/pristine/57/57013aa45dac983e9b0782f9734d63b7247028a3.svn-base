@@ -1,0 +1,161 @@
+package com.jnwat.oamobilegy.mainpager;
+
+import android.app.Activity;
+import android.content.Intent;
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.BaseAdapter;
+import android.widget.GridView;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import com.jnwat.oamobilegy.R;
+import com.jnwat.oamobilegy.UnEducationListActivity;
+import com.jnwat.oamobilegy.workevent.DoProcessFragment;
+
+public class MainPageFragment extends Fragment {
+	private LayoutInflater layoutInflater;
+	private View view;
+	private Activity mContext;
+	private GridView gridview_sw_main;
+	private String[] name_teacher = { "开班通知", "培训项目", "课表查询", "非教学工作", "请假管理",
+			"学员互动", "培训项目统计" ,"薪资查询"};
+
+	static DoProcessFragment newInstance(String s) {
+		DoProcessFragment newFragment = new DoProcessFragment();
+		Bundle bundle = new Bundle();
+		newFragment.setArguments(bundle);
+		return newFragment;
+
+	}
+
+	@Override
+	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+			Bundle savedInstanceState) {
+		// TODO Auto-generated method stub
+		if (view == null) {
+			view = inflater.inflate(R.layout.fragment_mainpage, null);
+			initView(view);
+			MyAdapter myAdapter = new MyAdapter();
+			gridview_sw_main.setAdapter(myAdapter);
+			initListen();
+		}
+		ViewGroup parent = (ViewGroup) view.getParent();
+		if (parent != null) {
+			parent.removeView(view);
+		}
+		// Log.i("-----view.id is--------->", ""+view.getId());
+		// showInfo();
+		/*
+		 * if(!isFirst){ getWebData(1); // 此时为 第一次加载 isFirst = true; }
+		 */
+		return view;
+
+	}
+
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		// TODO Auto-generated method stub
+		super.onCreate(savedInstanceState);
+		mContext = this.getActivity();
+		layoutInflater = LayoutInflater.from(mContext);
+
+	}
+
+	public void initView(View view) {
+		gridview_sw_main = (GridView) view.findViewById(R.id.sw_gridview_item);
+	}
+
+	// 监听 事件
+	public void initListen() {
+		gridview_sw_main.setOnItemClickListener(new OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view,
+					int position, long id) {
+				Intent intent = new Intent();
+				// TODO Auto-generated method stub
+				if (name_teacher[position].equals("开班通知")) {
+					
+					intent.setClass(getActivity(), ClassNotificationActivity.class);
+					startActivity(intent);
+				} else if (name_teacher[position].equals("培训项目")) {
+					intent.setClass(getActivity(), ProjectSearchActivity.class);
+					startActivity(intent);
+
+				} else if (name_teacher[position].equals("课表查询")) {
+					System.out.println("课表查询");
+					intent.setClass(getActivity(), SearchScheduleActivity.class);
+					startActivity(intent);
+
+				} else if (name_teacher[position].equals("非教学工作")) {
+					
+					intent.setClass(getActivity(), UnEducationListActivity.class);
+					startActivity(intent);
+
+				} else if (name_teacher[position].equals("请假管理")) {
+					intent.setClass(getActivity(), LeaveManagerActivity.class);
+					startActivity(intent);
+
+				} else if (name_teacher[position].equals("学员互动")) {
+					intent.setClass(getActivity(), ProjectQuestionAnswerActivity.class);
+					startActivity(intent);
+
+				} else if (name_teacher[position].equals("培训项目统计")) {
+
+				}
+			}
+		});
+	}
+
+	// 自定义适配器
+	class MyAdapter extends BaseAdapter {
+
+		// 图片数组
+		private Integer[] imgs_teacher = { R.drawable.index_shortcut_icon8,
+				R.drawable.index_shortcut_icon3,
+				R.drawable.index_shortcut_icon6,
+				R.drawable.index_shortcut_icon5,
+				R.drawable.index_shortcut_icon1,
+				R.drawable.index_shortcut_icon4,
+				R.drawable.index_shortcut_icon2, 
+				R.drawable.index_shortcut_icon7,
+				};
+
+		public int getCount() {
+			return imgs_teacher.length;
+		}
+
+		public Object getItem(int item) {
+			return item;
+		}
+
+		public long getItemId(int id) {
+			return id;
+		}
+
+		// 创建View方法
+		public View getView(int position, View convertView, ViewGroup parent) {
+
+			if (convertView == null) {
+				convertView = layoutInflater.inflate(
+						R.layout.sw_item_gridview_mainpage, null);
+			}
+			ImageView mImageView = (ImageView) convertView
+					.findViewById(R.id.sw_iv_item_icon);
+			TextView mTextView = (TextView) convertView
+					.findViewById(R.id.sw_tv_item_name);
+
+			mImageView.setImageResource(imgs_teacher[position]);
+			mTextView.setText(name_teacher[position]);
+
+			return convertView;
+		}
+	}
+
+}

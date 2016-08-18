@@ -1,0 +1,809 @@
+package com.jnwat.tools;
+
+import org.androidpn.client.Constants;
+
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
+
+import com.jnwat.bean.BUserlogin;
+import com.jnwat.bean.UserInfo;
+
+/**
+ * @author Parachute 配置信息
+ */
+public class SharedPrefsUtil {
+	/**
+	 * 消息设置
+	 */
+
+	public static void putMessageSet(Context context, String LABEL, boolean isOn) {
+		Editor sp = context.getSharedPreferences(
+				Constants.SHARED_PREFERENCE_NAME, Context.MODE_PRIVATE).edit();
+		sp.putBoolean(LABEL, isOn);
+		sp.commit();
+	}
+
+	public static boolean getMessageSet(Context context, String LABEL) {
+		SharedPreferences sp = context.getSharedPreferences(
+				Constants.SHARED_PREFERENCE_NAME, Context.MODE_PRIVATE);
+		boolean value = sp.getBoolean(LABEL, true);
+		return value;
+	}
+
+	/**
+	 * 存储ip
+	 */
+	static final String SETTINGIP = "SETTINGIPSW";
+
+	/**
+	 * 推送消息 是否震动
+	 * 
+	 * @param context
+	 */
+	public static void putSETTINGIP(Context context, String isVibrate) {
+		Editor sp = context.getSharedPreferences(SETTING, Context.MODE_PRIVATE)
+				.edit();
+		sp.putString(SETTINGIP, isVibrate);
+		sp.commit();
+	}
+
+	// 修改是否加载过通讯录信息
+	public static final String EXIST_CONTACT = "contacts";
+
+	/**
+	 * 修改 通讯录是否已经获取数据
+	 */
+	public static void putExistContacts(Context context, boolean value) {
+		Editor sp = context.getSharedPreferences(SETTING, Context.MODE_PRIVATE)
+				.edit();
+		sp.putBoolean(EXIST_CONTACT, value);
+		sp.commit();
+	}
+
+	/**
+	 * 获取 通讯录是否已经获取数据
+	 */
+	public static boolean getExistContacts(Context context) {
+		SharedPreferences sp = context.getSharedPreferences(SETTING,
+				Context.MODE_PRIVATE);
+		boolean value = sp.getBoolean(EXIST_CONTACT, false);
+		return value;
+	}
+
+	/**
+	 * 推送消息 是否震动
+	 * 
+	 * @param context
+	 */
+	public static String getSETTINGIP(Context context) {
+		SharedPreferences sp = context.getSharedPreferences(SETTING,
+				Context.MODE_PRIVATE);
+	//	 return sp.getString(SETTINGIP, "http://172.16.20.59:"); //郭超 要求 ip
+	return sp.getString(SETTINGIP, "http://192.168.3.209:");
+	}
+
+	private static final String TYPE = "TYPE";
+
+	/**
+	 * 类型
+	 * 
+	 * @param context
+	 */
+	public static void putType(Context context, int type) {
+		Editor sp = context.getSharedPreferences(SETTING, Context.MODE_PRIVATE)
+				.edit();
+		sp.putInt(TYPE, type);
+		sp.commit();
+	}
+
+	/**
+	 * 类型
+	 * 
+	 * @param context
+	 */
+	public static String getType(Context context) {
+		SharedPreferences sp = context.getSharedPreferences(SETTING,
+				Context.MODE_PRIVATE);
+		return sp.getString(TYPE, "0");
+	}
+
+	/**
+	 * 存储文件的名字
+	 */
+	static final String SETTING = "SWMOBILE";
+	/**
+     * 
+     */
+	public static final String USER_NOTE = "USER_NOTE";
+	/**
+	 * 用户信息
+	 */
+	static final String USERINFO = "USERINFO";
+	// 返回 登录人用户信息
+	public static final String LOGIN_INFO = "LOGIN_INFO";
+	/**
+	 * 自动登录
+	 */
+	static final String AUTOLOAD = "AUTOLOAD";
+
+	// 是否支持蓝牙
+	public static final String BLUETOOTH_SUPPORT = "BLUETOOTH_SUPPORT";
+	// 是否开启蓝牙
+	public static final String BLUETOOTH_OPEN = "BLUETOOTH_OPEN";
+	// 是否开启Wi-Fi
+	public static final String WIFI_OPEN = "WIFI_OPEN";
+
+	// 是否开启用户名和密码保存
+	public static final String USER_NAME = "USER_NAME";
+	public static final String USER_PSW = "USER_PSW";
+	// 是否加载过Gurder
+	public static final String GURDER = "GURDER";
+	// 流程记录字段
+	public static final String PROCESS = "PROCESS";
+	// 记录本次登录用户的信息 用于在下次进入时 用此用户名和密码登录
+	public static final String LOGIN_USER_NAME = "LOGIN_USER_NAME";
+	public static final String LOGIN_USER_PAW = "LOGIN_USER_PAW";
+	public static final String LOGIN_USER_TYPE = "LOGIN_USER_TYPE";
+
+	/**
+	 * 手机是否支持蓝牙
+	 * 
+	 * @param context
+	 * @param value
+	 */
+	public static void putBluetoothSuppor(Context context, boolean value) {
+		Editor sp = context.getSharedPreferences(SETTING, Context.MODE_PRIVATE)
+				.edit();
+		sp.putBoolean(BLUETOOTH_SUPPORT, value);
+		sp.commit();
+	}
+
+	/**
+	 * 手机是否支持蓝牙
+	 * 
+	 * @param context
+	 * @return
+	 */
+	public static boolean getBluetoothSuppor(Context context) {
+
+		SharedPreferences sp = context.getSharedPreferences(SETTING,
+				Context.MODE_PRIVATE);
+		boolean value = sp.getBoolean(BLUETOOTH_SUPPORT, false);
+		return value;
+
+	}
+
+	/**
+	 * 蓝牙是否打开
+	 * 
+	 * @param context
+	 * @param value
+	 */
+	public static void putBluetoothOpen(Context context, boolean value) {
+		Editor sp = context.getSharedPreferences(SETTING, Context.MODE_PRIVATE)
+				.edit();
+		sp.putBoolean(BLUETOOTH_OPEN, value);
+		sp.commit();
+	}
+
+	/**
+	 * 蓝牙是否打开
+	 * 
+	 * @param context
+	 * @return
+	 */
+	public static boolean getBluetoothOpen(Context context) {
+
+		SharedPreferences sp = context.getSharedPreferences(SETTING,
+				Context.MODE_PRIVATE);
+		boolean value = sp.getBoolean(BLUETOOTH_OPEN, false);
+		return value;
+
+	}
+
+	/**
+	 * 开启无线
+	 * 
+	 * @param context
+	 * @param value
+	 */
+	public static void putWifiOpen(Context context, boolean value) {
+		Editor sp = context.getSharedPreferences(SETTING, Context.MODE_PRIVATE)
+				.edit();
+		sp.putBoolean(WIFI_OPEN, value);
+		sp.commit();
+	}
+
+	/**
+	 * 设置是否开启无线
+	 * 
+	 * @param context
+	 * @return
+	 */
+	public static boolean getWifiOpen(Context context) {
+
+		SharedPreferences sp = context.getSharedPreferences(SETTING,
+				Context.MODE_PRIVATE);
+		boolean value = sp.getBoolean(WIFI_OPEN, false);
+		return value;
+	}
+
+	/**
+	 * 保存用户名和密码
+	 * 
+	 * @param context
+	 */
+	public static void putUserNumInfo(Context context, String username,
+			String userpsw) {
+		Editor sp = context
+				.getSharedPreferences(USERINFO, Context.MODE_PRIVATE).edit();
+		sp.putString(USER_NAME, username);
+		sp.putString(USER_PSW, userpsw);
+		sp.commit();
+	}
+
+	/**
+	 * 获取用户信息 手机号和密码
+	 * 
+	 * @param context
+	 * @return
+	 */
+	public static BUserlogin getUserNumInfo(Context context) {
+
+		SharedPreferences sp = context.getSharedPreferences(USERINFO,
+				Context.MODE_PRIVATE);
+		BUserlogin userlogin = new BUserlogin();
+		// userlogin.setUsername(sp.getString(USER_NAME, ""));
+		// userlogin.setUserpsw(sp.getString(USER_PSW, ""));
+		return userlogin;
+
+	}
+
+	/**
+	 * 自动登录
+	 * 
+	 * @param context
+	 */
+	public static void putAutoLoadInfo(Context context, boolean isAutoLoad) {
+		Editor sp = context
+				.getSharedPreferences(AUTOLOAD, Context.MODE_PRIVATE).edit();
+		sp.putBoolean(AUTOLOAD, isAutoLoad);
+		sp.commit();
+	}
+
+	/**
+	 * 获取是否自动登录
+	 * 
+	 * @param context
+	 * @return
+	 */
+	public static boolean getAutoLoadInfo(Context context) {
+
+		SharedPreferences sp = context.getSharedPreferences(AUTOLOAD,
+				Context.MODE_PRIVATE);
+		return sp.getBoolean(AUTOLOAD, false);
+
+	}
+
+	/**
+	 * 是否接受推送消息
+	 * 
+	 * @param context
+	 */
+	public static void putReceiveMsg(Context context, boolean isReceive) {
+		Editor sp = context.getSharedPreferences(
+				Constants.SHARED_PREFERENCE_NAME, Context.MODE_PRIVATE).edit();
+		sp.putBoolean(Constants.SETTINGS_NOTIFICATION_ENABLED, isReceive);
+		sp.commit();
+	}
+
+	/**
+	 * 得到是否接受推送消息
+	 * 
+	 * @param context
+	 */
+	public static boolean getReceiveMsg(Context context) {
+		SharedPreferences sp = context.getSharedPreferences(
+				Constants.SHARED_PREFERENCE_NAME, Context.MODE_PRIVATE);
+		return sp.getBoolean(Constants.SETTINGS_NOTIFICATION_ENABLED, true);
+	}
+
+	/**
+	 * 推送消息 声音设置
+	 * 
+	 * @param context
+	 */
+	public static void putReceiveSound(Context context, boolean isSound) {
+		Editor sp = context.getSharedPreferences(
+				Constants.SHARED_PREFERENCE_NAME, Context.MODE_PRIVATE).edit();
+		sp.putBoolean(Constants.SETTINGS_SOUND_ENABLED, isSound);
+		sp.commit();
+	}
+
+	/**
+	 * 得到是否接受推送消息
+	 * 
+	 * @param context
+	 */
+	public static boolean getReceiveSound(Context context) {
+		SharedPreferences sp = context.getSharedPreferences(
+				Constants.SHARED_PREFERENCE_NAME, Context.MODE_PRIVATE);
+		return sp.getBoolean(Constants.SETTINGS_SOUND_ENABLED, true);
+	}
+
+	/**
+	 * 推送消息 是否震动
+	 * 
+	 * @param context
+	 */
+	public static void putReceiveVibrate(Context context, boolean isVibrate) {
+		Editor sp = context.getSharedPreferences(
+				Constants.SHARED_PREFERENCE_NAME, Context.MODE_PRIVATE).edit();
+		sp.putBoolean(Constants.SETTINGS_VIBRATE_ENABLED, isVibrate);
+		sp.commit();
+	}
+
+	/**
+	 * 推送消息 是否震动
+	 * 
+	 * @param context
+	 */
+	public static boolean getReceiveVibrate(Context context) {
+		SharedPreferences sp = context.getSharedPreferences(
+				Constants.SHARED_PREFERENCE_NAME, Context.MODE_PRIVATE);
+		return sp.getBoolean(Constants.SETTINGS_VIBRATE_ENABLED, true);
+	}
+
+	/**
+	 * Gurder设置
+	 * 
+	 * @param context
+	 */
+	public static void putGurder_Once(Context context, boolean isHad) {
+		Editor sp = context.getSharedPreferences(SETTING, Context.MODE_PRIVATE)
+				.edit();
+		sp.putBoolean(GURDER, isHad);
+		sp.commit();
+	}
+
+	/**
+	 * Gurder设置
+	 * 
+	 * @param context
+	 */
+	public static boolean getGurder_Once(Context context) {
+		SharedPreferences sp = context.getSharedPreferences(SETTING,
+				Context.MODE_PRIVATE);
+		return sp.getBoolean(GURDER, true);
+	}
+
+	/**
+	 * 判断是否有用户登录
+	 */
+	public static boolean getLogin(Context context) {
+		SharedPreferences sp = context.getSharedPreferences(SETTING,
+				Context.MODE_PRIVATE);
+		String name = sp.getString(USER_NAME, "");
+		if ("".equals(name)) {
+			return false;
+		} else {
+			return true;
+		}
+	}
+
+	/**
+	 * 获取是否存在流程
+	 */
+	/*
+	 * public static boolean getExistProcess(Context context){ SharedPreferences
+	 * sp = context.getSharedPreferences( SETTING, Context.MODE_PRIVATE);
+	 * boolean is = sp.getBoolean(PROCESS, false); return is; }
+	 *//**
+	 * 记录是否存在流程
+	 */
+	/*
+	 * public static void putExistProcess(Context context,boolean isExist){
+	 * Editor sp = context.getSharedPreferences( SETTING ,
+	 * Context.MODE_PRIVATE).edit(); sp.putBoolean(PROCESS, isExist);
+	 * sp.commit(); }
+	 */
+	/**
+	 * 写入 登录人信息
+	 */
+	public static void putUserLogin(Context context, UserInfo user) {
+		Editor sp = context.getSharedPreferences(USER_NOTE,
+				Context.MODE_PRIVATE).edit();
+		sp.putString(LOGIN_USER_NAME, user.getName());
+		sp.putString(LOGIN_USER_PAW, user.getPasswd());
+		sp.commit();
+	}
+
+	/**
+	 * 取出登录人信息
+	 */
+	public static UserInfo getUserLogin(Context context) {
+		SharedPreferences sp = context.getSharedPreferences(USER_NOTE,
+				Context.MODE_PRIVATE);
+		String name = sp.getString(LOGIN_USER_NAME, "");
+		String paw = sp.getString(LOGIN_USER_PAW, "");
+		System.out.println("name" + name);
+		System.out.println("paw" + paw);
+		UserInfo user = new UserInfo();
+		user.setName(name);
+		user.setPasswd(paw);
+		return user;
+	}
+	// /**
+	// * /*
+	// * public static final String SETTING_PIC_NAME = "PICNAME";
+	// * public static final String LOGIN_USERNAME = "USERNAME";
+	// * public static final String LOGIN_PASSWORD = "PASSWORD";
+	// * public static final String LOGIN_TYPEID = "TYPEID";// 区别类型
+	// * public static final String DEVICE_ID = "DEVICEID";// 手机码
+	// * public static final String ID = "ID";// ID
+	// * public static final String AUTULOGIN = "AUTULOGIN";// 是否自动登录
+	// * public static final String PUSHSTATE = "PUSHSTATE";// 推送
+	// * public static final String PUSH_BLUETOOTH = "PUSH_BLUETOOTH";
+	// * public static final String PUSH_WIFI = "PUSH_WIFI";
+	// */
+	//
+	// /*
+	// /**
+	// * 停车信息
+	// */
+	// public static final String STOPCATR_XY = "STOPCATR_XY";// 停车X坐标
+	// public static final String STOPCATR_TIME = "STOPCATR_TIME";// 停车时间
+	// public static final String STOPCATR_PARKING = "STOPCATR_PARKING";// 停车位置
+	// public static final String STOPCATR_LOCALTION = "STOPCATR_LOCALTION";//
+	// 停车位置
+	// /*
+	//
+	// public static void putValue(Context context, String key, boolean value) {
+	// Editor sp = context.getSharedPreferences(SETTING, Context.MODE_PRIVATE)
+	// .edit();
+	// sp.putBoolean(key, value);
+	// sp.commit();
+	// }
+	//
+	// // STEING DATE PICTURE
+	// public static void putValue_Pic_Date(Context context, String key,
+	// String value) {
+	// Editor sp = context.getSharedPreferences(SETTING, Context.MODE_PRIVATE)
+	// .edit();
+	// sp.putString(key, value);
+	// sp.commit();
+	// }
+	//
+	// // STEING DATE PICTURE
+	// public static String getValue_Pic_Date(Context context, String key,
+	// String defValue) {
+	// SharedPreferences sp = context.getSharedPreferences(SETTING,
+	// Context.MODE_PRIVATE);
+	// String value = sp.getString(key, defValue);
+	// return value;
+	// }
+	//
+	// public static boolean getValue(Context context, String key, boolean
+	// defValue) {
+	// SharedPreferences sp = context.getSharedPreferences(SETTING,
+	// Context.MODE_PRIVATE);
+	// boolean value = sp.getBoolean(key, defValue);
+	// return value;
+	// }
+	//
+	// // put用户名
+	// public static void putUserName(Context context, String username) {
+	// Editor sp = context.getSharedPreferences(SETTING, Context.MODE_PRIVATE)
+	// .edit();
+	// sp.putString(LOGIN_USERNAME, username);
+	// sp.commit();
+	// }
+	//
+	// // put密码
+	// public static void putPassWord(Context context, String password) {
+	// Editor sp = context.getSharedPreferences(SETTING, Context.MODE_PRIVATE)
+	// .edit();
+	// sp.putString(LOGIN_PASSWORD, password);
+	// sp.commit();
+	// }
+	//
+	// // get用户名 ,默认为""
+	// public static String getUserName(Context context) {
+	//
+	// SharedPreferences sp = context.getSharedPreferences(SETTING,
+	// Context.MODE_PRIVATE);
+	// String value = sp.getString(LOGIN_USERNAME, "");
+	// return value;
+	//
+	// }
+	//
+	// // get密码,默认为""
+	// public static String getPassWord(Context context) {
+	// SharedPreferences sp = context.getSharedPreferences(SETTING,
+	// Context.MODE_PRIVATE);
+	// String value = sp.getString(LOGIN_PASSWORD, "");
+	// return value;
+	// }
+	//
+	// // put类型
+	// public static void putTypeID(Context context, String password) {
+	// Editor sp = context.getSharedPreferences(SETTING, Context.MODE_PRIVATE)
+	// .edit();
+	// sp.putString(LOGIN_TYPEID, password);
+	// sp.commit();
+	// }
+	//
+	// // get类型,默认为""
+	// public static String getTypeID(Context context) {
+	// SharedPreferences sp = context.getSharedPreferences(SETTING,
+	// Context.MODE_PRIVATE);
+	// String value = sp.getString(LOGIN_TYPEID, "");
+	// return value;
+	// }
+	// */
+	//
+	//
+	// /**
+	// * 判断用户是否登陆
+	// * @param context
+	// * @return public static boolean isHadLoading(Context context){//判断是否登陆
+	// if(!getUserName(context).equals("")||!getPassWord(context).equals("")){//判断用户名和密码不为空
+	// return true;
+	// }
+	// return false;
+	//
+	// }*/
+	//
+	// /*
+	// // put设备码
+	// public static void putDeviceID(Context context, String deviceid) {
+	// Editor sp = context.getSharedPreferences(SETTING, Context.MODE_PRIVATE)
+	// .edit();
+	// sp.putString(DEVICE_ID, deviceid);
+	// sp.commit();
+	// }
+	//
+	// // get设备码 默认为""
+	// public static String getDeviceID(Context context) {
+	// SharedPreferences sp = context.getSharedPreferences(SETTING,
+	// Context.MODE_PRIVATE);
+	// String value = sp.getString(DEVICE_ID, "");
+	// return value;
+	// }
+	//
+	// /*
+	// // putID
+	// public static void putID(Context context, String password) {
+	// Editor sp = context.getSharedPreferences(SETTING, Context.MODE_PRIVATE)
+	// .edit();
+	// sp.putString(ID, password);
+	// sp.commit();
+	// }
+	//
+	// // getID ,默认为""
+	// /*
+	// public static String getID(Context context) {
+	//
+	// SharedPreferences sp = context.getSharedPreferences(SETTING,
+	// Context.MODE_PRIVATE);
+	// String value = sp.getString(ID, "");
+	// return value;
+	//
+	// }
+	// */
+	//
+	//
+	// /**
+	// * 存放停车X坐标
+	// * @param context
+	// * @param stopcatr_x
+	//
+	// public static void putStopCar_XY(Context context, String stopcatr_xy) {
+	// Editor sp = context.getSharedPreferences(SETTING, Context.MODE_PRIVATE)
+	// .edit();
+	// sp.putString(STOPCATR_XY, stopcatr_xy);
+	// sp.commit();
+	// }
+	// */
+	// /**
+	// * 获取停车X坐标
+	// * @param context
+	// * @param stopcatr_x
+	//
+	// public static String getStopCar_XY(Context context) {
+	// SharedPreferences sp = context.getSharedPreferences(SETTING,
+	// Context.MODE_PRIVATE);
+	// String value = sp.getString(STOPCATR_XY, "");
+	// return value;
+	// }
+	// */
+	//
+	//
+	// /**
+	// * 存放停车time
+	// * @param context
+	// * @param stopcatr_time
+	//
+	// public static void putStopCar_TIME(Context context, String time) {
+	// Editor sp = context.getSharedPreferences(SETTING, Context.MODE_PRIVATE)
+	// .edit();
+	// sp.putString(STOPCATR_TIME, time);
+	// sp.commit();
+	// }
+	// */
+	// /**
+	// * 获取停车time
+	// * @param context
+	// * @param stopcatr_time
+	//
+	// public static String getStopCar_TIME(Context context) {
+	// SharedPreferences sp = context.getSharedPreferences(SETTING,
+	// Context.MODE_PRIVATE);
+	// String value = sp.getString(STOPCATR_TIME, "");
+	// return value;
+	// }
+	// */
+	//
+	// /**
+	// * 存放停车车位 描述停车的位置
+	// * @param context
+	// * @param stopcatr_time
+	//
+	// public static void putStopCar_Parkinge(Context context, String time) {
+	// Editor sp = context.getSharedPreferences(SETTING, Context.MODE_PRIVATE)
+	// .edit();
+	// sp.putString(STOPCATR_PARKING, time);
+	// sp.commit();
+	// }
+	// */
+	// /**
+	// * 获取停车车位
+	// * @param contextedPreferences(SETTING,
+	// Context.MODE_PRIVATE);
+	// String value = sp.getString(STOPCATR_PARKING, "");
+	// return value;
+	// }
+	//
+	//
+	// * @param stopcatr_time
+	//
+	// public static String getStopCar_Parkinge(Context context) {
+	// SharedPreferences sp = context.getSharedPreferences(SETTING,
+	// Context.MODE_PRIVATE);
+	// String value = sp.getString(STOPCATR_PARKING, "");
+	// return value;
+	// }
+	// */
+	//
+	// /**
+	// * 用于显示停车的文字描述
+	// * 存放停车车位STOPCATR_LOCALTION
+	// * @param context
+	// * @param
+	// *
+	//
+	// public static void putStopCar_Localtion(Context context, String position)
+	// {
+	// Editor sp = context.getSharedPreferences(SETTING, Context.MODE_PRIVATE)
+	// .edit();
+	// sp.putString(STOPCATR_LOCALTION, position);
+	// sp.commit();
+	// }
+	// */
+	// /**
+	// * 获取停车车位
+	// * @param contextSTOPCATR_LOCALTION
+	// * @param stopcatr_time
+	//
+	// public static String getStopCar_Localtion(Context context) {
+	// SharedPreferences sp = context.getSharedPreferences(SETTING,
+	// Context.MODE_PRIVATE);
+	// String value = sp.getString(STOPCATR_LOCALTION, "");
+	// return value;
+	// }
+	// */
+	// /**
+	// * 获取登录状态
+	// * @param context
+	// * @param stopcatr_time
+	//
+	// public static void putPUSHSTATE(Context context, Boolean position) {
+	// Editor sp = context.getSharedPreferences(SETTING, Context.MODE_PRIVATE)
+	// .edit();
+	// sp.putBoolean(PUSHSTATE, position);
+	// sp.commit();
+	// }
+	// */
+	// /**
+	// * 获取推送
+	// * @param contextSTOPCATR_LOCALTION
+	// * @param stopcatr_time
+	//
+	// public static Boolean getPUSHSTATE(Context context) {
+	// SharedPreferences sp = context.getSharedPreferences(SETTING,
+	// Context.MODE_PRIVATE);
+	// Boolean value = sp.getBoolean(PUSHSTATE, true);
+	// return value;
+	// }
+	// */
+	//
+	//
+	// /**
+	// * 获取推送状态
+	// * @param context
+	// * @param stopcatr_time
+	//
+	// public static void putAUTULOGIN(Context context, Boolean position) {
+	// Editor sp = context.getSharedPreferences(SETTING, Context.MODE_PRIVATE)
+	// .edit();
+	// sp.putBoolean(AUTULOGIN, position);
+	// sp.commit();
+	// }
+	// */
+	// /**
+	// * 获取推送状态
+	// * @param contextSTOPCATR_LOCALTION
+	// * @param stopcatr_time
+	//
+	// public static Boolean getAUTULOGIN(Context context) {
+	// SharedPreferences sp = context.getSharedPreferences(SETTING,
+	// Context.MODE_PRIVATE);
+	// Boolean value = sp.getBoolean(AUTULOGIN, false);
+	// return value;
+	// }
+	// */
+	// /**
+	// * 蓝牙设置推送
+	// * @param context
+	// * @param position
+	//
+	// public static void putPush_bluetooth(Context context, Boolean
+	// Push_bluetooth) {
+	// Editor sp = context.getSharedPreferences(SETTING, Context.MODE_PRIVATE)
+	// .edit();
+	// sp.putBoolean(PUSH_BLUETOOTH, Push_bluetooth);
+	// sp.commit();
+	// }
+	// */
+	// /**
+	// * 获取蓝牙推送状态
+	// * @param contextSTOPCATR_LOCALTION
+	// * @param stopcatr_time
+	//
+	// public static Boolean getPush_bluetooth(Context context) {
+	// SharedPreferences sp = context.getSharedPreferences(SETTING,
+	// Context.MODE_PRIVATE);
+	// Boolean value = sp.getBoolean(PUSH_BLUETOOTH, false);
+	// return value;
+	// }
+	// */
+	//
+	//
+	// /**
+	// * wifi设置推送
+	// * @param context
+	// * @param position
+	//
+	// public static void putPush_wifi(Context context, Boolean Push_bluetooth)
+	// {
+	// Editor sp = context.getSharedPreferences(SETTING, Context.MODE_PRIVATE)
+	// .edit();
+	// sp.putBoolean(PUSH_WIFI, Push_bluetooth);
+	// sp.commit();
+	// }
+	// */
+	// /**
+	// * 获取蓝牙推送状态
+	// * @param contextSTOPCATR_LOCALTION
+	// * @param stopcatr_time
+	//
+	// public static Boolean getPush_wifi(Context context) {
+	// SharedPreferences sp = context.getSharedPreferences(SETTING,
+	// Context.MODE_PRIVATE);
+	// Boolean value = sp.getBoolean(PUSH_WIFI, true);
+	// return value;
+	// }
+	// */
+
+}

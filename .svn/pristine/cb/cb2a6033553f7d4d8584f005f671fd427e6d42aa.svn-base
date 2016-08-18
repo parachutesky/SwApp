@@ -1,0 +1,47 @@
+package com.jnwat.oamobilegy;
+
+import android.content.Intent;
+import android.view.View;
+import android.widget.TextView;
+
+public class MyProjectDetailActivity extends BaseActivity {
+   private TextView title_bar_name;
+   private View layout_btn ;
+   private final int MYPROJECT = 1;
+   private final int ALLPROJECT = 2;
+   private int type;
+	@Override
+	protected void initView() {
+		// TODO Auto-generated method stub
+		layout_btn = findViewById(R.id.layout_btnShow);
+		if(type==MYPROJECT){
+			layout_btn.setVisibility(View.VISIBLE);
+		}else if(type==ALLPROJECT){
+			layout_btn.setVisibility(View.GONE);
+		}
+	}
+
+	@Override
+	protected void setListener() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	protected void initData() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	protected void setView() {
+		// TODO Auto-generated method stub
+		setContentView(R.layout.activity_sw_training_course);
+		title_bar_name = (TextView) findViewById(R.id.title_bar_name);
+		title_bar_name.setText("详情");
+		Intent intent =getIntent();
+		type =intent.getIntExtra("from", 0);
+		
+	}
+
+}

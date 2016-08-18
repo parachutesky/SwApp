@@ -1,0 +1,115 @@
+package com.jnwat.view;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import com.jnwat.bean.BUserTasks;
+import com.jnwat.swmobilegy.R;
+import com.jnwat.swmobilegy.MainActivity;
+import com.jnwat.tools.ModifySysTitle;
+
+import android.app.Activity;
+import android.app.SearchManager.OnCancelListener;
+import android.content.Context;
+import android.graphics.drawable.ColorDrawable;
+import android.view.KeyEvent;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.View.OnKeyListener;
+import android.view.Window;
+import android.view.WindowManager;
+import android.view.ViewGroup.LayoutParams;
+import android.widget.EditText;
+import android.widget.ListView;
+import android.widget.PopupWindow;
+import android.widget.TextView;
+import android.widget.TextView.OnEditorActionListener;
+
+public class WorkEventPopupWindow extends PopupWindow implements
+		OnClickListener {
+	private Activity mContext;
+	private ListView listview;
+	private List<BUserTasks> showList;
+	private View mView;
+	private EditText searchEdit;
+
+	public WorkEventPopupWindow(Activity Context, List<BUserTasks> list) {
+		mContext = Context;
+		showList = list;
+		LayoutInflater mInflater = (LayoutInflater) Context
+				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+		mView = mInflater.inflate(R.layout.workevent_popup, null);
+		this.setContentView(mView);
+		this.setWidth(LayoutParams.FILL_PARENT);
+		this.setHeight(LayoutParams.FILL_PARENT);
+		this.setFocusable(true);
+		this.setOutsideTouchable(true);
+		ColorDrawable cd = new ColorDrawable(0x000000);
+		this.setBackgroundDrawable(cd);
+		WindowManager.LayoutParams lp = Context.getWindow().getAttributes();
+		lp.alpha = 0.7f;
+		Window c = Context.getWindow();
+		c.setAttributes(lp);
+		this.setOnDismissListener(new OnDismissListener() {
+
+			@Override
+			public void onDismiss() {
+				// TODO Auto-generated method stub
+				WindowManager.LayoutParams lp = ((Activity) mContext)
+						.getWindow().getAttributes();
+				lp.alpha = 1f;
+				((Activity) mContext).getWindow().setAttributes(lp);
+			}
+
+		});
+		initView();
+		initListen();
+	}
+
+	public void initView() {
+		searchEdit = (EditText) mView.findViewById(R.id.search_edt);
+
+	}
+
+	public void initListen() {
+		mView.setOnClickListener(this);// searchEdit
+		searchEdit.setOnKeyListener(new EditText.OnKeyListener() {
+
+			@Override
+			public boolean onKey(View v, int keyCode, KeyEvent keyEvent) {
+				// TODO Auto-generated method stub
+				if (keyCode == keyEvent.KEYCODE_BACK && showList.size() == 0) {
+					dismiss();
+					return false;
+				}
+				return false;
+			}
+
+		});
+
+	}
+
+	public void initData() {
+
+	}
+
+	@Override
+	public void onClick(View v) {
+		// TODO Auto-generated method stub
+		int id = v.getId();
+		switch (id) {
+		case R.id.search_edt:
+			break;
+		default:
+			if (showList.size() == 0
+					&& searchEdit.getText().toString().isEmpty()) {
+				this.dismiss();
+
+			}
+			break;
+		}
+
+	}
+
+}

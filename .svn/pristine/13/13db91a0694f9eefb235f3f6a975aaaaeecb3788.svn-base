@@ -1,0 +1,38 @@
+{
+    "Status": 200,
+    "Message": null,
+    "ReplyObject": [
+        {
+            "ID": "1",
+            "MsgContent": "经理说下午请吃饭，流程审批",
+            "FromUser": "发送人",
+            "Title": "标题",
+            "MsgType": 1,
+            "MsgSendTime": "2015-10-08  6: 36"
+        },
+        {
+            "ID": "2",
+            "MsgContent": "A先生明天结婚了,新闻",
+            "FromUser": "发送人",
+            "Title": "标题",
+            "MsgType": 2,
+            "MsgSendTime": "2015-10-0816: 36"
+        },
+        {
+            "ID": "3",
+            "MsgContent": "B先生明天不上班了,通知",
+            "FromUser": "发送人",
+            "Title": "标题",
+            "MsgType": 4,
+            "MsgSendTime": "2015-10-0916: 36"
+        },
+        {
+            "ID": "4",
+            "MsgContent": "C小姐晚上要相亲，短消息",
+            "FromUser": "发送人",
+            "Title": "标题",
+            "MsgType": 8,
+            "MsgSendTime": "2015-10-1016: 36"
+        }
+    ]
+}
